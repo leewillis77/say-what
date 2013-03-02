@@ -21,13 +21,13 @@ class say_what_admin {
 	function __construct($settings) {
 
 		$this->settings = $settings;
-		add_action( 'admin_init', array ( &$this, 'admin_init' ) );
+		add_action( 'admin_menu', array ( &$this, 'admin_menu' ) );
 
 	}
 
 
 
-	function admin_init() {
+	function admin_menu() {
 
         if ( current_user_can ( 'manage_options' ) ) {
 
@@ -49,6 +49,12 @@ class say_what_admin {
 
 	function enqueue_scripts() {
 		// Placeholder - suspect I might want some admin JS later
+	}
+
+
+
+	function admin() {
+		// Admin page goes here
 	}
 
 }
