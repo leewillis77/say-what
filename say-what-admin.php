@@ -59,7 +59,16 @@ class say_what_admin {
 
 
 
-	function admin() {
+	/**
+	 * The main admin page controller
+	 */
+	public function admin() {
+
+		if ( isset ( $_POST['say_what_save'] ) ) {
+			$this->save();
+		}
+
+		require_once('html/say_what_admin.php');
 		// Admin page goes here
 
 	}
