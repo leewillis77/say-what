@@ -27,7 +27,10 @@ class say_what_admin {
 
 
 
-	function admin_menu() {
+	/**
+	 * Register the menu item for the admin pages
+	 */
+	public function admin_menu() {
 
         if ( current_user_can ( 'manage_options' ) ) {
 
@@ -47,7 +50,10 @@ class say_what_admin {
 
 
 
-	function enqueue_scripts() {
+	/**
+	 * Add javascript to admin pages
+	 */
+	public function enqueue_scripts() {
 		// Placeholder - suspect I might want some admin JS later
 	}
 
@@ -55,6 +61,17 @@ class say_what_admin {
 
 	function admin() {
 		// Admin page goes here
+
+	}
+
+
+
+	/**
+	 * Something on the admin pages needs saved. handle it all here
+	 * Output error/warning messages as required
+	 */
+	private function save() {
+
 	}
 
 }
