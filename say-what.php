@@ -51,7 +51,7 @@ class say_what {
 	/**
 	 * Constructor
 	 */
-	function __construct(){
+	public function __construct(){
 
 		add_action ( 'init', array ( $this, init ) );
 
@@ -60,10 +60,10 @@ class say_what {
 
 		if ( is_admin() ) {
 			require_once ( 'say-what-admin.php' );
-			$this->admin_instance = new say_what_admin ( $this->$settings_instance );
+			$this->admin_instance = new say_what_admin ( $this->settings_instance );
 		} else {
 			require_once ( 'say-what-frontend.php' );
-			$this->frontend_instance = new say_what_frontend ( $this->$settings_instance );
+			$this->frontend_instance = new say_what_frontend ( $this->settings_instance );
 		}
 
 	}
@@ -73,7 +73,7 @@ class say_what {
 	 * Fires on init()
 	 * Set up translation for the plugin itself
 	 */
-	funcion init() {
+	public function init() {
 
 		$locale = apply_filters ( 'plugin_locale', get_locale(), "say_what");
 	    load_textdomain ( 'say_what', WP_LANG_DIR.'/say_what/say_what-'.$locale.'.mo');
