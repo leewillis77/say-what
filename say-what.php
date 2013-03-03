@@ -59,11 +59,15 @@ class say_what {
 		$this->settings_instance = new say_what_settings();
 
 		if ( is_admin() ) {
+
 			require_once ( 'say-what-admin.php' );
 			$this->admin_instance = new say_what_admin ( $this->settings_instance );
+
 		} else {
+
 			require_once ( 'say-what-frontend.php' );
 			$this->frontend_instance = new say_what_frontend ( $this->settings_instance );
+
 		}
 
 	}
@@ -82,6 +86,28 @@ class say_what {
 	}
 
 }
+
+
+
+function say_what_install() {
+
+    global $wpdb;
+
+    $table_name = $wpdb->prefix . "say_what_strings";
+
+    $sql = "CREATE TABLE $table_name (
+                         `string_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                         `orig_string` text NOT NULL,
+                         `domain` varchar(255),
+                         `replacement_string` text
+                         )";
+
+    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+    dbDelta($sql);
+
+}
+
+register_activation_hook ( __FILE__, 'say_what_install' );
 
 
 

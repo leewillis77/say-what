@@ -40,8 +40,6 @@ class say_what_admin {
                                           'say_what_admin',
                                           array ( $this, 'admin' ) );
 
-            $this->admin_url = 'tools.php?page=say_what_admin'; // FIXME - not needed?
-
             add_action('admin_print_styles-' . $page, array ( &$this, 'enqueue_scripts' ) );
 
         }
@@ -69,6 +67,7 @@ class say_what_admin {
 		}
 
 		require_once('html/say_what_admin.php');
+
 		// Admin page goes here
 
 	}
@@ -80,6 +79,17 @@ class say_what_admin {
 	 * Output error/warning messages as required
 	 */
 	private function save() {
+
+	}
+
+
+
+	private function show_current() {
+
+		require_once ( 'say-what-list-table.class.php' );
+		$list_table_instance = new say_what_list_table ( $this->settings );
+		$list_table_instance->prepare_items();
+  		$list_table_instance->display();
 
 	}
 
