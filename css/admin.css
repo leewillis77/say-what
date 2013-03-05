@@ -1,0 +1,9 @@
+.wp-list-table .column-orig_string {
+	width: 40%;
+}
+.wp-list-table .column-replacement_string{
+	width: 40%;
+}
+.wp-list-table .column-domain {
+	width: 10%;
+}
