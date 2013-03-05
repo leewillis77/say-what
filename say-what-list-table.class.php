@@ -5,6 +5,8 @@ if ( ! class_exists ( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
+
+
 /**
  * List table class for the admin pages
  */
@@ -12,14 +14,31 @@ class say_what_list_table extends WP_List_Table {
 
 
 
+	private $settings;
+
+
+
 	function __construct ( $settings ) {
 
-		$this->items = $settings->replacements;
+		$this->settings = $settings;
 
 	}
 
 
 
+	/**
+	 * Description shown when no replacements configured
+	 */
+	function no_items() {
+	  _e( 'No string replacements configured yet.' );
+	}
+
+
+
+	/**
+	 * Specify the list of columns in the table
+	 * @return array The list of columns
+	 */
 	function get_columns(){
 
 		$columns = array(
@@ -37,15 +56,37 @@ class say_what_list_table extends WP_List_Table {
 
 
 
+	/**
+	 * Retrieve the items for display
+	 * @return [type] [description]
+	 */
 	function prepare_items() {
+
+		global $wpdb, $table_prefix;
 
 		$columns = $this->get_columns();
 		$hidden = array('string_id');;
-		$sortable = array();
-		// $sortable = $this->get_sortable_columns();// FIXME - implement sorting
+		$sortable = $this->get_sortable_columns();
 		$this->_column_headers = array($columns, $hidden, $sortable);
-		$this->items = $this->items; // FIXME - implement sorting
-		$this->search_box(__('Search', 'say_what'), 'search_id'); // FIXME - implement searching
+		//$this->search_box(__('Search', 'say_what'), 'search_id'); // FIXME - implement searching
+
+		// We don't use the replacements from the settings object, we query them separately to make
+		// ordering/searhing/pagination easier. This may turn out bad if people have "lots"
+		$sql = "SELECT * FROM {$table_prefix}say_what_strings";
+		if ( isset ( $_GET['orderby'] ) ) {
+
+			$sql .= " ORDER BY ".$wpdb->escape ( $_GET['orderby'] );
+
+			if ( isset ( $_GET['order'] ) ) {
+				$sql .= " ".$wpdb->prepare ( $_GET['order'] );
+			}
+
+		} else {
+
+			$sql .= ' ORDER BY orig_string ASC';
+		}
+
+		$this->items = $wpdb->get_results ( $sql, ARRAY_A );
 
 	}
 
@@ -54,7 +95,7 @@ class say_what_list_table extends WP_List_Table {
 	function get_sortable_columns() {
 
 		return array (
-          'orig_string' => array ( 'orig_string', false ),
+          'orig_string' => array ( 'orig_string', true ),
           'domain' => array ( 'domain', false ),
           'replacement_string' => array ( 'replacement_string', false ) );
 
@@ -91,7 +132,7 @@ class say_what_list_table extends WP_List_Table {
 
 	function column_edit_links ( $item, $column_name ) {
 
-		return '<a href="tools.php?page=say_what_admin&swaction=edit&id='.urlencode($item['string_id']).'">'.__( 'Edit', 'say_what').'</a>';
+		return '<a href="tools.php?page=say_what_admin&say_what_action=addedit&id='.urlencode($item['string_id']).'">'.__( 'Edit', 'say_what').'</a>';
 
 	}
 
@@ -99,7 +140,7 @@ class say_what_list_table extends WP_List_Table {
 
 	function column_delete_links ( $item, $column_name ) {
 
-		return '<a href="tools.php?page=say_what_admin&swaction=delete&id='.urlencode($item['string_id']).'&swnonce='.urlencode(wp_create_nonce('swdelete')).'">'.__( 'Delete', 'say_what').'</a>';
+		return '<a href="tools.php?page=say_what_admin&say_what_action=delete&id='.urlencode($item['string_id']).'&swnonce='.urlencode(wp_create_nonce('swdelete')).'">'.__( 'Delete', 'say_what').'</a>';
 
 	}
 
