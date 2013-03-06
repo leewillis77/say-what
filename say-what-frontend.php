@@ -13,14 +13,32 @@ class say_what_frontend {
 
 
 
-	private $settings;
+	private $replacements;
 
 
 
 	function __construct($settings) {
 
-		$this->settings = $settings;
+		foreach ( $settings->replacements as $key => $value ) {
+			$this->replacements[$value['domain']][$value['orig_string']] = $value['replacement_string'];
+		}
+
+		add_filter ( 'gettext', array ( $this, 'gettext' ), 10, 3 );
 
 	}
+
+
+
+	function gettext( $translated, $original, $domain ) {
+
+		if ( isset ( $this->replacements[$domain][$original] ) ) {
+			return $this->replacements[$domain][$original];
+		} else {
+			return $translated;
+		}
+
+	}
+
+
 
 }
