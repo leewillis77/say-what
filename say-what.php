@@ -63,14 +63,13 @@ class say_what {
 			require_once ( 'say-what-admin.php' );
 			$this->admin_instance = new say_what_admin ( $this->settings_instance );
 
-		} else {
-
-			require_once ( 'say-what-frontend.php' );
-			$this->frontend_instance = new say_what_frontend ( $this->settings_instance );
-
 		}
 
+		require_once ( 'say-what-frontend.php' );
+		$this->frontend_instance = new say_what_frontend ( $this->settings_instance );
+
 	}
+
 
 
 	/**

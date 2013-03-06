@@ -34,8 +34,8 @@ class say_what_admin {
 			$this->save();
 		}
 
-		if ( isset ( $_GET['say_what_action'] ) && ( $_GET['say_what_action'] == 'delete_confirmed' ) ) {
-			$this->delete_confirmed();
+		if ( isset ( $_GET['say_what_action'] ) && ( $_GET['say_what_action'] == 'delete-confirmed' ) ) {
+			$this->admin_delete_confirmed();
 		}
 
 	}
