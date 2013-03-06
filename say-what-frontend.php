@@ -20,6 +20,10 @@ class say_what_frontend {
 	function __construct($settings) {
 
 		foreach ( $settings->replacements as $key => $value ) {
+
+			if ( empty ( $value['domain'] ) )
+				$value['domain'] = 'default';
+
 			$this->replacements[$value['domain']][$value['orig_string']] = $value['replacement_string'];
 		}
 
