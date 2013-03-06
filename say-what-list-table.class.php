@@ -31,7 +31,7 @@ class say_what_list_table extends WP_List_Table {
 	 * Description shown when no replacements configured
 	 */
 	function no_items() {
-	  _e( 'No string replacements configured yet.' );
+	  _e( 'No string replacements configured yet.', 'say_what' );
 	}
 
 
@@ -66,7 +66,7 @@ class say_what_list_table extends WP_List_Table {
 		global $wpdb, $table_prefix;
 
 		$columns = $this->get_columns();
-		$hidden = array('string_id');;
+		$hidden = array('string_id');
 		$sortable = $this->get_sortable_columns();
 		$this->_column_headers = array($columns, $hidden, $sortable);
 		//$this->search_box(__('Search', 'say_what'), 'search_id'); // FIXME - implement searching

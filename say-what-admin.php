@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) )
 
 
 /**
- * FIXME
+ * @TODO docs
  */
 class say_what_admin {
 
