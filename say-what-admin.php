@@ -171,9 +171,6 @@ class say_what_admin {
 
 		global $wpdb, $table_prefix;
 
-		if ( ! wp_verify_nonce ($_GET['nonce'], 'swaddedit' ) ) {
-			wp_die ( __("Did you really mean to do that? Please go back and try again.", 'say_what') );
-		}
 		$replacement = false;
 
 		if ( isset ( $_GET['id'] ) ) {
@@ -204,6 +201,10 @@ class say_what_admin {
 	private function save() {
 
 		global $wpdb, $table_prefix;
+
+		if ( ! wp_verify_nonce ($_POST['nonce'], 'swaddedit' ) ) {
+			wp_die ( __("Did you really mean to do that? Please go back and try again.", 'say_what') );
+		}
 
 		$_POST = stripslashes_deep( $_POST );
 

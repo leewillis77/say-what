@@ -4,6 +4,7 @@
 
 	<form action="tools.php?page=say_what_admin&amp;say_what_action=addedit" method="post">
 		<input type="hidden" name="say_what_save" value="1">
+		<?php wp_nonce_field( 'swaddedit', 'nonce' ); ?>
 		<?php if ( ! empty ( $replacement->string_id ) ) : ?>
 			<input type="hidden" name="say_what_string_id" value="<?php esc_attr_e($replacement->string_id); ?>">
 		<?php endif; ?>
