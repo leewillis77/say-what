@@ -34,6 +34,10 @@ class say_what_admin {
 			$this->save();
 		}
 
+		if ( isset ( $_GET['say_what_action'] ) && ( $_GET['say_what_action'] == 'delete_confirmed' ) ) {
+			$this->delete_confirmed();
+		}
+
 	}
 
 
@@ -83,10 +87,16 @@ class say_what_admin {
 			case 'addedit':
 				$this->admin_addedit();
 				break;
+
+			case 'delete':
+				$this->admin_delete();
+				break;
+
 			case 'list':
 			default:
 				$this->admin_list();
 				break;
+
 		}
 
 	}
@@ -105,12 +115,65 @@ class say_what_admin {
 
 
 	/**
+	 * Show the page asking the user to confirm deletion
+	 */
+	public function admin_delete() {
+
+		global $wpdb, $table_prefix;
+
+		if ( ! wp_verify_nonce ( $_GET['nonce'], 'swdelete' ) ) {
+			wp_die ( __("Did you really mean to do that? Please go back and try again.", 'say_what') );
+		}
+
+		if ( isset ( $_GET['id'] ) ) {
+
+			$sql = "SELECT * FROM {$table_prefix}say_what_strings WHERE string_id = %d";
+			$replacement = $wpdb->get_row ( $wpdb->prepare ( $sql, $_GET['id'] ) );
+
+		}
+
+		if ( ! $replacement ) {
+			wp_die ( __("Did you really mean to do that? Please go back and try again.", 'say_what') );
+		}
+
+		require_once('html/say_what_admin_delete.php');
+
+	}
+
+
+
+	/**
+	 * Show the page asking the user to confirm deletion
+	 */
+	public function admin_delete_confirmed() {
+
+		global $wpdb, $table_prefix;
+
+		if ( ! wp_verify_nonce ( $_GET['nonce'], 'swdelete' ) ||
+		     empty ( $_GET['id'] ) ) {
+			wp_die ( __("Did you really mean to do that? Please go back and try again.", 'say_what') );
+		}
+
+		$sql = "DELETE FROM {$table_prefix}say_what_strings WHERE string_id = %d";
+		$wpdb->query ( $wpdb->prepare ( $sql, $_GET['id'] ) );
+
+		wp_redirect( 'tools.php?page=say_what_admin', '303' );
+		die();
+
+	}
+
+
+
+	/**
 	 * Render the add/edit page for a replacement
 	 */
 	public function admin_addedit() {
 
 		global $wpdb, $table_prefix;
 
+		if ( ! wp_verify_nonce ($_GET['nonce'], 'swaddedit' ) ) {
+			wp_die ( __("Did you really mean to do that? Please go back and try again.", 'say_what') );
+		}
 		$replacement = false;
 
 		if ( isset ( $_GET['id'] ) ) {
