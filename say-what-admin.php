@@ -205,6 +205,8 @@ class say_what_admin {
 
 		global $wpdb, $table_prefix;
 
+		$_POST = stripslashes_deep( $_POST );
+
 		if ( isset ( $_POST['say_what_string_id'] ) ) {
 
 			$sql = "UPDATE {$table_prefix}say_what_strings
