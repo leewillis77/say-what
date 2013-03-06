@@ -21,6 +21,7 @@ class say_what_list_table extends WP_List_Table {
 	function __construct ( $settings ) {
 
 		$this->settings = $settings;
+		parent::__construct();
 
 	}
 
@@ -130,17 +131,17 @@ class say_what_list_table extends WP_List_Table {
 
 
 
-	function column_edit_links ( $item, $column_name ) {
+	function column_edit_links ( $item ) {
 
-		return '<a href="tools.php?page=say_what_admin&say_what_action=addedit&id='.urlencode($item['string_id']).'">'.__( 'Edit', 'say_what').'</a>';
+		return '<a href="tools.php?page=say_what_admin&amp;say_what_action=addedit&amp;id='.urlencode($item['string_id']).'&amp;nonce='.urlencode(wp_create_nonce('swaddedit')).'">'.__( 'Edit', 'say_what').'</a>';
 
 	}
 
 
 
-	function column_delete_links ( $item, $column_name ) {
+	function column_delete_links ( $item ) {
 
-		return '<a href="tools.php?page=say_what_admin&say_what_action=delete&id='.urlencode($item['string_id']).'&swnonce='.urlencode(wp_create_nonce('swdelete')).'">'.__( 'Delete', 'say_what').'</a>';
+		return '<a href="tools.php?page=say_what_admin&say_what_action=delete&id='.urlencode($item['string_id']).'&nonce='.urlencode(wp_create_nonce('swdelete')).'">'.__( 'Delete', 'say_what').'</a>';
 
 	}
 
