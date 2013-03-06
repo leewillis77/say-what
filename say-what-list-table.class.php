@@ -107,9 +107,9 @@ class say_what_list_table extends WP_List_Table {
 	function get_bulk_actions() {
 
 		// FIXME - implement bulk actions
-		$actions = array ( 'delete' => __( 'Delete', 'say_what' ) );
+		//$actions = array ( 'delete' => __( 'Delete', 'say_what' ) );
 
-		return $actions;
+		return array();
 
 	}
 
