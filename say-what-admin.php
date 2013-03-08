@@ -234,8 +234,8 @@ class say_what_admin {
 
 			$wpdb->query ( $wpdb->prepare ( $sql,
 			                                $_POST['say_what_orig_string'],
-											$_POST['say_what_replacement_string'],
-											$_POST['say_what_domain']
+											$_POST['say_what_domain'],
+											$_POST['say_what_replacement_string']
 											)
 			);
 
