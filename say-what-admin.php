@@ -82,7 +82,8 @@ class say_what_admin {
 	 */
 	public function admin() {
 
-		switch ( $_GET['say_what_action'] ) {
+		$action = isset( $_GET['say_what_action'] ) ? $_GET['say_what_action'] : 'list';
+		switch ( $action ) {
 
 			case 'addedit':
 				$this->admin_addedit();
