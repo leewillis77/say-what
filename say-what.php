@@ -53,7 +53,7 @@ class say_what {
 	 */
 	public function __construct(){
 
-		add_action ( 'init', array ( $this, init ) );
+		add_action ( 'init', array ( $this, 'init' ) );
 
 		require_once ( 'say-what-settings.php' );
 		$this->settings_instance = new say_what_settings();
