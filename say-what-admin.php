@@ -7,13 +7,15 @@ if ( ! defined( 'ABSPATH' ) )
 
 
 /**
- * @TODO docs
+ * Say What admin class - controller for all of the admin pages
  */
 class say_what_admin {
 
 
 
 	private $settings;
+
+
 
 	/**
 	 * Constructor
@@ -28,6 +30,9 @@ class say_what_admin {
 
 
 
+    /**
+     * Admin init actions. Takes care of saving stuff before redirects
+     */
 	public function admin_init() {
 
 		if ( isset ( $_POST['say_what_save'] ) ) {
@@ -196,7 +201,7 @@ class say_what_admin {
 
 
 	/**
-	 * Something on the admin pages needs saved. handle it all here
+	 * Something on the admin pages needs saved. Handle it here
 	 * Output error/warning messages as required
 	 */
 	private function save() {
@@ -249,6 +254,9 @@ class say_what_admin {
 
 
 
+    /**
+     * Show the current list of configured replacements.
+     */
 	private function show_current() {
 
 		require_once ( 'say-what-list-table.class.php' );

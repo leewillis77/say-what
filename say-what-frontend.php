@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) )
 
 
 /**
- * @TODO - docblocks
+ * The frontend class, responsible for performing the actual replacements
  */
 class say_what_frontend {
 
@@ -17,6 +17,9 @@ class say_what_frontend {
 
 
 
+    /**
+     * Read the settings in and put them into a format optimised for the final filter
+     */
 	function __construct($settings) {
 
 		foreach ( $settings->replacements as $key => $value ) {
@@ -33,6 +36,9 @@ class say_what_frontend {
 
 
 
+    /**
+     * The main function - optionally perform a string replacement
+     */
 	function gettext( $translated, $original, $domain ) {
 
 		if ( isset ( $this->replacements[$domain][$original] ) ) {

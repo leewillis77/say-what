@@ -88,6 +88,9 @@ class say_what {
 
 
 
+/**
+ * Install function. Create the table to store the replacements
+ */
 function say_what_install() {
 
     global $wpdb;
