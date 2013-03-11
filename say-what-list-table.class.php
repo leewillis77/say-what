@@ -117,7 +117,7 @@ class say_what_list_table extends WP_List_Table {
 
 	function column_cb ( $item ) {
 
-		return sprintf ( '<input type="checkbox" name="string_id[]" value="%d" />', $item['ID'] );
+		return sprintf ( '<input type="checkbox" name="string_id[]" value="%d" />', $item['string_id'] );
 
 	}
 
