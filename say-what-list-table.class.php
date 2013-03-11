@@ -43,7 +43,7 @@ class say_what_list_table extends WP_List_Table {
 	function get_columns(){
 
 		$columns = array(
-            'cb'        => 'Checkboxes',
+            /*'cb'        => 'Checkboxes',*/
 		    'string_id' => 'String replacement ID (Internal)',
 			'orig_string' => __( 'Original string', 'say_what' ),
 			'domain' => __( 'Domain', 'say_what' ),
