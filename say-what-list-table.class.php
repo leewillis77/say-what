@@ -82,7 +82,7 @@ class say_what_list_table extends WP_List_Table {
 			$sql .= " ORDER BY ".$wpdb->escape ( $_GET['orderby'] );
 
 			if ( isset ( $_GET['order'] ) ) {
-				$sql .= " ".$wpdb->prepare ( $_GET['order'] );
+				$sql .= " ".$wpdb->escape ( $_GET['order'] );
 			}
 
 		} else {
