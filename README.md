@@ -21,6 +21,9 @@ $foo = __('This is a translatable string', 'plugin-domain');
 
 ### Changelog
 
+#### 0.9.3
+Documentation fixes, and help information
+
 #### 0.9.1
 Fix issue with fields being swapped when first entered
 
