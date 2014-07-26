@@ -20,6 +20,7 @@ class say_what_frontend {
 			$this->replacements[$value['domain']][$value['orig_string']] = $value['replacement_string'];
 		}
 		add_filter ( 'gettext', array ( $this, 'gettext' ), 10, 3 );
+		add_filter ( 'gettext_with_context', array( $this, 'gettext_context' ), 10, 4 );
 	}
 
     /**
@@ -33,4 +34,10 @@ class say_what_frontend {
 		}
 	}
 
+	/**
+	 * Route gettext calls with context to the main replacement method.
+	 */
+	function gettext_context( $translated, $original, $context, $domain ) {
+		return $this->gettext( $translated, $original, $domain );
+	}
 }
