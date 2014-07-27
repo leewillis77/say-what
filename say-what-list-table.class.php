@@ -1,6 +1,6 @@
 <?php
 
-if ( ! class_exists ( 'WP_List_Table' ) ) {
+if ( ! class_exists( 'WP_List_Table' ) ) {
 	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
@@ -14,7 +14,7 @@ class say_what_list_table extends WP_List_Table {
     /**
      * Constructor
      */
-	function __construct ( $settings ) {
+	function __construct( $settings ) {
 		$this->settings = $settings;
 		parent::__construct();
 	}
@@ -61,14 +61,14 @@ class say_what_list_table extends WP_List_Table {
 		// ordering/searhing/pagination easier. This may turn out bad if people have "lots"
 		$sql = "SELECT * FROM {$table_prefix}say_what_strings";
 		if ( isset ( $_GET['orderby'] ) ) {
-			$sql .= " ORDER BY ".$wpdb->escape ( $_GET['orderby'] );
-			if ( isset ( $_GET['order'] ) ) {
-				$sql .= " ".$wpdb->escape ( $_GET['order'] );
+			$sql .= ' ORDER BY ' . $wpdb->escape( $_GET['orderby'] );
+			if ( isset( $_GET['order'] ) ) {
+				$sql .= ' ' . $wpdb->escape( $_GET['order'] );
 			}
 		} else {
 			$sql .= ' ORDER BY orig_string ASC';
 		}
-		$this->items = $wpdb->get_results ( $sql, ARRAY_A );
+		$this->items = $wpdb->get_results( $sql, ARRAY_A );
 	}
 
     /**
@@ -76,10 +76,10 @@ class say_what_list_table extends WP_List_Table {
      * @return array A list of the columns that are sortable.
      */
 	function get_sortable_columns() {
-		return array (
-          'orig_string' => array ( 'orig_string', true ),
-          'domain' => array ( 'domain', false ),
-          'replacement_string' => array ( 'replacement_string', false ) );
+		return array(
+			'orig_string'        => array( 'orig_string', true ),
+			'domain'             => array( 'domain', false ),
+			'replacement_string' => array( 'replacement_string', false ) );
 	}
 
     /**
@@ -94,29 +94,41 @@ class say_what_list_table extends WP_List_Table {
     /**
      * Checkboxes for the rows. Not used while we don't have bulk actions
      */
-	function column_cb ( $item ) {
-		return sprintf ( '<input type="checkbox" name="string_id[]" value="%d" />', $item['string_id'] );
+	function column_cb( $item ) {
+		return sprintf( '<input type="checkbox" name="string_id[]" value="%d" />', $item['string_id'] );
 	}
 
     /**
      * Output column data
      */
-	function column_default ( $item, $column_name ) {
+	function column_default( $item, $column_name ) {
 		return $item[$column_name];
 	}
 
     /**
      * Output an edit link for the row
      */
-	function column_edit_links ( $item ) {
-		return '<a href="tools.php?page=say_what_admin&amp;say_what_action=addedit&amp;id='.urlencode($item['string_id']).'&amp;nonce='.urlencode(wp_create_nonce('swaddedit')).'">'.__( 'Edit', 'say_what').'</a>';
+	function column_edit_links( $item ) {
+		return '<a href="tools.php?page=say_what_admin&amp;say_what_action=addedit&amp;id=' .
+			urlencode( $item['string_id'] ) .
+			'&amp;nonce=' .
+			urlencode( wp_create_nonce( 'swaddedit' ) ) .
+			'">' .
+			__( 'Edit', 'say_what' ) .
+			'</a>';
 	}
 
     /**
      * Output a delete link for the row
      */
-	function column_delete_links ( $item ) {
-		return '<a href="tools.php?page=say_what_admin&say_what_action=delete&id='.urlencode($item['string_id']).'&nonce='.urlencode(wp_create_nonce('swdelete')).'">'.__( 'Delete', 'say_what').'</a>';
+	function column_delete_links( $item ) {
+		return '<a href="tools.php?page=say_what_admin&say_what_action=delete&id=' .
+			urlencode( $item['string_id'] ) .
+			'&nonce=' .
+			urlencode( wp_create_nonce( 'swdelete' ) ) .
+			'">' .
+			__( 'Delete', 'say_what' ) .
+			'</a>';
 	}
 
 }
