@@ -192,6 +192,7 @@ class say_what_admin {
 			$replacement->orig_string = '';
 			$replacement->replacement_string = '';
 			$replacement->domain = '';
+			$replacement->context = '';
 		}
 
 		require_once('html/say_what_admin_addedit.php');
