@@ -10,7 +10,7 @@ Author URI: http://www.leewillis.co.uk/
 */
 
 /**
- * Copyright (c) 2013 Lee Willis. All rights reserved.
+ * Copyright (c) 2013-2014 Lee Willis. All rights reserved.
  *
  * Released under the GPL license
  * http://www.opensource.org/licenses/gpl-license.php
@@ -34,13 +34,10 @@ Author URI: http://www.leewillis.co.uk/
 if ( ! defined( 'ABSPATH' ) )
     exit; // Exit if accessed directly
 
-
 /**
  * Main plugin class, responsible for triggering everything
  */
 class say_what {
-
-
 
 	private $settings_instance;
 	private $frontend_instance;
@@ -52,31 +49,27 @@ class say_what {
 	 * Constructor
 	 */
 	public function __construct(){
-
-		add_action ( 'init', array ( $this, 'init' ) );
-
 		require_once ( 'say-what-settings.php' );
 		$this->settings_instance = new say_what_settings();
-
 		if ( is_admin() ) {
-
 			require_once ( 'say-what-admin.php' );
-			$this->admin_instance = new say_what_admin ( $this->settings_instance );
-
+			$this->admin_instance = new say_what_admin( $this->settings_instance );
 		}
-
 		require_once ( 'say-what-frontend.php' );
-		$this->frontend_instance = new say_what_frontend ( $this->settings_instance );
+		$this->frontend_instance = new say_what_frontend( $this->settings_instance );
 
+		add_action( 'init', array( $this, 'init' ) );
 	}
 
-
-
 	/**
-	 * Fires on init()
-	 * Set up translation for the plugin itself
+	 * Fires on init().
+	 * Set up translation for the plugin itself.
 	 */
 	public function init() {
+		$locale = apply_filters( 'plugin_locale', get_locale(), 'say_what' );
+		load_textdomain( 'say_what', WP_LANG_DIR.'/say_what/say_what-' . $locale . '.mo' );
+		load_plugin_textdomain( 'say_what', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+	}
 
 		$locale = apply_filters ( 'plugin_locale', get_locale(), "say_what");
 	    load_textdomain ( 'say_what', WP_LANG_DIR.'/say_what/say_what-'.$locale.'.mo');
@@ -86,31 +79,21 @@ class say_what {
 
 }
 
-
-
 /**
  * Install function. Create the table to store the replacements
  */
 function say_what_install() {
-
     global $wpdb;
-
-    $table_name = $wpdb->prefix . "say_what_strings";
-
+    $table_name = $wpdb->prefix . 'say_what_strings';
     $sql = "CREATE TABLE $table_name (
                          `string_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                          `orig_string` text NOT NULL,
                          `domain` varchar(255),
                          `replacement_string` text
                          )";
-
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-    dbDelta($sql);
-
+    dbDelta( $sql );
 }
-
-register_activation_hook ( __FILE__, 'say_what_install' );
-
-
+register_activation_hook( __FILE__, 'say_what_install' );
 
 $say_what = new say_what();
