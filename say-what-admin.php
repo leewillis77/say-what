@@ -80,9 +80,6 @@ class say_what_admin {
 	 * Render the list of currently configured replacement strings
 	 */
 	public function admin_list() {
-		_e( 'Bart', 'say_what' );
-		_ex( 'Bart', 'Little', 'say_what' );
-		_ex( 'Bart', 'Big', 'say_what' );
 		require_once('html/say_what_admin_list.php');
 	}
 
