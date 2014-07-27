@@ -36,6 +36,7 @@ class say_what_list_table extends WP_List_Table {
 			'string_id'          => 'String replacement ID (Internal)',
 			'orig_string'        => __( 'Original string', 'say_what' ),
 			'domain'             => __( 'Text domain', 'say_what' ),
+			'context'            => __( 'Text context', 'say_what' ),
 			'replacement_string' => __( 'Replacement string', 'say_what' ),
 			'edit_links'         => _x( '', 'Header for edit links on admin list table', 'say_what' ),
 			'delete_links'       => _x( '', 'Header for delete links on admin list table', 'say_what' ),
@@ -79,6 +80,7 @@ class say_what_list_table extends WP_List_Table {
 		return array(
 			'orig_string'        => array( 'orig_string', true ),
 			'domain'             => array( 'domain', false ),
+			'context'            => array( 'context', false ),
 			'replacement_string' => array( 'replacement_string', false ) );
 	}
 
