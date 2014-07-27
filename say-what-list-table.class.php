@@ -46,7 +46,6 @@ class say_what_list_table extends WP_List_Table {
 
 	/**
 	 * Retrieve the items for display
-	 * @return [type] [description]
 	 */
 	function prepare_items() {
 

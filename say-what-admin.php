@@ -152,6 +152,7 @@ class say_what_admin {
 			           SET orig_string = %s,
 			               replacement_string = %s,
 			               domain = %s
+			               context = %s
 			         WHERE string_id = %d";
 			$wpdb->query(
 				$wpdb->prepare(
@@ -159,12 +160,14 @@ class say_what_admin {
 			    	$_POST['say_what_orig_string'],
 					$_POST['say_what_replacement_string'],
 					$_POST['say_what_domain'],
+					$_POST['say_what_context'],
 					$_POST['say_what_string_id']
 				)
 			);
 		} else {
 			$sql = "INSERT INTO {$table_prefix}say_what_strings
 			            VALUES ( NULL,
+			                     %s,
 			                     %s,
 			                     %s,
 			                     %s )";
@@ -174,7 +177,8 @@ class say_what_admin {
 					$sql,
 			        $_POST['say_what_orig_string'],
 					$_POST['say_what_domain'],
-					$_POST['say_what_replacement_string']
+					$_POST['say_what_replacement_string'],
+					$_POST['say_what_context']
 				)
 			);
 		}

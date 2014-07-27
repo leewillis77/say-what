@@ -22,7 +22,7 @@ class say_what_frontend {
 			$this->replacements[$value['domain']][$value['orig_string']][$value['context']] = $value['replacement_string'];
 		}
 		add_filter( 'gettext', array( $this, 'gettext' ), 10, 3 );
-		add_filter( 'gettext', array( $this, 'gettext_with_context' ), 10, 4 );
+		add_filter( 'gettext_with_context', array( $this, 'gettext_with_context' ), 10, 4 );
 	}
 
     /**
