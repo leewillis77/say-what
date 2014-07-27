@@ -42,8 +42,7 @@ class say_what {
 	private $settings_instance;
 	private $frontend_instance;
 	private $admin_instance;
-
-
+	private $db_version = 2;
 
 	/**
 	 * Constructor
@@ -59,6 +58,7 @@ class say_what {
 		$this->frontend_instance = new say_what_frontend( $this->settings_instance );
 
 		add_action( 'init', array( $this, 'init' ) );
+		add_action( 'admin_init', array( $this, 'admin_init' ) );
 	}
 
 	/**
@@ -71,12 +71,52 @@ class say_what {
 		load_plugin_textdomain( 'say_what', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
 
-		$locale = apply_filters ( 'plugin_locale', get_locale(), "say_what");
-	    load_textdomain ( 'say_what', WP_LANG_DIR.'/say_what/say_what-'.$locale.'.mo');
-    	load_plugin_textdomain ( 'say_what', false, basename( dirname( __FILE__ ) ) . '/languages/' );
-
+	/**
+	 * Fires on admin_init().
+	 * Check for any required database schema updates.
+	 */
+	public function admin_init() {
+		$this->check_db_version();
 	}
 
+	/**
+	 * Check for pending upgrades, and run them if required.
+	 */
+	public function check_db_version() {
+		$current_db_version = (int) get_option( 'say_what_db_version', 1 );
+		// Bail if we're already up to date.
+		if ( $current_db_version >= $this->db_version ) {
+			return;
+		}
+		// Otherwise, check for, and run updates.
+		foreach ( range( $current_db_version + 1, $this->db_version ) as $version ) {
+			if ( is_callable( array( $this, 'upgrade_db_to_' . $version ) ) ) {
+				$this->{'upgrade_db_to_' . $version}();
+				update_option( 'say_what_db_version', $version );
+			} else {
+				update_option( 'say_what_db_version', $version );
+			}
+		}
+	}
+
+	/**
+	 * Database v2 upgrade.
+	 *
+	 * Add context to database schema.
+	 */
+	private function upgrade_db_to_2() {
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'say_what_strings';
+		$sql = "CREATE TABLE $table_name (
+		                     `string_id` int(11) NOT NULL AUTO_INCREMENT,
+		                     `orig_string` text NOT NULL,
+		                     `domain` varchar(255),
+		                     `replacement_string` text,
+		                     `context` text
+		                     )";
+		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+		dbDelta( $sql );
+	}
 }
 
 /**
@@ -90,6 +130,7 @@ function say_what_install() {
                          `orig_string` text NOT NULL,
                          `domain` varchar(255),
                          `replacement_string` text
+                         `context` text
                          )";
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
     dbDelta( $sql );
