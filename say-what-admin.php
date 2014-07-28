@@ -151,7 +151,7 @@ class say_what_admin {
 			$sql = "UPDATE {$table_prefix}say_what_strings
 			           SET orig_string = %s,
 			               replacement_string = %s,
-			               domain = %s
+			               domain = %s,
 			               context = %s
 			         WHERE string_id = %d";
 			$wpdb->query(
