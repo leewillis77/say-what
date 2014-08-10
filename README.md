@@ -21,6 +21,9 @@ $foo = __('This is a translatable string', 'plugin-domain');
 
 ### Changelog
 
+#### 1.0
+Allow strings with context to be replaced
+
 #### 0.9.3
 Documentation fixes, and help information
 
