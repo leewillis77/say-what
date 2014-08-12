@@ -129,7 +129,7 @@ function say_what_install() {
                          `string_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                          `orig_string` text NOT NULL,
                          `domain` varchar(255),
-                         `replacement_string` text
+                         `replacement_string` text,
                          `context` text
                          )";
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
