@@ -21,6 +21,10 @@ $foo = __('This is a translatable string', 'plugin-domain');
 
 ### Changelog
 
+#### 1.0.1
+Fix initial DB table creation
+Fix translations for strings with no domain
+
 #### 1.0
 Allow strings with context to be replaced
 
