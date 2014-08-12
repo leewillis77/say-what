@@ -16,7 +16,7 @@ class say_what_frontend {
 	function __construct( $settings ) {
 		foreach ( $settings->replacements as $key => $value ) {
 			if ( empty ( $value['domain'] ) )
-				$value['domain'] = 'sw-default-domain';
+				$value['domain'] = 'default';
 			if ( empty ( $value['context'] ) )
 				$value['context'] = 'sw-default-context';
 			$this->replacements[$value['domain']][$value['orig_string']][$value['context']] = $value['replacement_string'];
