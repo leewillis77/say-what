@@ -110,11 +110,11 @@ class say_what {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'say_what_strings';
 		$sql = "CREATE TABLE $table_name (
-		                     `string_id` int(11) NOT NULL AUTO_INCREMENT,
-		                     `orig_string` text NOT NULL,
-		                     `domain` varchar(255),
-		                     `replacement_string` text,
-		                     `context` text
+		                     string_id int(11) NOT NULL AUTO_INCREMENT,
+		                     orig_string text NOT NULL,
+		                     domain varchar(255),
+		                     replacement_string text,
+		                     context text
 		                     )";
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		dbDelta( $sql );
@@ -128,12 +128,12 @@ function say_what_install() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'say_what_strings';
     $sql = "CREATE TABLE $table_name (
-                         `string_id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                         `orig_string` text NOT NULL,
-                         `domain` varchar(255),
-                         `replacement_string` text,
-                         `context` text
                          )";
+                         string_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+                         orig_string text NOT NULL,
+                         domain varchar(255),
+                         replacement_string text,
+                         context text
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
     dbDelta( $sql );
     update_option( 'say_what_db_version', SAY_WHAT_DB_VERSION );
