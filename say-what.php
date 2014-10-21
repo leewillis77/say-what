@@ -119,6 +119,19 @@ class say_what {
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		dbDelta( $sql );
 	}
+
+	/**
+	 * Database v3 upgrade.
+	 *
+	 * Convert character set to utf8
+	 */
+	private function upgrade_db_to_3() {
+		global $wpdb;
+		$table_name = $wpdb->prefix . 'say_what_strings';
+		$sql = "ALTER TABLE $table_name
+		        CONVERT TO CHARACTER SET utf8";
+		$wpdb->query( $sql );
+	}
 }
 
 /**
@@ -128,12 +141,12 @@ function say_what_install() {
     global $wpdb;
     $table_name = $wpdb->prefix . 'say_what_strings';
     $sql = "CREATE TABLE $table_name (
-                         )";
                          string_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
                          orig_string text NOT NULL,
                          domain varchar(255),
                          replacement_string text,
                          context text
+                         ) DEFAULT CHARACTER SET utf8";
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
     dbDelta( $sql );
     update_option( 'say_what_db_version', SAY_WHAT_DB_VERSION );
