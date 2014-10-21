@@ -34,6 +34,8 @@ Author URI: http://www.leewillis.co.uk/
 if ( ! defined( 'ABSPATH' ) )
     exit; // Exit if accessed directly
 
+define( 'SAY_WHAT_DB_VERSION', 3 );
+
 /**
  * Main plugin class, responsible for triggering everything
  */
@@ -42,7 +44,7 @@ class say_what {
 	private $settings_instance;
 	private $frontend_instance;
 	private $admin_instance;
-	private $db_version = 2;
+	private $db_version = SAY_WHAT_DB_VERSION;
 
 	/**
 	 * Constructor
@@ -134,6 +136,7 @@ function say_what_install() {
                          )";
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
     dbDelta( $sql );
+    update_option( 'say_what_db_version', SAY_WHAT_DB_VERSION );
 }
 register_activation_hook( __FILE__, 'say_what_install' );
 
