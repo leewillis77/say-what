@@ -21,6 +21,12 @@ $foo = __('This is a translatable string', 'plugin-domain');
 
 ### Changelog
 
+#### 1.2
+Swap database to UTF-8 to fix problems entering non-ASCII strings.
+
+#### 1.1
+Fix incorrect escaping on the admin screens.
+
 #### 1.0.1
 Fix initial DB table creation
 Fix translations for strings with no domain
