@@ -16,11 +16,11 @@
 		</p>
 		<p>
 			<label for="say_what_domain"><?php _e( 'Text domain', 'say_what' ); ?></label> <a href="http://plugins.leewillis.co.uk/doc_post/adding-string-replacement/"><i class="dashicons dashicons-info">&nbsp;</i></a><br/>
-			<input type="text" name="say_what_domain" value="<?php echo esc_attr( $replacement->domain ); ?>"><br/>
+			<input type="text" name="say_what_domain" size="30" value="<?php echo esc_attr( $replacement->domain ); ?>"><br/>
 		</p>
 		<p>
 			<label for="say_what_context"><?php _e( 'Text context', 'say_what' ); ?></label> <a href="http://plugins.leewillis.co.uk/doc_post/replacing-wordpress-strings-context/"><i class="dashicons dashicons-info">&nbsp;</i></a><br/>
-			<input type="text" name="say_what_context" value="<?php echo esc_attr( $replacement->context ); ?>"><br/>
+			<input type="text" name="say_what_context" size="30" value="<?php echo esc_attr( $replacement->context ); ?>"><br/>
 		</p>
 		<p>
 			<label for="say_what_replacement_string"><?php _e( 'Replacement string', 'say_what' ); ?></label><br/>

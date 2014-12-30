@@ -1,12 +1,13 @@
 .wp-list-table .column-orig_string,
-.wp-list-table .column-context,
 .wp-list-table .column-replacement_string {
 	width: 26%;
 }
-.wp-list-table .column-domain {
-	width: 12%;
+.wp-list-table .column-domain,
+.wp-list-table .column-context
+ {
+	width: 18%;
 }
 .wp-list-table .edit_links,
 .wp-list-table .delete_links {
-	width: 5%;
+	width: 6%;
 }
