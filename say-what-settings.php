@@ -11,6 +11,11 @@ class say_what_settings {
 
 	public $replacements;
 
+	/**
+	 * Constructor.
+	 *
+	 * Loads the settings from the database.
+	 */
 	public function __construct() {
 		global $wpdb, $table_prefix;
 		// @TODO - Read other settings in when we have them
