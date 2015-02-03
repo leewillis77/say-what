@@ -81,7 +81,7 @@ class say_what_admin {
 	 * Render the list of currently configured replacement strings
 	 */
 	public function admin_list() {
-		require_once('html/say_what_admin_list.php');
+		require_once('html/say-what-admin-list.php');
 	}
 
 	/**
@@ -99,7 +99,7 @@ class say_what_admin {
 		if ( ! $replacement ) {
 			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say_what' ) );
 		}
-		require_once('html/say_what_admin_delete.php');
+		require_once('html/say-what-admin-delete.php');
 	}
 
 	/**
@@ -135,7 +135,7 @@ class say_what_admin {
 			$replacement->domain = '';
 			$replacement->context = '';
 		}
-		require_once('html/say_what_admin_addedit.php');
+		require_once('html/say-what-admin-addedit.php');
 	}
 
 	/**
