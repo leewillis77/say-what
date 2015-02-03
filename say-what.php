@@ -40,7 +40,7 @@ define( 'SAY_WHAT_DB_VERSION', 3 );
 /**
  * Main plugin class, responsible for triggering everything
  */
-class say_what {
+class SayWhat {
 
 	private $settings_instance;
 	private $frontend_instance;
@@ -52,13 +52,13 @@ class say_what {
 	 */
 	public function __construct(){
 		require_once ( 'say-what-settings.php' );
-		$this->settings_instance = new say_what_settings();
+		$this->settings_instance = new SayWhatSettings();
 		if ( is_admin() ) {
 			require_once ( 'say-what-admin.php' );
-			$this->admin_instance = new say_what_admin( $this->settings_instance );
+			$this->admin_instance = new SayWhatAdmin( $this->settings_instance );
 		}
 		require_once ( 'say-what-frontend.php' );
-		$this->frontend_instance = new say_what_frontend( $this->settings_instance );
+		$this->frontend_instance = new SayWhatFrontend( $this->settings_instance );
 
 		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
@@ -158,4 +158,4 @@ function say_what_install() {
 }
 register_activation_hook( __FILE__, 'say_what_install' );
 
-$say_what = new say_what();
+$say_what = new SayWhat();

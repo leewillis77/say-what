@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Settings class. Possibly overkill at the moment
  */
-class say_what_settings {
+class SayWhatSettings {
 
 	public $replacements;
 

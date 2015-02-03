@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * The frontend class, responsible for performing the actual replacements
  */
-class say_what_frontend {
+class SayWhatFrontend {
 
 	private $replacements;
 

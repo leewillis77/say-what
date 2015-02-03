@@ -7,7 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Say What admin class - controller for all of the admin pages
  */
-class say_what_admin {
+class SayWhatAdmin {
 
 	private $settings;
 
