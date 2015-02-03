@@ -27,7 +27,7 @@
 			<input type="text" name="say_what_replacement_string" size="120" value="<?php echo esc_attr( $replacement->replacement_string ); ?>"><br/>
 		</p>
 		<p>
-			<input type="submit" class="button-primary" value="<?php ! empty( $replacement->string_id ) ? _e( 'Update', 'say_what' ) : _e( 'Add', 'say_what' ); ?>">
+			<input type="submit" class="button-primary" value="<?php  ! empty( $replacement->string_id ) ? _e( 'Update', 'say_what' ) : _e( 'Add', 'say_what' ); ?>">
 		</p>
 	</form>
 
