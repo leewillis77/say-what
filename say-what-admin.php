@@ -194,7 +194,7 @@ class SayWhatAdmin {
 	 */
 	private function show_current() {
 		require_once ( 'say-what-list-table.class.php' );
-		$list_table_instance = new say_what_list_table( $this->settings );
+		$list_table_instance = new SayWhatListTable( $this->settings );
 		$list_table_instance->prepare_items();
 		$list_table_instance->display();
 	}

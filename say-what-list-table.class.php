@@ -7,7 +7,7 @@ if ( ! class_exists( 'WP_List_Table' ) ) {
 /**
  * List table class for the admin pages
  */
-class say_what_list_table extends WP_List_Table {
+class SayWhatListTable extends WP_List_Table {
 
 	private $settings;
 
