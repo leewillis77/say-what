@@ -1,7 +1,7 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) )
-    exit; // Exit if accessed directly
+	exit; // Exit if accessed directly
 
 /**
  * Say What admin class - controller for all of the admin pages
@@ -19,9 +19,9 @@ class say_what_admin {
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 	}
 
-    /**
-     * Admin init actions. Takes care of saving stuff before redirects
-     */
+	/**
+	 * Admin init actions. Takes care of saving stuff before redirects
+	 */
 	public function admin_init() {
 		if ( isset ( $_POST['say_what_save'] ) ) {
 			$this->save();
@@ -35,18 +35,18 @@ class say_what_admin {
 	 * Register the menu item for the admin pages
 	 */
 	public function admin_menu() {
-        if ( current_user_can( 'manage_options' ) ) {
-            $page = add_management_page(
-            	__( 'Text changes', 'say_what' ),
-                __( 'Text changes', 'say_what' ),
-                'manage_options',
-                'say_what_admin',
-                array( $this, 'admin' )
-            );
+		if ( current_user_can( 'manage_options' ) ) {
+			$page = add_management_page(
+				__( 'Text changes', 'say_what' ),
+				__( 'Text changes', 'say_what' ),
+				'manage_options',
+				'say_what_admin',
+				array( $this, 'admin' )
+			);
 			if ( isset( $_GET['page'] ) && $_GET['page'] == 'say_what_admin' ) {
-	            add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_scripts' ) );
-	        }
-        }
+				add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_scripts' ) );
+			}
+		}
 	}
 
 	/**
@@ -107,7 +107,7 @@ class say_what_admin {
 	public function admin_delete_confirmed() {
 		global $wpdb, $table_prefix;
 		if ( ! wp_verify_nonce( $_GET['nonce'], 'swdelete' ) ||
-		     empty( $_GET['id'] ) ) {
+			 empty( $_GET['id'] ) ) {
 			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say_what' ) );
 		}
 		$sql = "DELETE FROM {$table_prefix}say_what_strings WHERE string_id = %d";
@@ -149,15 +149,15 @@ class say_what_admin {
 		$_POST = stripslashes_deep( $_POST );
 		if ( isset ( $_POST['say_what_string_id'] ) ) {
 			$sql = "UPDATE {$table_prefix}say_what_strings
-			           SET orig_string = %s,
-			               replacement_string = %s,
-			               domain = %s,
-			               context = %s
-			         WHERE string_id = %d";
+					   SET orig_string = %s,
+						   replacement_string = %s,
+						   domain = %s,
+						   context = %s
+					 WHERE string_id = %d";
 			$wpdb->query(
 				$wpdb->prepare(
 					$sql,
-			    	$_POST['say_what_orig_string'],
+					$_POST['say_what_orig_string'],
 					$_POST['say_what_replacement_string'],
 					$_POST['say_what_domain'],
 					$_POST['say_what_context'],
@@ -166,16 +166,16 @@ class say_what_admin {
 			);
 		} else {
 			$sql = "INSERT INTO {$table_prefix}say_what_strings
-			            VALUES ( NULL,
-			                     %s,
-			                     %s,
-			                     %s,
-			                     %s )";
+						VALUES ( NULL,
+								 %s,
+								 %s,
+								 %s,
+								 %s )";
 
 			$wpdb->query(
 				$wpdb->prepare(
 					$sql,
-			        $_POST['say_what_orig_string'],
+					$_POST['say_what_orig_string'],
 					$_POST['say_what_domain'],
 					$_POST['say_what_replacement_string'],
 					$_POST['say_what_context']
@@ -186,14 +186,16 @@ class say_what_admin {
 		die();
 	}
 
-    /**
-     * Show the current list of configured replacements.
-     */
+	/**
+	 * Show the current list of configured replacements.
+	 *
+	 * @SuppressWarnings(PMD.UnusedPrivateMethod)
+	 */
 	private function show_current() {
 		require_once ( 'say-what-list-table.class.php' );
 		$list_table_instance = new say_what_list_table( $this->settings );
 		$list_table_instance->prepare_items();
-  		$list_table_instance->display();
+		$list_table_instance->display();
 	}
 
 }

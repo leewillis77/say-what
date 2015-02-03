@@ -31,8 +31,9 @@ Author URI: http://www.leewillis.co.uk/
  * **********************************************************************
  */
 
-if ( ! defined( 'ABSPATH' ) )
-    exit; // Exit if accessed directly
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
 
 define( 'SAY_WHAT_DB_VERSION', 3 );
 
@@ -105,17 +106,19 @@ class say_what {
 	 * Database v2 upgrade.
 	 *
 	 * Add context to database schema.
+	 *
+	 * @SuppressWarnings(PMD.UnusedPrivateMethod)
 	 */
 	private function upgrade_db_to_2() {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'say_what_strings';
 		$sql = "CREATE TABLE $table_name (
-		                     string_id int(11) NOT NULL AUTO_INCREMENT,
-		                     orig_string text NOT NULL,
-		                     domain varchar(255),
-		                     replacement_string text,
-		                     context text
-		                     )";
+							 string_id int(11) NOT NULL AUTO_INCREMENT,
+							 orig_string text NOT NULL,
+							 domain varchar(255),
+							 replacement_string text,
+							 context text
+							 )";
 		require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 		dbDelta( $sql );
 	}
@@ -123,13 +126,15 @@ class say_what {
 	/**
 	 * Database v3 upgrade.
 	 *
-	 * Convert character set to utf8
+	 * Convert character set to utf8.
+	 *
+	 * @SuppressWarnings(PMD.UnusedPrivateMethod)
 	 */
 	private function upgrade_db_to_3() {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'say_what_strings';
 		$sql = "ALTER TABLE $table_name
-		        CONVERT TO CHARACTER SET utf8";
+				CONVERT TO CHARACTER SET utf8";
 		$wpdb->query( $sql );
 	}
 }
@@ -138,18 +143,18 @@ class say_what {
  * Install function. Create the table to store the replacements
  */
 function say_what_install() {
-    global $wpdb;
-    $table_name = $wpdb->prefix . 'say_what_strings';
-    $sql = "CREATE TABLE $table_name (
-                         string_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                         orig_string text NOT NULL,
-                         domain varchar(255),
-                         replacement_string text,
-                         context text
-                         ) DEFAULT CHARACTER SET utf8";
-    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
-    dbDelta( $sql );
-    update_option( 'say_what_db_version', SAY_WHAT_DB_VERSION );
+	global $wpdb;
+	$table_name = $wpdb->prefix . 'say_what_strings';
+	$sql = "CREATE TABLE $table_name (
+						 string_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+						 orig_string text NOT NULL,
+						 domain varchar(255),
+						 replacement_string text,
+						 context text
+						 ) DEFAULT CHARACTER SET utf8";
+	require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+	dbDelta( $sql );
+	update_option( 'say_what_db_version', SAY_WHAT_DB_VERSION );
 }
 register_activation_hook( __FILE__, 'say_what_install' );
 
