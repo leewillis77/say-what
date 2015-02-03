@@ -1,0 +1,14 @@
+build_settings:
+    ignore:
+test:
+    php_mess_detector:
+        allowed_warnings: 0
+    php_code_sniffer:
+        standard: "WordPress-Custom"
+        allowed_warnings: 0
+        allowed_errors: 0
+    php_loc:
+    php_docblock_checker:
+failure:
+    email:
+        committer: true
