@@ -11,9 +11,9 @@ class say_what_list_table extends WP_List_Table {
 
 	private $settings;
 
-    /**
-     * Constructor
-     */
+	/**
+	 * Constructor
+	 */
 	function __construct( $settings ) {
 		$this->settings = $settings;
 		parent::__construct();
@@ -23,7 +23,7 @@ class say_what_list_table extends WP_List_Table {
 	 * Description shown when no replacements configured
 	 */
 	function no_items() {
-	  _e( 'No string replacements configured yet.', 'say_what' );
+		_e( 'No string replacements configured yet.', 'say_what' );
 	}
 
 	/**
@@ -32,7 +32,7 @@ class say_what_list_table extends WP_List_Table {
 	 */
 	function get_columns(){
 		$columns = array(
-            /*'cb'        => 'Checkboxes',*/
+			/*'cb'        => 'Checkboxes',*/
 			'string_id'          => 'String replacement ID (Internal)',
 			'orig_string'        => __( 'Original string', 'say_what' ),
 			'domain'             => __( 'Text domain', 'say_what' ),
@@ -52,9 +52,9 @@ class say_what_list_table extends WP_List_Table {
 		global $wpdb, $table_prefix;
 
 		$columns = $this->get_columns();
-		$hidden = array('string_id');
+		$hidden = array( 'string_id' );
 		$sortable = $this->get_sortable_columns();
-		$this->_column_headers = array($columns, $hidden, $sortable);
+		$this->_column_headers = array( $columns, $hidden, $sortable );
 		//$this->search_box(__('Search', 'say_what'), 'search_id'); // FIXME - implement searching
 
 		// We don't use the replacements from the settings object, we query them separately to make
@@ -71,10 +71,10 @@ class say_what_list_table extends WP_List_Table {
 		$this->items = $wpdb->get_results( $sql, ARRAY_A );
 	}
 
-    /**
-     * Indicate which columns are sortable
-     * @return array A list of the columns that are sortable.
-     */
+	/**
+	 * Indicate which columns are sortable
+	 * @return array A list of the columns that are sortable.
+	 */
 	function get_sortable_columns() {
 		return array(
 			'orig_string'        => array( 'orig_string', true ),
@@ -83,32 +83,32 @@ class say_what_list_table extends WP_List_Table {
 			'replacement_string' => array( 'replacement_string', false ) );
 	}
 
-    /**
-     * Specify the bulk actions available. Not used currently
-     */
+	/**
+	 * Specify the bulk actions available. Not used currently
+	 */
 	function get_bulk_actions() {
 		// @TODO - implement bulk actions
 		//$actions = array ( 'delete' => __( 'Delete', 'say_what' ) );
 		return array();
 	}
 
-    /**
-     * Checkboxes for the rows. Not used while we don't have bulk actions
-     */
+	/**
+	 * Checkboxes for the rows. Not used while we don't have bulk actions
+	 */
 	function column_cb( $item ) {
 		return sprintf( '<input type="checkbox" name="string_id[]" value="%d" />', $item['string_id'] );
 	}
 
-    /**
-     * Output column data
-     */
+	/**
+	 * Output column data
+	 */
 	function column_default( $item, $column_name ) {
-		return esc_html( $item[$column_name] );
+		return esc_html( $item[ $column_name ] );
 	}
 
-    /**
-     * Output an edit link for the row
-     */
+	/**
+	 * Output an edit link for the row
+	 */
 	function column_edit_links( $item ) {
 		return '<a href="tools.php?page=say_what_admin&amp;say_what_action=addedit&amp;id=' .
 			urlencode( $item['string_id'] ) .
@@ -119,9 +119,9 @@ class say_what_list_table extends WP_List_Table {
 			'</a>';
 	}
 
-    /**
-     * Output a delete link for the row
-     */
+	/**
+	 * Output a delete link for the row
+	 */
 	function column_delete_links( $item ) {
 		return '<a href="tools.php?page=say_what_admin&say_what_action=delete&id=' .
 			urlencode( $item['string_id'] ) .

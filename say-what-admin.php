@@ -1,7 +1,8 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) )
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
+}
 
 /**
  * Say What admin class - controller for all of the admin pages
@@ -26,7 +27,7 @@ class say_what_admin {
 		if ( isset ( $_POST['say_what_save'] ) ) {
 			$this->save();
 		}
-		if ( isset ( $_GET['say_what_action'] ) && ( $_GET['say_what_action'] == 'delete-confirmed' ) ) {
+		if ( isset ( $_GET['say_what_action'] ) && ( 'delete-confirmed' == $_GET['say_what_action'] ) ) {
 			$this->admin_delete_confirmed();
 		}
 	}
@@ -43,7 +44,7 @@ class say_what_admin {
 				'say_what_admin',
 				array( $this, 'admin' )
 			);
-			if ( isset( $_GET['page'] ) && $_GET['page'] == 'say_what_admin' ) {
+			if ( isset( $_GET['page'] ) && 'say_what_admin' == $_GET['page'] ) {
 				add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_scripts' ) );
 			}
 		}
