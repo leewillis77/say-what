@@ -81,6 +81,7 @@ class SayWhatAdmin {
 	 * Render the list of currently configured replacement strings
 	 */
 	public function admin_list() {
+		require_once ( 'say-what-list-table.class.php' );
 		require_once('html/say-what-admin-list.php');
 	}
 
