@@ -60,6 +60,10 @@ class SayWhat {
 		require_once ( 'say-what-frontend.php' );
 		$this->frontend_instance = new SayWhatFrontend( $this->settings_instance );
 
+		if ( defined( 'WP_CLI' ) && WP_CLI ) {
+			require_once( 'say-what-cli.class.php');
+			WP_CLI::add_command( 'say-what', 'SayWhatCli' );
+		}
 		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
 	}
