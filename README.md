@@ -52,6 +52,9 @@ Success: 14 records updated, 19 new items created.
 
 ### Changelog
 
+#### 1.3
+Support for WP-CLI import and export.
+
 #### 1.2
 Swap database to UTF-8 to fix problems entering non-ASCII strings.
 
