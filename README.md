@@ -18,6 +18,37 @@ You can either have a guess, or checkout the plugin in question's source code, t
 
 $foo = __('This is a translatable string', 'plugin-domain');
 
+### WP-CLI Support
+
+"Say What?" has preliminary support for exporting, and importing replacements via [http://wp-cli.org/](WP-CLI). The following commands are currently
+supported:
+* export - Export all current string replacements.
+* import - Import string replacements from a CSV file.
+* list - Export all current string replacements. Synonym for 'export'.
+* update - update string replacements from a CSV file.
+
+Examples:
+```
+$ wp say-what export
++-----------+-------------+--------+--------------------+---------+
+| string_id | orig_string | domain | replacement_string | context |
++-----------+-------------+--------+--------------------+---------+
+| 3         | Tools       |        | Yada dada tools!   |         |
++-----------+-------------+--------+--------------------+---------+
+```
+
+```
+$ wp say-what import import-file.csv
+Success: 27 new items created.
+```
+
+```
+$ wp say-what update update-file.csv
+Success: 14 records updated, 19 new items created.
+```
+
+
+
 
 ### Changelog
 
