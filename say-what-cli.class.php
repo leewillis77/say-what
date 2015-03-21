@@ -66,12 +66,17 @@ class SayWhatCli extends \WP_CLI\CommandWithDBObject {
 	 * wp say-what import {file}
 	 *
 	 * @subcommand import
+	 *
+	 * @SuppressWarnings(PHPMD.UnusedLocalVariable)
 	 */
 	public function _import( $args, $assoc_args ) {
 		$filename = $args[0];
+		$inserted = 0;
 		foreach ( new \WP_CLI\Iterators\CSV( $filename ) as $item ) {
 			$this->insert_replacement( $item );
+			$inserted++;
 		}
+		WP_CLI::success( sprintf( '%d new items created.', $inserted ) );
 	}
 
 	/**
@@ -87,16 +92,22 @@ class SayWhatCli extends \WP_CLI\CommandWithDBObject {
 	 * ## EXAMPLES
 	 *
 	 * wp say-what update {file}
+	 *
+	 * @SuppressWarnings(PHPMD.UnusedLocalVariable)
 	 */
 	public function update( $args, $assoc_args ) {
 		$filename = $args[0];
+		$updated = $inserted = 0;
 		foreach ( new \WP_CLI\Iterators\CSV( $filename ) as $item ) {
 			if ( ! empty( $item['string_id'] ) ) {
 				$this->update_replacement( $item );
+				$updated++;
 			} else {
 				$this->insert_replacement( $item );
+				$inserted++;
 			}
 		}
+		WP_CLI::success( sprintf( '%d records updated, %d new items created.', $updated, $inserted ) );
 	}
 
 	/**
