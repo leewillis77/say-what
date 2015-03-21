@@ -26,7 +26,7 @@ class SayWhatCli extends \WP_CLI\CommandWithDBObject {
 	 *
 	 * wp say-what export
 	 *
-	 * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
 	 */
 	public function export( $args, $assoc_args ) {
 		$formatter    = $this->get_formatter( $assoc_args );
@@ -67,7 +67,7 @@ class SayWhatCli extends \WP_CLI\CommandWithDBObject {
 	 *
 	 * @subcommand import
 	 *
-	 * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
 	 */
 	public function _import( $args, $assoc_args ) {
 		$filename = $args[0];
@@ -93,7 +93,7 @@ class SayWhatCli extends \WP_CLI\CommandWithDBObject {
 	 *
 	 * wp say-what update {file}
 	 *
-	 * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
 	 */
 	public function update( $args, $assoc_args ) {
 		$filename = $args[0];
