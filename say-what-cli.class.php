@@ -25,6 +25,8 @@ class SayWhatCli extends \WP_CLI\CommandWithDBObject {
 	 * ## EXAMPLES
 	 *
 	 * wp say-what export
+	 *
+	 * @SuppressWarnings(PHPMD.UnusedLocalVariable)
 	 */
 	public function export( $args, $assoc_args ) {
 		$formatter    = $this->get_formatter( $assoc_args );
@@ -69,16 +71,76 @@ class SayWhatCli extends \WP_CLI\CommandWithDBObject {
 		$filename = $args[0];
 		foreach ( new \WP_CLI\Iterators\CSV( $filename ) as $item ) {
 			$this->insert_replacement( $item );
-			error_log( __FUNCTION__ . ": item " . print_r( $item, 1 ) );
 		}
 	}
 
+	/**
+	 * update string replacements from a CSV file.
+	 *
+	 * Items with a string ID will have their information updated. Items without a string ID
+	 * will be inserted as a new item.
+	 *
+	 * ## OPTIONS
+	 *
+	 * None.
+	 *
+	 * ## EXAMPLES
+	 *
+	 * wp say-what update {file}
+	 */
+	public function update( $args, $assoc_args ) {
+		$filename = $args[0];
+		foreach ( new \WP_CLI\Iterators\CSV( $filename ) as $item ) {
+			if ( ! empty( $item['string_id'] ) ) {
+				$this->update_replacement( $item );
+			} else {
+				$this->insert_replacement( $item );
+			}
+		}
+	}
+
+	/**
+	 * Gets a list of the currentl set replacements.
+	 *
+	 * @return array    An array of replacement objects.
+	 */
 	protected function get_replacements() {
 		global $wpdb, $table_prefix;
 		$table = $table_prefix . 'say_what_strings';
 		return $wpdb->get_results( "SELECT * FROM $table" );
 	}
 
+	/**
+	 * updates an existing replacement into the database.
+	 *
+	 * @param  array  $item  The item to be updated..
+	 */
+	protected function update_replacement( $item ) {
+		global $wpdb, $table_prefix;
+
+		$sql = "UPDATE {$table_prefix}say_what_strings
+		           SET orig_string = %s,
+		               domain = %s,
+		               replacement_string = %s,
+		               context = %s
+		         WHERE string_id = %d";
+		$wpdb->query(
+			$wpdb->prepare(
+				$sql,
+				$item['orig_string'],
+				$item['domain'],
+				$item['replacement_string'],
+				$item['context'],
+				$item['string_id']
+			)
+		);
+	}
+
+	/**
+	 * Inserts a replacement into the database.
+	 *
+	 * @param  array  $item  The item to be inserted.
+	 */
 	protected function insert_replacement( $item ) {
 		global $wpdb, $table_prefix;
 		$sql = "INSERT INTO {$table_prefix}say_what_strings
