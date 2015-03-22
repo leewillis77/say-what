@@ -48,6 +48,9 @@ See the [GitHub homepage](https://github.com/leewillis77/say-what) for examples.
 
 == Changelog ==
 
+= 1.3 =
+Support for WP-CLI import and export.
+
 = 1.2 =
 Swap database to UTF-8 to fix problems entering non-ASCII strings.
 
