@@ -52,6 +52,9 @@ Success: 14 records updated, 19 new items created.
 
 ### Changelog
 
+#### 1.4
+Add info box about Pro version
+
 #### 1.3
 Support for WP-CLI import and export.
 
