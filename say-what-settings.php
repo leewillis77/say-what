@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class SayWhatSettings {
 
-	public $replacements;
+	public $replacements = array();
 
 	/**
 	 * Constructor.
@@ -18,7 +18,10 @@ class SayWhatSettings {
 	 */
 	public function __construct() {
 		global $wpdb, $table_prefix;
-		// @TODO - Read other settings in when we have them
+		$current_db_version = get_option( 'say_what_db_version' );
+		if ( false === $current_db_version ) {
+			return;
+		}
 		$sql = "SELECT * FROM {$table_prefix}say_what_strings";
 		$this->replacements = $wpdb->get_results( $sql, ARRAY_A );
 	}
