@@ -8,23 +8,23 @@
 		<input type="hidden" name="say_what_save" value="1">
 		<?php wp_nonce_field( 'swaddedit', 'nonce' ); ?>
 		<?php if ( ! empty ( $replacement->string_id ) ) : ?>
-			<input type="hidden" name="say_what_string_id" value="<?php echo esc_attr( $replacement->string_id ); ?>">
+			<input type="hidden" name="say_what_string_id" value="<?php echo esc_attr( htmlspecialchars( $replacement->string_id ) ); ?>">
 		<?php endif; ?>
 		<p>
 			<label for="say_what_orig_string"><?php _e( 'Original string', 'say_what' ); ?></label><br/>
-			<input type="text" name="say_what_orig_string" size="120" value="<?php echo esc_attr( $replacement->orig_string ) ?>"><br/>
+			<input type="text" name="say_what_orig_string" size="120" value="<?php echo esc_attr( htmlspecialchars( $replacement->orig_string ) ) ?>"><br/>
 		</p>
 		<p>
 			<label for="say_what_domain"><?php _e( 'Text domain', 'say_what' ); ?></label> <a href="http://plugins.leewillis.co.uk/doc_post/adding-string-replacement/"><i class="dashicons dashicons-info">&nbsp;</i></a><br/>
-			<input type="text" name="say_what_domain" size="30" value="<?php echo esc_attr( $replacement->domain ); ?>"><br/>
+			<input type="text" name="say_what_domain" size="30" value="<?php echo esc_attr( htmlspecialchars( $replacement->domain ) ); ?>"><br/>
 		</p>
 		<p>
 			<label for="say_what_context"><?php _e( 'Text context', 'say_what' ); ?></label> <a href="http://plugins.leewillis.co.uk/doc_post/replacing-wordpress-strings-context/"><i class="dashicons dashicons-info">&nbsp;</i></a><br/>
-			<input type="text" name="say_what_context" size="30" value="<?php echo esc_attr( $replacement->context ); ?>"><br/>
+			<input type="text" name="say_what_context" size="30" value="<?php echo esc_attr( htmlspecialchars( $replacement->context ) ); ?>"><br/>
 		</p>
 		<p>
 			<label for="say_what_replacement_string"><?php _e( 'Replacement string', 'say_what' ); ?></label><br/>
-			<input type="text" name="say_what_replacement_string" size="120" value="<?php echo esc_attr( $replacement->replacement_string ); ?>"><br/>
+			<input type="text" name="say_what_replacement_string" size="120" value="<?php echo esc_attr( htmlspecialchars( $replacement->replacement_string ) ); ?>"><br/>
 		</p>
 		<p>
 			<input type="submit" class="button-primary" value="<?php  ! empty( $replacement->string_id ) ? _e( 'Update', 'say_what' ) : _e( 'Add', 'say_what' ); ?>">

@@ -103,7 +103,7 @@ class SayWhatListTable extends WP_List_Table {
 	 * Output column data
 	 */
 	function column_default( $item, $column_name ) {
-		return esc_html( $item[ $column_name ] );
+		return esc_html( htmlspecialchars( $item[ $column_name ] ) );
 	}
 
 	/**
