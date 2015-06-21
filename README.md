@@ -52,6 +52,10 @@ Success: 14 records updated, 19 new items created.
 
 ### Changelog
 
+#### 1.5
+* Avoid warnings on initial activation.
+* Avoid issues where strings contain HTML / entities
+
 #### 1.4
 Add info box about Pro version
 

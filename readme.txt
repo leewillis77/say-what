@@ -48,6 +48,10 @@ See the [GitHub homepage](https://github.com/leewillis77/say-what) for examples.
 
 == Changelog ==
 
+= 1.5 =
+Avoid warnings on initial activation.
+Avoid issues where strings contain HTML / entities
+
 = 1.4 =
 Add info box about Pro version
 
