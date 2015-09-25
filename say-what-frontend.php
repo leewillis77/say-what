@@ -37,10 +37,28 @@ class SayWhatFrontend {
 
 	/**
 	 * Perform a string replacement with context.
+	 *
+	 * Plugins can use the say_what_domain_aliases filter to return an alias for their domain
+	 * if for any reason they change their text domain and want existing replacements to continue
+	 * working. The filter should return an array keyed on the current text domain with the value
+	 * set to an array of alternative domains to search for replacements. E.g
+	 *   $aliases['easy-digital-downloads'][] = 'edd';
+	 *   return $aliases;
 	 */
 	public function gettext_with_context( $translated, $original, $context, $domain ) {
-		if ( isset ( $this->replacements[ $domain ][ $original ][ $context ] ) ) {
+		static $domain_aliases = null;
+		if ( $domain_aliases === null ) {
+			$domain_aliases = apply_filters( 'say_what_domain_aliases', array() );
+		}
+		if ( isset( $this->replacements[ $domain ][ $original ][ $context ] ) ) {
 			return $this->replacements[ $domain ][ $original ][ $context ];
+		} elseif ( isset( $domain_aliases[ $domain ] ) ) {
+			foreach ( $domain_aliases[ $domain ] as $alias ) {
+				if ( isset( $this->replacements[ $alias ][ $original ][ $context ] ) ) {
+					return $this->replacements[ $alias ][ $original ][ $context ];
+				}
+			}
+			return $translated;
 		} else {
 			return $translated;
 		}
