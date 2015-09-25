@@ -52,6 +52,9 @@ Success: 14 records updated, 19 new items created.
 
 ### Changelog
 
+#### 1.6
+* Introduce filters that allows back compatibility for plugins that change their text-domain. Props Pippin Williamson
+
 #### 1.5
 * Avoid warnings on initial activation.
 * Avoid issues where strings contain HTML / entities
