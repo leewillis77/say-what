@@ -39,6 +39,9 @@ class SayWhatFrontend {
 	 * Perform a string replacement with context.
 	 */
 	public function gettext_with_context( $translated, $original, $context, $domain ) {
+	
+		$domain = apply_filters( 'say_what_gettext_domain', $domain, $translated, $original, $context );
+	
 		if ( isset ( $this->replacements[ $domain ][ $original ][ $context ] ) ) {
 			return $this->replacements[ $domain ][ $original ][ $context ];
 		} else {
