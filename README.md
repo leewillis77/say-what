@@ -14,7 +14,7 @@ Note: This plugin may produce performance issues if you configure a *large* numb
 You can only use the plugin to translate strings which are marked for translation.
 
 #### How do I find the string to translate?
-You can either have a guess, or checkout the plugin in question's source code, translatable strings are generally wrapped in __(), _e(), or _x(), for example:
+You can either have a guess, or checkout the plugin in question's source code, translatable strings are generally wrapped in __(), _e(), _n(), or _x(), for example:
 
 $foo = __('This is a translatable string', 'plugin-domain');
 
@@ -51,6 +51,10 @@ Success: 14 records updated, 19 new items created.
 
 
 ### Changelog
+
+#### 1.7
+* Support for _n() and _nx()
+* Support for multi-line strings
 
 #### 1.6
 * Introduce filters that allows back compatibility for plugins that change their text-domain. Props Pippin Williamson
