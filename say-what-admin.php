@@ -140,6 +140,13 @@ class SayWhatAdmin {
 	}
 
 	/**
+	 * Strip CRs out of strings. array_walk() callback.
+	 */
+	private function strip_cr_callback( &$val, $key ) {
+	        $val = str_replace("\r\n", "\n", $val);
+	}
+
+	/**
 	 * Something on the admin pages needs saved. Handle it here
 	 * Output error/warning messages as required
 	 */
@@ -149,6 +156,7 @@ class SayWhatAdmin {
 			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say_what' ) );
 		}
 		$_POST = stripslashes_deep( $_POST );
+		array_walk( $_POST, array( $this, 'strip_cr_callback' ) );
 		if ( isset ( $_POST['say_what_string_id'] ) ) {
 			$sql = "UPDATE {$table_prefix}say_what_strings
 					   SET orig_string = %s,

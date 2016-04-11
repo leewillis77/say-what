@@ -12,7 +12,7 @@
 		<?php endif; ?>
 		<p>
 			<label for="say_what_orig_string"><?php _e( 'Original string', 'say_what' ); ?></label><br/>
-			<input type="text" name="say_what_orig_string" size="120" value="<?php echo esc_attr( htmlspecialchars( $replacement->orig_string ) ) ?>"><br/>
+			<textarea class="say_what_orig_string" name="say_what_orig_string" rows="1" cols="120"><?php echo esc_textarea( htmlspecialchars( $replacement->orig_string ) ); ?></textarea>
 		</p>
 		<p>
 			<label for="say_what_domain"><?php _e( 'Text domain', 'say_what' ); ?></label> <a href="http://plugins.leewillis.co.uk/doc_post/adding-string-replacement/"><i class="dashicons dashicons-info">&nbsp;</i></a><br/>
@@ -24,7 +24,7 @@
 		</p>
 		<p>
 			<label for="say_what_replacement_string"><?php _e( 'Replacement string', 'say_what' ); ?></label><br/>
-			<input type="text" name="say_what_replacement_string" size="120" value="<?php echo esc_attr( htmlspecialchars( $replacement->replacement_string ) ); ?>"><br/>
+			<textarea class="say_what_replacement_string" name="say_what_replacement_string" cols="120" rows="1"><?php echo esc_textarea( htmlspecialchars( $replacement->replacement_string ) ); ?></textarea>
 		</p>
 		<p>
 			<input type="submit" class="button-primary" value="<?php  ! empty( $replacement->string_id ) ? _e( 'Update', 'say_what' ) : _e( 'Add', 'say_what' ); ?>">
