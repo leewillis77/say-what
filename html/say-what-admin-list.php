@@ -9,7 +9,7 @@
 	<div class="saywhat-gopro">
 		<h2>Go pro</h2>
 		<p><a href="http://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrade">Say What? Pro</a> makes it even easier for you to change strings by offering <em><a href="http://plugins.leewillis.co.uk/doc_post/string-discovery/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrade" target="_blank">String Discovery</a></em> and autocomplete, making it even easier to find the strings you need to change without diving through code.</p>
-		<p><strong>Upgrade to the Pro version today, and <em>save 20%</em> with the code <code>SAYWHATWP</code> at checkout.</strong></p>
+		<p><strong>Upgrade to the Pro version today, and <em>save 15%</em> with the code <code>WPSAYWHAT</code> at checkout.</strong></p>
 		<p><a href="http://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrade" class="button button-primary">Go Pro now &raquo;</a></p>
 	</div>
 </div>
