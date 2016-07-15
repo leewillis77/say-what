@@ -29,9 +29,12 @@ You can either have a guess, or checkout the plugin in question's source code, t
 
 `$foo = __('This is a translatable string', 'plugin-domain');`
 
+The article [here](https://plugins.leewillis.co.uk/doc_post/replacing-wordpress-strings-context/) shows some examples of what you're looking for. Alternatively, the [Pro version of the plugin](https://plugins.leewillis.co.uk/downloads/say-what-pro/) provides a String Discovery mode which means you can search for strings on your site via autocomplete suggestions.
+
 = Is there any support for importing replacements? =
 "Say What?" has preliminary support for exporting, and importing replacements via [http://wp-cli.org/](WP-CLI). The following commands are currently
 supported:
+
 * export - Export all current string replacements.
 * import - Import string replacements from a CSV file.
 * list - Export all current string replacements. Synonym for 'export'.
