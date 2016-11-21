@@ -3,8 +3,8 @@ Contributors: leewillis77
 Donate link: http://www.leewillis.co.uk/wordpress-plugins/?utm_source=wordpress&utm_medium=www&utm_campaign=say-what
 Tags: string, change, translation
 Requires at least: 4.3
-Tested up to: 4.6
-Stable tag: 1.7.1
+Tested up to: 4.7
+Stable tag: 1.8.0
 
 == Description ==
 An easy-to-use plugin that allows you to alter strings on your site without editing WordPress core, or plugin code. Simply enter the current string, and what you want to replace it with and the plugin will automatically do the rest!
@@ -50,6 +50,9 @@ See the [GitHub homepage](https://github.com/leewillis77/say-what) for examples.
 
 
 == Changelog ==
+
+= 1.8.0 =
+* Fix issues where entities could be double encoded on admin screens.
 
 = 1.7.1 =
 * Update to admin marketing message. No functional changes.

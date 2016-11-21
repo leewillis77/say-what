@@ -52,6 +52,12 @@ Success: 14 records updated, 19 new items created.
 
 ### Changelog
 
+#### 1.8.0
+* Fix issues where entities could be double encoded on admin screens.
+
+#### 1.7.1
+* Update to admin marketing message. No functional changes.
+
 #### 1.7
 * Support for _n() and _nx()
 * Support for multi-line strings
