@@ -4,9 +4,9 @@
 Plugin Name: Say What?
 Plugin URI: https://github.com/leewillis77/say-what
 Description: An easy-to-use plugin that allows you to alter strings on your site without editing WordPress core, or plugin code
-Version: 1.8.0
+Version: 1.8.1
 Author: Lee Willis
-Author URI: http://www.leewillis.co.uk/
+Author URI: http://plugins.leewillis.co.uk/
 Text Domain: say_what
 */
 
@@ -53,7 +53,7 @@ class SayWhat {
 	 */
 	public function __construct(){
 		require_once ( 'say-what-settings.php' );
-		$this->settings_instance = new SayWhatSettings();
+		$this->settings_instance = new SayWhatSettings( __FILE__ );
 		if ( is_admin() ) {
 			require_once ( 'say-what-admin.php' );
 			$this->admin_instance = new SayWhatAdmin( $this->settings_instance );

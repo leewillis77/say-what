@@ -18,6 +18,7 @@ class SayWhatAdmin {
 		$this->settings = $settings;
 		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_filter( 'plugin_action_links_' . plugin_basename( $this->settings->base_file ), array( $this, 'add_upgrade_link' ) );
 	}
 
 	/**
@@ -32,6 +33,20 @@ class SayWhatAdmin {
 		}
 	}
 
+	/**
+	 * Add an upgrade link next to the plugin on the Plugins page.
+	 *
+	 * @param   array  $links  The existing plugin links.
+	 * @return  array          The revised list of plugin links.
+	 */
+	public function add_upgrade_link( $links ) {
+		array_unshift(
+			$links,
+			'<a href="' . admin_url( 'tools.php?page=say_what_admin' ) . '">' . __( 'Settings', 'say_what' ) . '</a>'
+		);
+		$links[] = '<a href="http://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrade"><strong>Upgrade to Pro</strong></a>';
+		return $links;
+	}
 	/**
 	 * Register the menu item for the admin pages
 	 */

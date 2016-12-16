@@ -52,6 +52,11 @@ Success: 14 records updated, 19 new items created.
 
 ### Changelog
 
+#### 1.8.1
+* Update plugin links, include settings and upgrade link
+* Update documentation about pro features
+* Admin styling fixes
+
 #### 1.8.0
 * Fix issues where entities could be double encoded on admin screens.
 
