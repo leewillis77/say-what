@@ -10,12 +10,12 @@
 		<h2>Go pro</h2>
 		<p><a href="http://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrade">Say What? Pro</a> makes it even easier for you to change strings:
 			<ul class="ul-disc">
-				<li><a href="http://plugins.leewillis.co.uk/doc_post/string-discovery/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrade" target="_blank">String Discovery</a></em> and autocomplete - find the strings you need without diving through code.</li>
+				<li><a href="http://plugins.leewillis.co.uk/doc_post/string-discovery/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgradesd" target="_blank">String Discovery</a> and autocomplete - find the strings you need without diving through code.</li>
+				<li><a href="https://plugins.leewillis.co.uk/doc_post/multi-lingual-string-replacements/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrademl">Multi-lingual support</a> - set different replacements for different languages.</a></li>
 				<li>Import &amp; export your strings between sites.</li>
-				<li>Multi-lingual support - set replacements for multiple languages [beta]</li>
 			</ul>
 		</p>
 		<p><strong>Upgrade to the Pro version today, and <em>save 15%</em> with the code <code>WPSAYWHAT</code> at checkout.</strong></p>
-		<p><center><a href="http://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrade" class="button button-primary">Go Pro now &raquo;</a></center></p>
+		<p><center><a href="http://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgradebtn" class="button button-primary">Go Pro now &raquo;</a></center></p>
 	</div>
 </div>

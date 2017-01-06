@@ -4,14 +4,18 @@ Donate link: http://www.leewillis.co.uk/wordpress-plugins/?utm_source=wordpress&
 Tags: string, change, translation
 Requires at least: 4.3
 Tested up to: 4.7
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 
 == Description ==
 An easy-to-use plugin that allows you to alter strings on your site without editing WordPress core, or plugin code. Simply enter the current string, and what you want to replace it with and the plugin will automatically do the rest!
 
 The plugin's available for forking and contribution over on [GitHub](https://github.com/leewillis77/say-what)
 
-*Don't have the time/expertise to find strings in the code - check out [Say What Pro](https://plugins.leewillis.co.uk/downloads/say-what-pro/) which includes String Discovery letting you autocomplete the information you need for quick string replacements.*
+Check out [Say What Pro](https://plugins.leewillis.co.uk/downloads/say-what-pro/) for:
+
+* **String discovery** - Don't have the time/expertise to find strings in the code, set up replacements easily with easy-to-use autocomplete features
+* **Multi-lingual support** - set different replacements for different languages on multi-lingual sites
+* **Import/export features** - Easy import/export of replacements through the user interface
 
 == Installation ==
 
@@ -42,6 +46,9 @@ supported:
 
 See the [GitHub homepage](https://github.com/leewillis77/say-what) for examples.
 
+= Can I set different replacements for different languages? =
+Not in the free plugin, however this is available in the [Pro version of the plugin](https://plugins.leewillis.co.uk/downloads/say-what-pro/)
+
 == Screenshots ==
 
 1. Finding a string to replace
@@ -51,12 +58,15 @@ See the [GitHub homepage](https://github.com/leewillis77/say-what) for examples.
 
 == Changelog ==
 
+= 1.8.2 =
+* Documentation updates only
+
 = 1.8.1 =
 * Update plugin links, include settings and upgrade link
 * Update documentation about pro features
 * Admin styling fixes
 
-= 1.8.0 =
+= 1.8.0 =
 * Fix issues where entities could be double encoded on admin screens.
 
 = 1.7.1 =
