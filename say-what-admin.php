@@ -25,10 +25,10 @@ class SayWhatAdmin {
 	 * Admin init actions. Takes care of saving stuff before redirects
 	 */
 	public function admin_init() {
-		if ( isset ( $_POST['say_what_save'] ) ) {
+		if ( isset( $_POST['say_what_save'] ) ) {
 			$this->save();
 		}
-		if ( isset ( $_GET['say_what_action'] ) && ( 'delete-confirmed' == $_GET['say_what_action'] ) ) {
+		if ( isset( $_GET['say_what_action'] ) && ( 'delete-confirmed' == $_GET['say_what_action'] ) ) {
 			$this->admin_delete_confirmed();
 		}
 	}
@@ -96,8 +96,8 @@ class SayWhatAdmin {
 	 * Render the list of currently configured replacement strings
 	 */
 	public function admin_list() {
-		require_once ( 'say-what-list-table.class.php' );
-		require_once('html/say-what-admin-list.php');
+		require_once( 'say-what-list-table.class.php' );
+		require_once( 'html/say-what-admin-list.php' );
 	}
 
 	/**
@@ -108,14 +108,14 @@ class SayWhatAdmin {
 		if ( ! wp_verify_nonce( $_GET['nonce'], 'swdelete' ) ) {
 			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
 		}
-		if ( isset ( $_GET['id'] ) ) {
+		if ( isset( $_GET['id'] ) ) {
 			$sql = "SELECT * FROM {$table_prefix}say_what_strings WHERE string_id = %d";
 			$replacement = $wpdb->get_row( $wpdb->prepare( $sql, $_GET['id'] ) );
 		}
 		if ( ! $replacement ) {
 			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
 		}
-		require_once('html/say-what-admin-delete.php');
+		require_once( 'html/say-what-admin-delete.php' );
 	}
 
 	/**
@@ -139,7 +139,7 @@ class SayWhatAdmin {
 	public function admin_addedit() {
 		global $wpdb, $table_prefix;
 		$replacement = false;
-		if ( isset ( $_GET['id'] ) ) {
+		if ( isset( $_GET['id'] ) ) {
 			$sql = "SELECT * FROM {$table_prefix}say_what_strings WHERE string_id = %d";
 			$replacement = $wpdb->get_row( $wpdb->prepare( $sql, $_GET['id'] ) );
 		}
@@ -151,14 +151,14 @@ class SayWhatAdmin {
 			$replacement->domain = '';
 			$replacement->context = '';
 		}
-		require_once('html/say-what-admin-addedit.php');
+		require_once( 'html/say-what-admin-addedit.php' );
 	}
 
 	/**
 	 * Strip CRs out of strings. array_walk() callback.
 	 */
 	private function strip_cr_callback( &$val, $key ) {
-	        $val = str_replace("\r\n", "\n", $val);
+	        $val = str_replace( "\r\n", "\n", $val );
 	}
 
 	/**
@@ -172,7 +172,7 @@ class SayWhatAdmin {
 		}
 		$_POST = stripslashes_deep( $_POST );
 		array_walk( $_POST, array( $this, 'strip_cr_callback' ) );
-		if ( isset ( $_POST['say_what_string_id'] ) ) {
+		if ( isset( $_POST['say_what_string_id'] ) ) {
 			$sql = "UPDATE {$table_prefix}say_what_strings
 					   SET orig_string = %s,
 						   replacement_string = %s,
@@ -210,5 +210,4 @@ class SayWhatAdmin {
 		wp_redirect( 'tools.php?page=say_what_admin', '303' );
 		die();
 	}
-
 }
