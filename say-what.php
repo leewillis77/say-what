@@ -67,6 +67,7 @@ class SayWhat {
 		}
 		add_action( 'init', array( $this, 'init' ) );
 		add_action( 'admin_init', array( $this, 'admin_init' ) );
+		add_filter( 'say_what_domain_aliases', array( $this, 'register_domain_alias' ) );
 	}
 
 	/**
@@ -77,6 +78,15 @@ class SayWhat {
 		$locale = apply_filters( 'plugin_locale', get_locale(), 'say-what' );
 		load_textdomain( 'say-what', WP_LANG_DIR . '/say_what/say-what-' . $locale . '.mo' );
 		load_plugin_textdomain( 'say-what', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+	}
+
+	/**
+	 * Register an alias for our old text domain so any existing replacements
+	 * keep working.
+	 */
+	public function register_domain_alias( $aliases ) {
+		$aliases['say-what'][] = 'say_what';
+		return $aliases;
 	}
 
 	/**
