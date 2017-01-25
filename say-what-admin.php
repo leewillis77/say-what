@@ -42,7 +42,7 @@ class SayWhatAdmin {
 	public function add_upgrade_link( $links ) {
 		array_unshift(
 			$links,
-			'<a href="' . admin_url( 'tools.php?page=say_what_admin' ) . '">' . __( 'Settings', 'say_what' ) . '</a>'
+			'<a href="' . admin_url( 'tools.php?page=say_what_admin' ) . '">' . __( 'Settings', 'say-what' ) . '</a>'
 		);
 		$links[] = '<a href="http://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrade"><strong>Upgrade to Pro</strong></a>';
 		return $links;
@@ -53,8 +53,8 @@ class SayWhatAdmin {
 	public function admin_menu() {
 		if ( current_user_can( 'manage_options' ) ) {
 			$page = add_management_page(
-				__( 'Text changes', 'say_what' ),
-				__( 'Text changes', 'say_what' ),
+				__( 'Text changes', 'say-what' ),
+				__( 'Text changes', 'say-what' ),
 				'manage_options',
 				'say_what_admin',
 				array( $this, 'admin' )
@@ -106,14 +106,14 @@ class SayWhatAdmin {
 	public function admin_delete() {
 		global $wpdb, $table_prefix;
 		if ( ! wp_verify_nonce( $_GET['nonce'], 'swdelete' ) ) {
-			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say_what' ) );
+			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
 		}
 		if ( isset ( $_GET['id'] ) ) {
 			$sql = "SELECT * FROM {$table_prefix}say_what_strings WHERE string_id = %d";
 			$replacement = $wpdb->get_row( $wpdb->prepare( $sql, $_GET['id'] ) );
 		}
 		if ( ! $replacement ) {
-			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say_what' ) );
+			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
 		}
 		require_once('html/say-what-admin-delete.php');
 	}
@@ -125,7 +125,7 @@ class SayWhatAdmin {
 		global $wpdb, $table_prefix;
 		if ( ! wp_verify_nonce( $_GET['nonce'], 'swdelete' ) ||
 			 empty( $_GET['id'] ) ) {
-			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say_what' ) );
+			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
 		}
 		$sql = "DELETE FROM {$table_prefix}say_what_strings WHERE string_id = %d";
 		$wpdb->query( $wpdb->prepare( $sql, $_GET['id'] ) );
@@ -168,7 +168,7 @@ class SayWhatAdmin {
 	private function save() {
 		global $wpdb, $table_prefix;
 		if ( ! wp_verify_nonce( $_POST['nonce'], 'swaddedit' ) ) {
-			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say_what' ) );
+			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
 		}
 		$_POST = stripslashes_deep( $_POST );
 		array_walk( $_POST, array( $this, 'strip_cr_callback' ) );

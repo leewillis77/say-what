@@ -7,7 +7,7 @@ Description: An easy-to-use plugin that allows you to alter strings on your site
 Version: 1.8.2
 Author: Lee Willis
 Author URI: http://plugins.leewillis.co.uk/
-Text Domain: say_what
+Text Domain: say-what
 */
 
 /**
@@ -74,9 +74,9 @@ class SayWhat {
 	 * Set up translation for the plugin itself.
 	 */
 	public function init() {
-		$locale = apply_filters( 'plugin_locale', get_locale(), 'say_what' );
-		load_textdomain( 'say_what', WP_LANG_DIR.'/say_what/say_what-' . $locale . '.mo' );
-		load_plugin_textdomain( 'say_what', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+		$locale = apply_filters( 'plugin_locale', get_locale(), 'say-what' );
+		load_textdomain( 'say-what', WP_LANG_DIR . '/say_what/say-what-' . $locale . '.mo' );
+		load_plugin_textdomain( 'say-what', false, basename( dirname( __FILE__ ) ) . '/languages/' );
 	}
 
 	/**

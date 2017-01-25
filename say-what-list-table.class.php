@@ -23,7 +23,7 @@ class SayWhatListTable extends WP_List_Table {
 	 * Description shown when no replacements configured
 	 */
 	function no_items() {
-		_e( 'No string replacements configured yet.', 'say_what' );
+		_e( 'No string replacements configured yet.', 'say-what' );
 	}
 
 	/**
@@ -34,12 +34,12 @@ class SayWhatListTable extends WP_List_Table {
 		$columns = array(
 			/*'cb'        => 'Checkboxes',*/
 			'string_id'          => 'String replacement ID (Internal)',
-			'orig_string'        => __( 'Original string', 'say_what' ),
-			'domain'             => __( 'Text domain', 'say_what' ),
-			'context'            => __( 'Text context', 'say_what' ),
-			'replacement_string' => __( 'Replacement string', 'say_what' ),
-			'edit_links'         => _x( '', 'Header for edit links on admin list table', 'say_what' ),
-			'delete_links'       => _x( '', 'Header for delete links on admin list table', 'say_what' ),
+			'orig_string'        => __( 'Original string', 'say-what' ),
+			'domain'             => __( 'Text domain', 'say-what' ),
+			'context'            => __( 'Text context', 'say-what' ),
+			'replacement_string' => __( 'Replacement string', 'say-what' ),
+			'edit_links'         => _x( '', 'Header for edit links on admin list table', 'say-what' ),
+			'delete_links'       => _x( '', 'Header for delete links on admin list table', 'say-what' ),
 		);
 		return $columns;
 	}
@@ -55,7 +55,7 @@ class SayWhatListTable extends WP_List_Table {
 		$hidden = array( 'string_id' );
 		$sortable = $this->get_sortable_columns();
 		$this->_column_headers = array( $columns, $hidden, $sortable );
-		//$this->search_box(__('Search', 'say_what'), 'search_id'); // FIXME - implement searching
+		//$this->search_box(__('Search', 'say-what'), 'search_id'); // FIXME - implement searching
 
 		// We don't use the replacements from the settings object, we query them separately to make
 		// ordering/searhing/pagination easier. This may turn out bad if people have "lots"
@@ -88,7 +88,7 @@ class SayWhatListTable extends WP_List_Table {
 	 */
 	function get_bulk_actions() {
 		// @TODO - implement bulk actions
-		//$actions = array ( 'delete' => __( 'Delete', 'say_what' ) );
+		//$actions = array ( 'delete' => __( 'Delete', 'say-what' ) );
 		return array();
 	}
 
@@ -115,7 +115,7 @@ class SayWhatListTable extends WP_List_Table {
 			'&amp;nonce=' .
 			urlencode( wp_create_nonce( 'swaddedit' ) ) .
 			'">' .
-			__( 'Edit', 'say_what' ) .
+			__( 'Edit', 'say-what' ) .
 			'</a>';
 	}
 
@@ -128,7 +128,7 @@ class SayWhatListTable extends WP_List_Table {
 			'&nonce=' .
 			urlencode( wp_create_nonce( 'swdelete' ) ) .
 			'">' .
-			__( 'Delete', 'say_what' ) .
+			__( 'Delete', 'say-what' ) .
 			'</a>';
 	}
 
