@@ -4,7 +4,7 @@ Donate link: http://www.leewillis.co.uk/wordpress-plugins/?utm_source=wordpress&
 Tags: string, change, translation
 Requires at least: 4.3
 Tested up to: 4.7
-Stable tag: 1.8.2
+Stable tag: 1.9.0
 
 == Description ==
 An easy-to-use plugin that allows you to alter strings on your site without editing WordPress core, or plugin code. Simply enter the current string, and what you want to replace it with and the plugin will automatically do the rest!
@@ -57,6 +57,10 @@ Not in the free plugin, however this is available in the [Pro version of the plu
 
 
 == Changelog ==
+
+= 1.9.0 =
+* Fix issue adding more strings after downgrade from Pro
+* Update text domain of plugin to match wordpress.org guidelines to aid translations
 
 = 1.8.2 =
 * Documentation updates only
