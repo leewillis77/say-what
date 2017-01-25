@@ -191,11 +191,18 @@ class SayWhatAdmin {
 			);
 		} else {
 			$sql = "INSERT INTO {$table_prefix}say_what_strings
-						VALUES ( NULL,
-								 %s,
-								 %s,
-								 %s,
-								 %s )";
+							   (
+								   orig_string,
+								   domain,
+								   replacement_string,
+								   context
+							   )
+						VALUES (
+								   %s,
+								   %s,
+								   %s,
+								   %s
+							   )";
 
 			$wpdb->query(
 				$wpdb->prepare(
