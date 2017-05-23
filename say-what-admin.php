@@ -44,7 +44,7 @@ class SayWhatAdmin {
 			$links,
 			'<a href="' . admin_url( 'tools.php?page=say_what_admin' ) . '">' . __( 'Settings', 'say-what' ) . '</a>'
 		);
-		$links[] = '<a href="http://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrade"><strong>Upgrade to Pro</strong></a>';
+		$links[] = '<a href="https://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrade"><strong>Upgrade to Pro</strong></a>';
 		return $links;
 	}
 	/**

@@ -6,7 +6,7 @@ Plugin URI: https://github.com/leewillis77/say-what
 Description: An easy-to-use plugin that allows you to alter strings on your site without editing WordPress core, or plugin code
 Version: 1.9.0
 Author: Lee Willis
-Author URI: http://plugins.leewillis.co.uk/
+Author URI: https://plugins.leewillis.co.uk/
 Text Domain: say-what
 */
 
