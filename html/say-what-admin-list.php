@@ -11,6 +11,7 @@
 		<p><a href="https://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrade">Say What? Pro</a> makes it even easier for you to change strings:
 			<ul class="ul-disc">
 				<li><a href="https://plugins.leewillis.co.uk/doc_post/string-discovery/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgradesd" target="_blank">String Discovery</a> and autocomplete - find the strings you need without diving through code.</li>
+				<li><a href="https://plugins.leewillis.co.uk/doc_post/replace-words-across-whole-site/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgradesd" target="_blank">Wildcard string replacements</a> - replace individual words, or fragments across your whole site.</li>
 				<li><a href="https://plugins.leewillis.co.uk/doc_post/multi-lingual-string-replacements/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrademl">Multi-lingual support</a> - set different replacements for different languages.</a></li>
 				<li>Import &amp; export your strings between sites.</li>
 			</ul>

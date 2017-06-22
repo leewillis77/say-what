@@ -1,10 +1,10 @@
 === Say what? ===
 Contributors: leewillis77
-Donate link: http://www.leewillis.co.uk/wordpress-plugins/?utm_source=wordpress&utm_medium=www&utm_campaign=say-what
+Donate link: http://plugins.leewillis.co.uk/downloads/say-what-pro?utm_source=wordpress&utm_medium=www&utm_campaign=say-what
 Tags: string, change, translation
 Requires at least: 4.3
 Tested up to: 4.8
-Stable tag: 1.9.0
+Stable tag: 1.9.1
 
 == Description ==
 An easy-to-use plugin that allows you to alter strings on your site without editing WordPress core, or plugin code. Simply enter the current string, and what you want to replace it with and the plugin will automatically do the rest!
@@ -14,6 +14,7 @@ The plugin's available for forking and contribution over on [GitHub](https://git
 Check out [Say What Pro](https://plugins.leewillis.co.uk/downloads/say-what-pro/) for:
 
 * **String discovery** - Don't have the time/expertise to find strings in the code, set up replacements easily with easy-to-use autocomplete features
+* **Wildcard string replacements** - replace individual words, or fragments across your whole site
 * **Multi-lingual support** - set different replacements for different languages on multi-lingual sites
 * **Import/export features** - Easy import/export of replacements through the user interface
 
@@ -57,6 +58,9 @@ Not in the free plugin, however this is available in the [Pro version of the plu
 
 
 == Changelog ==
+
+= 1.9.1 =
+* Update information about Pro features
 
 = 1.9.0 =
 * Fix issue adding more strings after downgrade from Pro
