@@ -47,6 +47,7 @@ class SayWhatAdmin {
 		$links[] = '<a href="https://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrade"><strong>Upgrade to Pro</strong></a>';
 		return $links;
 	}
+
 	/**
 	 * Register the menu item for the admin pages
 	 */
