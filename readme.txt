@@ -3,7 +3,7 @@ Contributors: leewillis77
 Donate link: http://plugins.leewillis.co.uk/downloads/say-what-pro?utm_source=wordpress&utm_medium=www&utm_campaign=say-what
 Tags: string, change, translation
 Requires at least: 4.3
-Tested up to: 4.9
+Tested up to: 5.0
 Stable tag: 1.9.1
 
 == Description ==
