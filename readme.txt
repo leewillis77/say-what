@@ -4,7 +4,7 @@ Donate link: http://plugins.leewillis.co.uk/downloads/say-what-pro?utm_source=wo
 Tags: string, change, translation
 Requires at least: 4.3
 Tested up to: 5.3
-Stable tag: 1.9.1
+Stable tag: 1.9.2
 
 == Description ==
 An easy-to-use plugin that allows you to alter strings on your site without editing WordPress core, or plugin code. Simply enter the current string, and what you want to replace it with and the plugin will automatically do the rest!
@@ -17,6 +17,10 @@ Check out [Say What Pro](https://plugins.leewillis.co.uk/downloads/say-what-pro/
 * **Wildcard string replacements** - replace individual words, or fragments across your whole site
 * **Multi-lingual support** - set different replacements for different languages on multi-lingual sites
 * **Import/export features** - Easy import/export of replacements through the user interface
+
+## Treeware
+
+You're free to use this package for free, but if it makes it to your production environment please [buy the world a tree](https://offset.earth/ademtisoftware?gift-trees).
 
 == Installation ==
 
@@ -58,6 +62,9 @@ Not in the free plugin, however this is available in the [Pro version of the plu
 
 
 == Changelog ==
+
+= 1.9.2 =
+* Suggest Treeware donations
 
 = 1.9.1 =
 * Update information about Pro features
