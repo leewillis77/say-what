@@ -52,7 +52,7 @@
                     the world a tree.</p>
                 <p>It’s now common knowledge that one of the best tools to tackle the climate crisis and keep our
                     temperatures from rising above 1.5C is to <a
-                            href="https://www.bbc.co.uk/news/science-environment-48870920" target="_blanl" rel="noopener noreferrer nofollow">plant
+                            href="https://www.bbc.co.uk/news/science-environment-48870920" target="_blank" rel="noopener noreferrer nofollow">plant
                         trees</a>.
                     If you support this package and contribute to the Treeware forest you’ll be creating employment for
                     local families and restoring wildlife habitats.</p>
