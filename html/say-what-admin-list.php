@@ -39,21 +39,13 @@
                 </div>
             </div>
             <div class="treeware">
-                <a href="https://offset.earth/ademtisoftware?gift-trees" target="_blank" rel="noopener noreferrer nofollow">
+                <a href="https://ecologi.com/ademtisoftware?gift-trees" target="_blank" rel="noopener noreferrer nofollow">
                     <img src="<?php echo esc_attr( plugins_url( 'say-what/img/treeware.svg' ) ); ?>" alt="Treeware">
                 </a>
                 <hr>
-                <p>You're free to use this package for free, but if it makes it to your production environment please
-                    buy
-                    the world a tree.</p>
-                <p>It’s now common knowledge that one of the best tools to tackle the climate crisis and keep our
-                    temperatures from rising above 1.5C is to <a
-                            href="https://www.bbc.co.uk/news/science-environment-48870920" target="_blank" rel="noopener noreferrer nofollow">plant
-                        trees</a>.
-                    If you support this package and contribute to the Treeware forest you’ll be creating employment for
-                    local families and restoring wildlife habitats.</p>
-                <p>You can buy trees here <a target="_blank" rel="noopener noreferrer nofollow"
-                                             href="https://offset.earth/ademtisoftware?gift-trees">offset.earth/ademtisoftware</a>
+                <p>You're free to use this package for free, but if it makes it to your production environment please buy the world some trees.</p>
+                <p>It’s now common knowledge that one of the best tools to tackle the climate crisis and keep our temperatures from rising above 1.5C is to <a href="https://www.bbc.co.uk/news/science-environment-48870920" target="_blank" rel="noopener noreferrer nofollow">plant trees</a>. If you support this package and contribute to the our forest you’ll be creating employment for local families and restoring wildlife habitats.</p>
+                <p>You can buy trees here <a target="_blank" rel="noopener noreferrer nofollow" href="https://ecologi.com/ademtisoftware?gift-trees">ecologic.com/ademtisoftware</a>
                 </p>
             </div>
     </div>

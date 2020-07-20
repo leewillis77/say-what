@@ -20,7 +20,7 @@ Check out [Say What Pro](https://plugins.leewillis.co.uk/downloads/say-what-pro/
 
 ## Treeware
 
-You're free to use this package for free, but if it makes it to your production environment please [buy the world a tree](https://offset.earth/ademtisoftware?gift-trees).
+You're free to use this package for free, but if it makes it to your production environment please [buy the world some trees](https://ecologi.com/ademtisoftware?gift-trees).
 
 == Installation ==
 
