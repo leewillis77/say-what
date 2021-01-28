@@ -12,6 +12,6 @@
     "lint:js": "wp-scripts lint-js"
   },
   "dependencies": {
-    "md5": "^2.3.0"
+    "lodash": "^4.17.20"
   }
 }
