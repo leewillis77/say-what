@@ -2,10 +2,10 @@ import * as lodash from 'lodash';
 import '@wordpress/hooks';
 
 // Initialise
-const sayWhatPro = {
+const sayWhat = {
 	// Filter callbacks for each translation call. Uses handle() to do the heavy lifting.
 	gettext( translation, text, domain ) {
-		return sayWhatPro.handle(
+		return sayWhat.handle(
 			translation,
 			text,
 			text,
@@ -15,7 +15,7 @@ const sayWhatPro = {
 		);
 	},
 	gettext_with_context( translation, text, context, domain ) {
-		return sayWhatPro.handle(
+		return sayWhat.handle(
 			translation,
 			text,
 			text,
@@ -25,7 +25,7 @@ const sayWhatPro = {
 		);
 	},
 	ngettext( translation, single, plural, number, domain ) {
-		return sayWhatPro.handle(
+		return sayWhat.handle(
 			translation,
 			single,
 			plural,
@@ -42,7 +42,7 @@ const sayWhatPro = {
 		context,
 		domain
 	) {
-		return sayWhatPro.handle(
+		return sayWhat.handle(
 			translation,
 			single,
 			plural,
@@ -74,31 +74,18 @@ const sayWhatPro = {
 		}
 
 		// Assume we're using plural for now.
-		let compositeKey = domain + '|' + plural + '|' + context + '|';
+		let compositeKey = domain + '|' + plural + '|' + context;
 		// Revert to the single form if required.
 		if ( number === undefined || number === 1 ) {
-			compositeKey = domain + '|' + single + '|' + context + '|';
+			compositeKey = domain + '|' + single + '|' + context;
 		}
 
+		console.log(compositeKey);
 		/**
 		 * Look for replacements, and use them if configured.
 		 */
-
-		// Look for a language-specific replacement first.
-		if (
-			lodash.has(
-				window.swp_data.replacements,
-				compositeKey + window.swp_data.lang
-			)
-		) {
-			return window.swp_data.replacements[
-				compositeKey + window.swp_data.lang
-			];
-		}
-
-		// If not found, look for an "all languages" replacement.
-		if ( lodash.has( window.swp_data.replacements, compositeKey ) ) {
-			return window.swp_data.replacements[ compositeKey ];
+		if ( lodash.has( window.say_what_data.replacements, compositeKey ) ) {
+			return window.say_what_data.replacements[ compositeKey ];
 		}
 
 		// No replacement. Return the value unchanged.
@@ -109,30 +96,30 @@ const sayWhatPro = {
 /**
  * Attach filters.
  */
-if ( window.swp_data.domain_specific_filters ) {
-	window.swp_data.domains.forEach( function ( domain ) {
+if ( window.say_what_data.domain_specific_filters ) {
+	window.say_what_data.domains.forEach( function ( domain ) {
 		wp.hooks.addFilter(
 			'i18n.gettext_' + domain,
-			'say-what-pro',
-			sayWhatPro.gettext,
+			'say-what',
+			sayWhat.gettext,
 			99
 		);
 		wp.hooks.addFilter(
 			'i18n.ngettext_' + domain,
-			'say-what-pro',
-			sayWhatPro.ngettext,
+			'say-what',
+			sayWhat.ngettext,
 			99
 		);
 		wp.hooks.addFilter(
 			'i18n.gettext_with_context_' + domain,
-			'say-what-pro',
-			sayWhatPro.gettext_with_context,
+			'say-what',
+			sayWhat.gettext_with_context,
 			99
 		);
 		wp.hooks.addFilter(
 			'i18n.ngettext_with_context_' + domain,
-			'say-what-pro',
-			sayWhatPro.ngettext_with_context,
+			'say-what',
+			sayWhat.ngettext_with_context,
 			99
 		);
 	} );
@@ -140,26 +127,26 @@ if ( window.swp_data.domain_specific_filters ) {
 	// Fall back to generic filters
 	wp.hooks.addFilter(
 		'i18n.gettext',
-		'say-what-pro',
-		sayWhatPro.gettext,
+		'say-what',
+		sayWhat.gettext,
 		99
 	);
 	wp.hooks.addFilter(
 		'i18n.ngettext',
-		'say-what-pro',
-		sayWhatPro.ngettext,
+		'say-what',
+		sayWhat.ngettext,
 		99
 	);
 	wp.hooks.addFilter(
 		'i18n.gettext_with_context',
-		'say-what-pro',
-		sayWhatPro.gettext_with_context,
+		'say-what',
+		sayWhat.gettext_with_context,
 		99
 	);
 	wp.hooks.addFilter(
 		'i18n.ngettext_with_context',
-		'say-what-pro',
-		sayWhatPro.ngettext_with_context,
+		'say-what',
+		sayWhat.ngettext_with_context,
 		99
 	);
 }

@@ -11,10 +11,14 @@ class SayWhatFrontend {
 
 	private $replacements;
 
+	private $settings;
+
 	/**
 	 * Read the settings in and put them into a format optimised for the final filter
 	 */
 	function __construct( $settings ) {
+
+		$this->settings = $settings;
 		foreach ( $settings->replacements as $value ) {
 			if ( empty ( $value['domain'] ) ) {
 				$value['domain'] = 'default';
@@ -28,6 +32,8 @@ class SayWhatFrontend {
 		add_filter( 'ngettext', array( $this, 'ngettext' ), 10, 5 );
 		add_filter( 'gettext_with_context', array( $this, 'gettext_with_context' ), 10, 4 );
 		add_filter( 'ngettext_with_context', array( $this, 'ngettext_with_context' ), 10, 6 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
 	}
 
 	/**
@@ -97,4 +103,22 @@ class SayWhatFrontend {
 		}
 	}
 
+	public function wp_enqueue_scripts() {
+		$asset_file = include plugin_dir_path( __FILE__ ) . '/assets/build/frontend.asset.php';
+		wp_register_script(
+			'say-what-js',
+			plugins_url( '/say-what/assets/build/frontend.js' ),
+			$asset_file['dependencies'],
+			$asset_file['version'],
+			false
+		);
+		wp_localize_script(
+			'say-what-js',
+			'say_what_data',
+			[
+				'replacements'            => $this->settings->get_flattened_replacements(),
+			]
+		);
+		wp_enqueue_script( 'say-what-js' );
+	}
 }
