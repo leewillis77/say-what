@@ -14,27 +14,78 @@
 }
 
 .saywhat-gopro {
-    width: 60%;
-    border-right: 1px dashed lightgray;
+    float: left;
+    width: 45%;
+    border-left: 1px dashed lightgray;
+    padding-left: 1em;
+    box-sizing: border-box;
 }
 
-.treeware {
-    width: 40%;margin-top: -4px;
+.swp-cpw {
+    width: 55%;
+    padding-right: 1em;
+    float: left;
+    box-sizing: border-box;
+}
 
+.swp-cpw .swp-img-container {
+    width: 50%;
+    box-sizing: border-box;
+    float: left;
+}
+
+.swp-cpw img {
+    width: 100%;
+}
+
+.swp-cpw .swp-intro-container {
+    padding-left: 1em;
+    width: 50%;
+    box-sizing: border-box;
+    float: left;
+}
+
+.swp-intro {
+    font-weight: bold;
+    font-size: large;
+}
+
+.swp-cpw .button {
+    font-weight: bold;
+    background-color: #28c382;
+    font-size: larger;
+    border-color: #0c9e77;
+    text-align: center;
+    line-height: 1.5;
+    display: block;
+    white-space: inherit;
+    margin: 4px;
+}
+
+.swp-cpw .button:hover {
+    background-color: #0c9e77;
+    border-color: #0c9e77;
+}
+.swp-cpw .button {
+    color: #fff !important;
+    text-decoration: none;
+    padding: 8px 6px 10px 6px;
+    line-height: 1.3;
+}
+
+.swp-cpw .swp-content-container {
+    clear: both;
+    padding-top: 1em;
 }
 
 .saywhat-gopro h2 {
     margin-top: 0;
 }
 
-.upgrades-wrapper {
-    overflow: hidden;
-    margin: auto;
-    width: 80%;
+.swp-upgrades-wrapper {
+    margin-top: -1.5em;
 }
 
-.upgrades-wrapper > div {
-    float: left;
-    box-sizing: border-box;
-    padding: 2em;
+.swp-upgrades-wrapper hr {
+    margin-bottom: 1.5em;
 }
