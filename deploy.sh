@@ -70,6 +70,8 @@ README.md
 
 echo "Changing directory to SVN and committing to trunk"
 cd $SVNPATH/trunk/
+npm ci --production
+
 # Add all new files that are not set to be ignored
 svn status | grep -v "^.[ \t]*\..*" | grep "^?" | awk '{print $2}' | xargs svn add
 svn commit --username=$SVNUSER -m "$COMMITMSG"
