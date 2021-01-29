@@ -84,6 +84,15 @@ class SayWhatListTable extends WP_List_Table {
 	}
 
 	/**
+	 * Set the primary column.
+	 *
+	 * @return string The name of the primary column.
+	 */
+	protected function get_primary_column_name() {
+		return 'orig_string';
+	}
+	
+	/**
 	 * Specify the bulk actions available. Not used currently
 	 */
 	function get_bulk_actions() {
