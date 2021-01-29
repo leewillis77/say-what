@@ -28,8 +28,9 @@
     box-sizing: border-box;
 }
 
+
 .swp-cpw .swp-img-container {
-    width: 50%;
+    width: 40%;
     box-sizing: border-box;
     float: left;
 }
@@ -43,6 +44,15 @@
     width: 50%;
     box-sizing: border-box;
     float: left;
+}
+
+@media screen and (max-width: 782px) {
+    .swp-cpw .swp-img-container {
+        display: none;
+    }
+    .swp-cpw .swp-intro-container {
+        width: 100%;
+    }
 }
 
 .swp-intro {
@@ -87,5 +97,5 @@
 }
 
 .swp-upgrades-wrapper hr {
-    margin-bottom: 1.5em;
+    margin-bottom: 2em;
 }
