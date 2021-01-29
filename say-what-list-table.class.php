@@ -91,7 +91,7 @@ class SayWhatListTable extends WP_List_Table {
 	protected function get_primary_column_name() {
 		return 'orig_string';
 	}
-	
+
 	/**
 	 * Specify the bulk actions available. Not used currently
 	 */
