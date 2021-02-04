@@ -57,7 +57,7 @@ const sayWhat = {
 		context,
 		domain
 	) {
-		return sayWhatPro.handle(
+		return sayWhat.handle(
 			single,
 			single,
 			single,
@@ -95,7 +95,6 @@ const sayWhat = {
 			compositeKey = domain + '|' + single + '|' + context;
 		}
 
-		console.log(compositeKey);
 		/**
 		 * Look for replacements, and use them if configured.
 		 */

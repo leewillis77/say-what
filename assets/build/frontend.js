@@ -116,6 +116,9 @@ var sayWhat = {
   ngettext_with_context: function ngettext_with_context(translation, single, plural, number, context, domain) {
     return sayWhat.handle(translation, single, plural, number, context, domain);
   },
+  has_translation: function has_translation(result, single, context, domain) {
+    return sayWhat.handle(single, single, single, undefined, context, domain) !== single;
+  },
 
   /**
    * Handle a call to a translation function.
@@ -146,11 +149,10 @@ var sayWhat = {
     if (number === undefined || number === 1) {
       compositeKey = domain + '|' + single + '|' + context;
     }
-
-    console.log(compositeKey);
     /**
      * Look for replacements, and use them if configured.
      */
+
 
     if (lodash__WEBPACK_IMPORTED_MODULE_0__["has"](window.say_what_data.replacements, compositeKey)) {
       return window.say_what_data.replacements[compositeKey];
@@ -164,20 +166,11 @@ var sayWhat = {
  * Attach filters.
  */
 
-if (window.say_what_data.domain_specific_filters) {
-  window.say_what_data.domains.forEach(function (domain) {
-    wp.hooks.addFilter('i18n.gettext_' + domain, 'say-what', sayWhat.gettext, 99);
-    wp.hooks.addFilter('i18n.ngettext_' + domain, 'say-what', sayWhat.ngettext, 99);
-    wp.hooks.addFilter('i18n.gettext_with_context_' + domain, 'say-what', sayWhat.gettext_with_context, 99);
-    wp.hooks.addFilter('i18n.ngettext_with_context_' + domain, 'say-what', sayWhat.ngettext_with_context, 99);
-  });
-} else {
-  // Fall back to generic filters
-  wp.hooks.addFilter('i18n.gettext', 'say-what', sayWhat.gettext, 99);
-  wp.hooks.addFilter('i18n.ngettext', 'say-what', sayWhat.ngettext, 99);
-  wp.hooks.addFilter('i18n.gettext_with_context', 'say-what', sayWhat.gettext_with_context, 99);
-  wp.hooks.addFilter('i18n.ngettext_with_context', 'say-what', sayWhat.ngettext_with_context, 99);
-}
+wp.hooks.addFilter('i18n.gettext', 'say-what', sayWhat.gettext, 99);
+wp.hooks.addFilter('i18n.ngettext', 'say-what', sayWhat.ngettext, 99);
+wp.hooks.addFilter('i18n.gettext_with_context', 'say-what', sayWhat.gettext_with_context, 99);
+wp.hooks.addFilter('i18n.ngettext_with_context', 'say-what', sayWhat.ngettext_with_context, 99);
+wp.hooks.addFilter('i18n.has_translation', 'say-what', sayWhat.has_translation, 99);
 
 /***/ }),
 
