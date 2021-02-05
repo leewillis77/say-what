@@ -12,7 +12,7 @@
         <hr>
         <div class="swp-cpw">
             <div class="swp-img-container">
-                <a href="https://ecologi.com/ademtisoftware?gift-trees" target="_blank" rel="noopener noreferrer nofollow">
+                <a href="https://ecologi.com/ademtisoftware?gift-trees&amp;r=ademtisoftware" target="_blank" rel="noopener noreferrer nofollow">
                     <img src="<?php echo esc_attr( plugins_url( 'say-what/img/cpw.png' ) ); ?>"
                          alt="We're a climate positive workforce">
                 </a>
@@ -20,7 +20,7 @@
             <div class="swp-intro-container">
                 <p class="swp-intro">Using this plugin on your live site? Please buy the world some trees...</p>
                 <div><a class="button" target="_blank" rel="noopener noreferrer nofollow"
-                        href="https://ecologi.com/ademtisoftware?gift-trees">Support this free plugin by planting trees</a></div>
+                        href="https://ecologi.com/ademtisoftware?gift-trees&amp;r=ademtisoftware">Support this free plugin by planting trees</a></div>
             </div>
             <div class="swp-content-container">
                 <p>It’s now common knowledge that one of the best tools to tackle the climate crisis and keep our
@@ -30,7 +30,7 @@
                 <p>As a business, we already donate a percentage of our profits from premium plugins to global climate
                     change projects. You're free to use package free of charge, but if you do, please consider <a
                             target="_blank" rel="noopener noreferrer nofollow"
-                            href="https://ecologi.com/ademtisoftware?gift-trees">buying the world some trees</a> in return.
+                            href="https://ecologi.com/ademtisoftware?gift-trees&amp;r=ademtisoftware">buying the world some trees</a> in return.
                     You’ll be creating employment for local families and restoring wildlife habitats.</p>
             </div>
         </div>

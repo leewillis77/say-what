@@ -72,10 +72,11 @@
     margin: 4px;
 }
 
-.swp-cpw .button:hover {
+.swp-cpw .button:hover, .swp-cpw .button:active, .swp-cpw .button:focus {
     background-color: #0c9e77;
     border-color: #0c9e77;
 }
+
 .swp-cpw .button {
     color: #fff !important;
     text-decoration: none;
