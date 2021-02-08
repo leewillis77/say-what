@@ -51,13 +51,8 @@ const sayWhat = {
 			domain
 		);
 	},
-	has_translation(
-		result,
-		single,
-		context,
-		domain
-	) {
-		return result || (
+	has_translation( result, single, context, domain ) {
+		const swpHasReplacement =
 			sayWhat.handle(
 				single,
 				single,
@@ -65,7 +60,8 @@ const sayWhat = {
 				undefined,
 				context,
 				domain
-			) !== single );
+			) !== single;
+		return result || swpHasReplacement;
 	},
 	/**
 	 * Handle a call to a translation function.
@@ -111,18 +107,8 @@ const sayWhat = {
 /**
  * Attach filters.
  */
-wp.hooks.addFilter(
-	'i18n.gettext',
-	'say-what',
-	sayWhat.gettext,
-	99
-);
-wp.hooks.addFilter(
-	'i18n.ngettext',
-	'say-what',
-	sayWhat.ngettext,
-	99
-);
+wp.hooks.addFilter( 'i18n.gettext', 'say-what', sayWhat.gettext, 99 );
+wp.hooks.addFilter( 'i18n.ngettext', 'say-what', sayWhat.ngettext, 99 );
 wp.hooks.addFilter(
 	'i18n.gettext_with_context',
 	'say-what',

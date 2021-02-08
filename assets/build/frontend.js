@@ -117,7 +117,8 @@ var sayWhat = {
     return sayWhat.handle(translation, single, plural, number, context, domain);
   },
   has_translation: function has_translation(result, single, context, domain) {
-    return result || sayWhat.handle(single, single, single, undefined, context, domain) !== single;
+    var swpHasReplacement = sayWhat.handle(single, single, single, undefined, context, domain) !== single;
+    return result || swpHasReplacement;
   },
 
   /**
