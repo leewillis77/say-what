@@ -57,14 +57,15 @@ const sayWhat = {
 		context,
 		domain
 	) {
-		return sayWhat.handle(
-			single,
-			single,
-			single,
-			undefined,
-			context,
-			domain
-		) !== single;
+		return result || (
+			sayWhat.handle(
+				single,
+				single,
+				single,
+				undefined,
+				context,
+				domain
+			) !== single );
 	},
 	/**
 	 * Handle a call to a translation function.
