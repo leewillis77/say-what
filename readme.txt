@@ -3,7 +3,7 @@ Contributors: leewillis77
 Donate link: http://plugins.leewillis.co.uk/downloads/say-what-pro?utm_source=wordpress&utm_medium=www&utm_campaign=say-what
 Tags: string, change, translation
 Requires at least: 5.4
-Tested up to: 5.6
+Tested up to: 5.7
 Stable tag: 1.9.7
 
 == Description ==
@@ -13,14 +13,15 @@ The plugin's available for forking and contribution over on [GitHub](https://git
 
 Check out [Say What Pro](https://plugins.leewillis.co.uk/downloads/say-what-pro/) for:
 
-* **String discovery** - Don't have the time/expertise to find strings in the code, set up replacements easily with easy-to-use autocomplete features
+* **String Discovery and autocomplete** - find the strings you need without diving through code. Works with server-side and Javascript-rendered strings
+* **Improved performance** using text-domain-specific filters
 * **Wildcard string replacements** - replace individual words, or fragments across your whole site
 * **Multi-lingual support** - set different replacements for different languages on multi-lingual sites
 * **Import/export features** - Easy import/export of replacements through the user interface
 
 ## Treeware
 
-You're free to use this package for free, but if it makes it to your production environment please [buy the world some trees](https://ecologi.com/ademtisoftware?gift-trees).
+As a business, we already donate a percentage of our profits from premium plugins to global climate change projects. You're free to use package free of charge, but if you do, please consider [buying the world some trees](https://ecologi.com/ademtisoftware?gift-trees&r=ademtisoftware) in return. You’ll be creating employment for local families and restoring wildlife habitats.
 
 == Installation ==
 
