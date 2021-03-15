@@ -4,7 +4,7 @@ Donate link: http://plugins.leewillis.co.uk/downloads/say-what-pro?utm_source=wo
 Tags: string, change, translation
 Requires at least: 5.4
 Tested up to: 5.7
-Stable tag: 1.9.7
+Stable tag: 2.0.0
 
 == Description ==
 An easy-to-use plugin that allows you to alter strings on your site without editing WordPress core, or plugin code. Simply enter the current string, and what you want to replace it with and the plugin will automatically do the rest!
@@ -19,9 +19,9 @@ Check out [Say What Pro](https://plugins.leewillis.co.uk/downloads/say-what-pro/
 * **Multi-lingual support** - set different replacements for different languages on multi-lingual sites
 * **Import/export features** - Easy import/export of replacements through the user interface
 
-## Treeware
+## Support this free plugin
 
-As a business, we already donate a percentage of our profits from premium plugins to global climate change projects. You're free to use package free of charge, but if you do, please consider [buying the world some trees](https://ecologi.com/ademtisoftware?gift-trees&r=ademtisoftware) in return. You’ll be creating employment for local families and restoring wildlife habitats.
+As a business, we already donate a percentage of our profits from premium plugins to global climate change projects. You're free to use this plugin free of charge, but if you do, please consider [buying the world some trees](https://ecologi.com/ademtisoftware?gift-trees&r=ademtisoftware) in return. You'll be creating employment for local families and restoring wildlife habitats.
 
 == Installation ==
 
@@ -63,6 +63,11 @@ Not in the free plugin, however this is available in the [Pro version of the plu
 
 
 == Changelog ==
+
+= 2.0.0 =
+* Support for translatable strings rendered through WordPress Javascript framework
+* Supports replacing text in Gutenberg / WooCommerce admin / WooCommerce blocks
+* Update details of Say What? Pro vs free plugin
 
 = 1.9.7 =
 * Fix issue where replacement table disappeared at small screen widths
