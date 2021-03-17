@@ -10,8 +10,5 @@
     "dev": "wp-scripts start",
     "start": "wp-scripts start",
     "lint:js": "wp-scripts lint-js"
-  },
-  "dependencies": {
-    "lodash": "^4.17.20"
   }
 }

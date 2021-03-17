@@ -1,4 +1,3 @@
-import * as lodash from 'lodash';
 import '@wordpress/hooks';
 
 // Initialise
@@ -95,7 +94,7 @@ const sayWhat = {
 		/**
 		 * Look for replacements, and use them if configured.
 		 */
-		if ( lodash.has( window.say_what_data.replacements, compositeKey ) ) {
+		if ( typeof window.say_what_data.replacements[ compositeKey ] !== 'undefined' ) {
 			return window.say_what_data.replacements[ compositeKey ];
 		}
 
