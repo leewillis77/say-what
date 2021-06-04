@@ -7,7 +7,7 @@ More information :
 
 ## Support this free plugin
 
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://ecologi.com/ademtisoftware?gift-trees&amp;r=ademtisoftware"><img src="https://raw.github.com/leewillis77/say-what/master/img/cpw-banner.png" width="100%" alt="We're a climate-positive workforce"></a>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://ecologi.com/ademtisoftware?gift-trees&amp;r=ademtisoftware"><img src="https://raw.github.com/leewillis77/say-what/master/img/cpw-banner.jpg" width="100%" alt="We're a climate-positive workforce"></a>
 
 Using this plugin on your live site? Please buy the world some trees:
 
