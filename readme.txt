@@ -4,7 +4,7 @@ Donate link: http://plugins.leewillis.co.uk/downloads/say-what-pro?utm_source=wo
 Tags: string, change, translation
 Requires at least: 5.4
 Tested up to: 5.7
-Stable tag: 2.0.1
+Stable tag: 2.0.2
 
 == Description ==
 An easy-to-use plugin that allows you to alter strings on your site without editing WordPress core, or plugin code. Simply enter the current string, and what you want to replace it with and the plugin will automatically do the rest!
@@ -63,6 +63,10 @@ Not in the free plugin, however this is available in the [Pro version of the plu
 
 
 == Changelog ==
+
+= 2.0.2 =
+* Reduce size of bundled images
+* Update dev build scripts
 
 = 2.0.1 =
 * Improve Javascript performance, and remove lodash dependency (resolves some plugin conflicts)
