@@ -2,7 +2,7 @@
   "name": "say-what",
   "devDependencies": {
     "@wordpress/scripts": "^22.3.0",
-    "grunt": "^1.4.1",
+    "grunt": "^1.5.2",
     "grunt-wp-i18n": "^1.0.3"
   },
   "scripts": {
