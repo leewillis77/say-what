@@ -4,7 +4,7 @@ Donate link: http://plugins.leewillis.co.uk/downloads/say-what-pro?utm_source=wo
 Tags: string, change, translation
 Requires at least: 5.4
 Requires PHP: 5.6
-Tested up to: 5.9
+Tested up to: 6.0
 Stable tag: 2.0.2
 
 == Description ==
