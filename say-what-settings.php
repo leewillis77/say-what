@@ -9,6 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class SayWhatSettings {
 
+	/**
+	 * @var string
+	 */
 	public $base_file = '';
 
 	/**

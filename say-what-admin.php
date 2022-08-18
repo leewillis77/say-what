@@ -9,6 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class SayWhatAdmin {
 
+	/**
+	 * @var SayWhatSettings
+	 */
 	private $settings;
 
 	/**

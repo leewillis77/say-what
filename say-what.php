@@ -43,9 +43,24 @@ define( 'SAY_WHAT_DB_VERSION', 3 );
  */
 class SayWhat {
 
+	/**
+	 * @var SayWhatSettings
+	 */
 	private $settings_instance;
+
+	/**
+	 * @var SayWhatFrontend
+	 */
 	private $frontend_instance;
+
+	/**
+	 * @var SayWhatAdmin
+	 */
 	private $admin_instance;
+
+	/**
+	 * @var int
+	 */
 	private $db_version = SAY_WHAT_DB_VERSION;
 
 	/**
@@ -152,6 +167,27 @@ class SayWhat {
 				CONVERT TO CHARACTER SET utf8";
 		$wpdb->query( $sql );
 	}
+
+	/**
+	 * @return SayWhatSettings
+	 */
+	public function get_settings_instance() {
+		return $this->settings_instance;
+	}
+
+	/**
+	 * @return SayWhatFrontend
+	 */
+	public function get_frontend_instance() {
+		return $this->frontend_instance;
+	}
+
+	/**
+	 * @return SayWhatAdmin
+	 */
+	public function get_admin_instance() {
+		return $this->admin_instance;
+	}
 }
 
 /**
@@ -173,4 +209,5 @@ function say_what_install() {
 }
 register_activation_hook( __FILE__, 'say_what_install' );
 
+global $say_what;
 $say_what = new SayWhat();
