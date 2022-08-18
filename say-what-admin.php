@@ -133,6 +133,7 @@ class SayWhatAdmin {
 		}
 		$sql = "DELETE FROM {$table_prefix}say_what_strings WHERE string_id = %d";
 		$wpdb->query( $wpdb->prepare( $sql, $_GET['id'] ) );
+		$this->settings->invalidate_caches();
 		wp_redirect( 'tools.php?page=say_what_admin', '303' );
 		die();
 	}
@@ -218,6 +219,7 @@ class SayWhatAdmin {
 				)
 			);
 		}
+		$this->settings->invalidate_caches();
 		wp_redirect( 'tools.php?page=say_what_admin', '303' );
 		die();
 	}

@@ -70,12 +70,15 @@ class SayWhatCli extends \WP_CLI\CommandWithDBObject {
 	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
 	 */
 	public function _import( $args, $assoc_args ) {
+		global $say_what;
+
 		$filename = $args[0];
 		$inserted = 0;
 		foreach ( new \WP_CLI\Iterators\CSV( $filename ) as $item ) {
 			$this->insert_replacement( $item );
 			$inserted++;
 		}
+		$say_what->get_settings_instance()->invalidate_caches();
 		WP_CLI::success( sprintf( '%d new items created.', $inserted ) );
 	}
 
@@ -96,6 +99,7 @@ class SayWhatCli extends \WP_CLI\CommandWithDBObject {
 	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
 	 */
 	public function update( $args, $assoc_args ) {
+		global $say_what;
 		$filename = $args[0];
 		$updated = $inserted = 0;
 		foreach ( new \WP_CLI\Iterators\CSV( $filename ) as $item ) {
@@ -107,6 +111,7 @@ class SayWhatCli extends \WP_CLI\CommandWithDBObject {
 				$inserted++;
 			}
 		}
+		$say_what->get_settings_instance()->invalidate_caches();
 		WP_CLI::success( sprintf( '%d records updated, %d new items created.', $updated, $inserted ) );
 	}
 
