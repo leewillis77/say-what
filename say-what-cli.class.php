@@ -154,8 +154,8 @@ class SayWhatCli extends \WP_CLI\CommandWithDBObject {
 	 */
 	protected function insert_replacement( $item ) {
 		global $wpdb, $table_prefix;
-		$sql = "INSERT INTO {$table_prefix}say_what_strings
-			         VALUES ( NULL,
+		$sql = "INSERT INTO {$table_prefix}say_what_strings (orig_string, domain, replacement_string, context)
+			         VALUES (
 			                  %s,
 	                          %s,
 			                  %s,
