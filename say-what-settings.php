@@ -76,7 +76,7 @@ class SayWhatSettings {
 	 * @return void
 	 */
 	public function invalidate_caches() {
-		wp_cache_delete_multiple( [ 'say_what_strings', 'say_what_flattened_replacements', ], 'swp' );
+		wp_cache_delete_multiple( [ 'say_what_strings', 'say_what_flattened_replacements' ], 'swp' );
 	}
 
 	/**
