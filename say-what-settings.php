@@ -55,7 +55,10 @@ class SayWhatSettings {
 				return $this->flattened_replacements;
 			}
 		}
-		// Otherwise, generate them, and cache them.
+		// Otherwise, generate them...
+		if ( empty( $this->replacements ) ) {
+			$this->flattened_replacements = [];
+		}
 		array_walk(
 			$this->replacements,
 			function ( $replacement ) {
@@ -65,6 +68,7 @@ class SayWhatSettings {
 				$this->flattened_replacements[ $key ] = $replacement['replacement_string'];
 			}
 		);
+		// ...and cache them.
 		if ( wp_using_ext_object_cache() ) {
 			wp_cache_set( 'say_what_flattened_replacements', $this->flattened_replacements, 'swp', 3600 );
 		}
@@ -114,7 +118,6 @@ class SayWhatSettings {
 	private function load_replacements_from_database() {
 		global $wpdb, $table_prefix;
 
-		// If they didn't exist in the cache, load from the DB.
 		$sql = "SELECT * FROM {$table_prefix}say_what_strings";
 		$this->replacements = $wpdb->get_results( $sql, ARRAY_A );
 		// Cache them if we're using an external object cache.
