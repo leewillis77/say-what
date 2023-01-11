@@ -14,7 +14,7 @@
             <div class="swp-img-container">
                 <a href="https://ecologi.com/ademtisoftware?gift-trees&amp;r=ademtisoftware" target="_blank" rel="noopener noreferrer nofollow">
                     <img src="<?php echo esc_attr( plugins_url( 'say-what/img/cpw.png' ) ); ?>"
-                         alt="<?php esc_attr_e( 'We\'re a climate positive workforce', 'say-what' ); ?>">
+                         alt="<?php esc_attr_e( "We're a climate positive workforce", 'say-what' ); ?>">
                 </a>
             </div>
             <div class="swp-intro-container">
