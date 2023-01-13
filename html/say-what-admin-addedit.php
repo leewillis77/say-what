@@ -2,7 +2,10 @@
 	<div id="icon-tools" class="icon32"></div>
 	<h2><?php esc_html_e( 'Text changes', 'say-what' ); ?></h2>
 
-	<p><?php printf(esc_html__( 'Fill in the details of the original translatable string, the string\'s text domain, and the string you would like to use instead. For more information check out the %1$sgetting started guide%2$s.', 'say-what' ),'<a href="https://plugins.leewillis.co.uk/doc_post/adding-string-replacement/" target="_blank" rel="noopener noreferrer">','</a>'); ?></p>
+	<p><?php
+	// Translators: %1$s is opening <a> tag, %2%s is the closing tag.
+    printf(esc_html__( 'Fill in the details of the original translatable string, the string\'s text domain, and the string you would like to use instead. For more information check out the %1$sgetting started guide%2$s.', 'say-what' ),'<a href="https://plugins.leewillis.co.uk/doc_post/adding-string-replacement/" target="_blank" rel="noopener noreferrer">','</a>');
+    ?></p>
 	<form action="tools.php?page=say_what_admin&amp;say_what_action=addedit" method="post">
 		<input type="hidden" name="say_what_save" value="1">
 		<?php wp_nonce_field( 'swaddedit', 'nonce' ); ?>
