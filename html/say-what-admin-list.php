@@ -75,8 +75,8 @@
                 </ul>
                 </p>
                 <p><strong><?php
-						// Translators: %1$s is opening <a> tag, %2%s is the closing tag.
-                        printf(esc_html__( 'Upgrade to the Pro version today, and %1$ssave 15&#37;%2$s with the code %3$sWPSAYWHAT%4$s at checkout.', 'say-what' ),'<em>','</em>','<code>','</code>');
+						// Translators: %1$s / 2 are opening / closing <em> tag, %3%s is <code>, %4$s is a discount code, and %5$s is </code>.
+                        printf(esc_html__( 'Upgrade to the Pro version today, and %1$ssave 15&#37;%2$s with the code %3$s%4$s%5$s at checkout.', 'say-what' ),'<em>','</em>','<code>', 'WPSAYWHAT', '</code>');
                         ?></strong></p>
                 <p>
                 <center>
