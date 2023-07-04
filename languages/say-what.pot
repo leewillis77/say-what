@@ -9,9 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-01-13T10:52:49+00:00\n"
+"POT-Creation-Date: 2023-07-04T09:35:52+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.7.1\n"
+"X-Generator: WP-CLI 2.8.1\n"
 "X-Domain: say-what\n"
 
 #. Plugin Name of the plugin
@@ -148,9 +148,9 @@ msgstr ""
 msgid "%1$sImproved performance%2$s using text-domain-specific filters."
 msgstr ""
 
-#. Translators: %1$s is opening <a> tag, %2%s is the closing tag.
+#. Translators: %1$s / 2 are opening / closing <em> tag, %3%s is <code>, %4$s is a discount code, and %5$s is </code>.
 #: html/say-what-admin-list.php:79
-msgid "Upgrade to the Pro version today, and %1$ssave 15&#37;%2$s with the code %3$sWPSAYWHAT%4$s at checkout."
+msgid "Upgrade to the Pro version today, and %1$ssave 15&#37;%2$s with the code %3$s%4$s%5$s at checkout."
 msgstr ""
 
 #: html/say-what-admin-list.php:84
