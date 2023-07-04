@@ -1,9 +1,7 @@
 {
   "name": "say-what",
   "devDependencies": {
-    "@wordpress/scripts": "^25.1.0",
-    "grunt": "^1.5.3",
-    "grunt-wp-i18n": "^1.0.3"
+    "@wordpress/scripts": "*"
   },
   "scripts": {
     "build": "wp-scripts build",
