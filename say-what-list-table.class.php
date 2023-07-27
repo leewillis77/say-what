@@ -130,12 +130,12 @@ class SayWhatListTable extends WP_List_Table {
 	 */
 	function column_edit_links( $item ) {
 		return '<a href="tools.php?page=say_what_admin&amp;say_what_action=addedit&amp;id=' .
-			urlencode( $item['string_id'] ) .
-			'&amp;nonce=' .
-			urlencode( wp_create_nonce( 'swaddedit' ) ) .
-			'">' .
-			__( 'Edit', 'say-what' ) .
-			'</a>';
+			   urlencode( $item['string_id'] ) .
+			   '&amp;nonce=' .
+			   urlencode( wp_create_nonce( 'swaddedit' ) ) .
+			   '">' .
+			   __( 'Edit', 'say-what' ) .
+			   '</a>';
 	}
 
 	/**
@@ -143,12 +143,12 @@ class SayWhatListTable extends WP_List_Table {
 	 */
 	function column_delete_links( $item ) {
 		return '<a href="tools.php?page=say_what_admin&say_what_action=delete&id=' .
-			urlencode( $item['string_id'] ) .
-			'&nonce=' .
-			urlencode( wp_create_nonce( 'swdelete' ) ) .
-			'">' .
-			__( 'Delete', 'say-what' ) .
-			'</a>';
+			   urlencode( $item['string_id'] ) .
+			   '&nonce=' .
+			   urlencode( wp_create_nonce( 'swdelete' ) ) .
+			   '">' .
+			   __( 'Delete', 'say-what' ) .
+			   '</a>';
 	}
 
 }
