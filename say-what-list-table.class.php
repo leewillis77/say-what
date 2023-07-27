@@ -55,18 +55,26 @@ class SayWhatListTable extends WP_List_Table {
 		$hidden = array( 'string_id' );
 		$sortable = $this->get_sortable_columns();
 		$this->_column_headers = array( $columns, $hidden, $sortable );
-		//$this->search_box(__('Search', 'say-what'), 'search_id'); // FIXME - implement searching
 
 		// We don't use the replacements from the settings object, we query them separately to make
-		// ordering/searhing/pagination easier. This may turn out bad if people have "lots"
+		// ordering/pagination easier. This may turn out bad if people have "lots"
+		
 		$sql = "SELECT * FROM {$table_prefix}say_what_strings";
-		if ( isset ( $_GET['orderby'] ) ) {
-			$sql .= ' ORDER BY ' . $wpdb->escape( $_GET['orderby'] );
-			if ( isset( $_GET['order'] ) ) {
-				$sql .= ' ' . $wpdb->escape( $_GET['order'] );
+		
+		// Handle ordering of the results.
+		// The isset() check below validates that the passed data is a valid column name, and the value is
+		// not escaped in the query accordingly.
+		if ( isset ( $_GET['orderby'] ) && isset($sortable[$_GET['orderby']]) ) {
+			$sql .= ' ORDER BY ' . $_GET['orderby'];
+			if ( isset( $_GET['order'] ) && strtolower($_GET['order']) === 'desc') {
+				$sql .= ' DESC';
+			} else {
+				$sql .= ' ASC';
 			}
 		} else {
+			// Default ordering.
 			$sql .= ' ORDER BY orig_string ASC';
+
 		}
 		$this->items = $wpdb->get_results( $sql, ARRAY_A );
 	}
