@@ -30,7 +30,7 @@ class SayWhatListTable extends WP_List_Table {
 	 * Specify the list of columns in the table
 	 * @return array The list of columns
 	 */
-	function get_columns(){
+	function get_columns() {
 		$columns = array(
 			/*'cb'        => 'Checkboxes',*/
 			'string_id'          => 'String replacement ID (Internal)',
@@ -41,6 +41,7 @@ class SayWhatListTable extends WP_List_Table {
 			'edit_links'         => _x( '', 'Header for edit links on admin list table', 'say-what' ),
 			'delete_links'       => _x( '', 'Header for delete links on admin list table', 'say-what' ),
 		);
+
 		return $columns;
 	}
 
@@ -51,22 +52,22 @@ class SayWhatListTable extends WP_List_Table {
 
 		global $wpdb, $table_prefix;
 
-		$columns = $this->get_columns();
-		$hidden = array( 'string_id' );
-		$sortable = $this->get_sortable_columns();
+		$columns               = $this->get_columns();
+		$hidden                = array( 'string_id' );
+		$sortable              = $this->get_sortable_columns();
 		$this->_column_headers = array( $columns, $hidden, $sortable );
 
 		// We don't use the replacements from the settings object, we query them separately to make
 		// ordering/pagination easier. This may turn out bad if people have "lots"
-		
+
 		$sql = "SELECT * FROM {$table_prefix}say_what_strings";
-		
+
 		// Handle ordering of the results.
 		// The isset() check below validates that the passed data is a valid column name, and the value is
 		// not escaped in the query accordingly.
-		if ( isset ( $_GET['orderby'] ) && isset($sortable[$_GET['orderby']]) ) {
+		if ( isset ( $_GET['orderby'] ) && isset( $sortable[ $_GET['orderby'] ] ) ) {
 			$sql .= ' ORDER BY ' . $_GET['orderby'];
-			if ( isset( $_GET['order'] ) && strtolower($_GET['order']) === 'desc') {
+			if ( isset( $_GET['order'] ) && strtolower( $_GET['order'] ) === 'desc' ) {
 				$sql .= ' DESC';
 			} else {
 				$sql .= ' ASC';
@@ -88,7 +89,8 @@ class SayWhatListTable extends WP_List_Table {
 			'orig_string'        => array( 'orig_string', true ),
 			'domain'             => array( 'domain', false ),
 			'context'            => array( 'context', false ),
-			'replacement_string' => array( 'replacement_string', false ) );
+			'replacement_string' => array( 'replacement_string', false )
+		);
 	}
 
 	/**
