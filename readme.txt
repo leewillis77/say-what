@@ -8,7 +8,7 @@ Tested up to: 6.2
 Stable tag: 2.1.5
 
 == Description ==
-An easy-to-use plugin that allows you to alter strings on your site without editing WordPress core, or plugin code. Simply enter the current string, and what you want to replace it with and the plugin will automatically do the rest!
+An easy-to-use plugin that allows you to change translatable strings from plugins / themes and WordPress core without editing code. Simply enter the current string, and what you want to replace it with and the plugin will automatically do the rest!
 
 The plugin's available for forking and contribution over on [GitHub](https://github.com/leewillis77/say-what)
 
