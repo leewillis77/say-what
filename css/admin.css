@@ -13,6 +13,16 @@
     width: 6%;
 }
 
+.saywhat_label_container {
+    margin: 1.5em 0 -0.5em 0;
+    font-weight: 600;
+    font-size: 110%;
+}
+
+.saywhat_label_container .dashicons {
+    text-decoration: none;
+}
+
 .saywhat-gopro {
     float: left;
     width: 45%;
