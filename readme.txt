@@ -64,6 +64,9 @@ Not in the free plugin, however this is available in the [Pro version of the plu
 
 == Changelog ==
 
+= 2.1.7 =
+* Change: Admin UI updates
+
 = 2.1.6 =
 * Change: Styling & documentation updates.
 
