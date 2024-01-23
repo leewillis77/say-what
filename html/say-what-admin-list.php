@@ -9,7 +9,6 @@
 	?>
 
     <div class="swp-upgrades-wrapper">
-        <hr>
         <div class="swp-cpw">
             <div class="swp-img-container">
                 <a href="https://ecologi.com/ademtisoftware?gift-trees&amp;r=ademtisoftware" target="_blank" rel="noopener noreferrer nofollow">
@@ -24,10 +23,6 @@
             </div>
             <div class="swp-content-container">
                 <p><?php
-                    // Translators: %1$s is opening <a> tag, %2%s is the closing tag.
-                    printf(esc_html__( 'It’s now common knowledge that one of the best tools to tackle the climate crisis and keep our temperatures from rising above 1.5C is to %1$splant trees%2$s.', 'say-what' ),'<a href="https://www.bbc.co.uk/news/science-environment-48870920" target="_blank" rel="noopener noreferrer nofollow">','</a>');
-                    ?></p>
-                <p><?php
 					// Translators: %1$s is opening <a> tag, %2%s is the closing tag.
                     printf(esc_html__( 'As a business, we already donate a percentage of our profits from premium plugins to global climate change projects. You\'re free to use package free of charge, but if you do, please consider %1$sbuying the world some trees%2$s in return. You’ll be creating employment for local families and restoring wildlife habitats.', 'say-what' ),'<a target="_blank" rel="noopener noreferrer nofollow" href="https://ecologi.com/ademtisoftware?gift-trees&amp;r=ademtisoftware">','</a>');
                     ?></p>
@@ -35,8 +30,11 @@
         </div>
         <div class="saywhat-gopro">
             <div>
-                <h2><?php esc_html_e( 'Go Pro today', 'say-what' ); ?></h2>
-                <hr>
+                <h1><?php esc_html_e( 'Save time - Upgrade to Pro today', 'say-what' ); ?></h1>
+                <a href="https://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgradegraphic" target="_blank" rel="noopener noreferrer">
+                    <img src="<?php echo esc_attr( plugins_url( 'say-what/img/go-pro.png' ) ); ?>"
+                     alt="<?php esc_attr_e( "Save time - go Pro today!", 'say-what' ); ?>" width="100%">
+                </a>
                 <p>
                     <?php
 					// Translators: %1$s is opening <a> tag, %2%s is the closing tag.
@@ -79,10 +77,8 @@
                         printf(esc_html__( 'Upgrade to the Pro version today, and %1$ssave 15&#37;%2$s with the code %3$s%4$s%5$s at checkout.', 'say-what' ),'<em>','</em>','<code>', 'WPSAYWHAT', '</code>');
                         ?></strong></p>
                 <p>
-                <center>
                     <a href="https://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgradebtn"
-                       class="button button-primary" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Go Pro now &raquo;', 'say-what' ); ?></a>
-                </center>
+                       class="button" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Go Pro now &raquo;', 'say-what' ); ?></a>
                 </p>
             </div>
         </div>
