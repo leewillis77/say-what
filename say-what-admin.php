@@ -176,7 +176,7 @@ class SayWhatAdmin {
 			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
 		}
 		$_POST = stripslashes_deep( $_POST );
-		array_walk( $_POST, array( $this, 'strip_cr_callback' ) );
+		array_walk( $_POST, [ $this, 'strip_cr_callback' ] );
 		if ( isset( $_POST['say_what_string_id'] ) ) {
 			$sql = "UPDATE {$table_prefix}say_what_strings
 					   SET orig_string = %s,
