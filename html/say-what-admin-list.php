@@ -72,10 +72,18 @@
                         ?></li>
                 </ul>
                 </p>
-                <p><strong><?php
+                <p>
+                    <strong><?php
 						// Translators: %1$s / 2 are opening / closing <em> tag, %3%s is <code>, %4$s is a discount code, and %5$s is </code>.
-                        printf(esc_html__( 'Upgrade to the Pro version today, and %1$ssave 15&#37;%2$s with the code %3$s%4$s%5$s at checkout.', 'say-what' ),'<em>','</em>','<code>', 'WPSAYWHAT', '</code>');
-                        ?></strong></p>
+                        printf(esc_html__( 'Upgrade to the Pro version today, and %1$ssave 15&#37;%2$s with the code %3$s%4$s%5$s at checkout.', 'say-what' ),'<em>','</em><sup>*</sup>','<code>', 'WPSAYWHAT', '</code>');
+                        ?>
+                    </strong>
+                    <small class="text-muted">
+                        <br/>
+                        <sup>*</sup>
+                        <a style="text-decoration:none;" rel="noopener noreferer" target="_blank" href="https://plugins.leewillis.co.uk/say-what-pro-discount-offer/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgradeterms"><?php esc_html_e( 'Terms apply', 'say-what' ); ?></a>
+                    </small>
+                </p>
                 <p>
                     <a href="https://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgradebtn"
                        class="button" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Go Pro now &raquo;', 'say-what' ); ?></a>
