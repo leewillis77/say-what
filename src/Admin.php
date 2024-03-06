@@ -1,5 +1,7 @@
 <?php
 
+namespace Ademti\SayWhat;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }

@@ -1,0 +1,36 @@
+{
+    "require-dev": {
+        "wp-coding-standards/wpcs": "^3.0",
+        "phpmd/phpmd": "^2.15",
+        "phpcompatibility/php-compatibility": "^9.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Ademti\\SayWhat\\": "src/"
+        }
+    },
+    "scripts": {
+        "compat:php-7.4": "phpcs ./src say-what.php -s --standard=PHPCompatibility --runtime-set testVersion 7.4",
+        "compat:php-8.0": "phpcs ./src say-what.php -s --standard=PHPCompatibility --runtime-set testVersion 8.0",
+        "compat:php-8.1": "phpcs ./src say-what.php -s --standard=PHPCompatibility --runtime-set testVersion 8.1",
+        "compat:php-8.2": "phpcs ./src say-what.php -s --standard=PHPCompatibility --runtime-set testVersion 8.2",
+        "compat": [
+            "@compat:php-7.4",
+            "@compat:php-8.0",
+            "@compat:php-8.1",
+            "@compat:php-8.2"
+        ],
+        "phpmd": "./vendor/bin/phpmd src/ say-what.php text phpmd-ruleset.xml",
+        "phpcs": "./vendor/bin/phpcs",
+        "check": [
+            "@compat",
+            "@phpmd",
+            "@phpcs"
+        ]
+    }
+}
