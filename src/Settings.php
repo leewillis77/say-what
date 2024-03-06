@@ -100,7 +100,7 @@ class Settings {
 		if ( wp_using_ext_object_cache() ) {
 			$this->load_replacements_from_cache();
 		}
-		if ( !isset( $this->replacements ) ) {
+		if ( ! isset( $this->replacements ) ) {
 			// We haven't loaded from the cache. Load from the DB.
 			$this->load_replacements_from_database();
 		}
@@ -128,7 +128,7 @@ class Settings {
 	private function load_replacements_from_database(): void {
 		global $wpdb, $table_prefix;
 
-		$sql = "SELECT * FROM {$table_prefix}say_what_strings";
+		$sql                = "SELECT * FROM {$table_prefix}say_what_strings";
 		$this->replacements = $wpdb->get_results( $sql, ARRAY_A );
 		// Cache them if we're using an external object cache.
 		if ( wp_using_ext_object_cache() ) {

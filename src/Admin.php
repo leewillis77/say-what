@@ -24,7 +24,7 @@ class Admin {
 	/**
 	 * Constructor
 	 */
-	function __construct( Settings $settings ) {
+	public function __construct( Settings $settings ) {
 		$this->settings = $settings;
 		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
 		add_action( 'admin_init', [ $this, 'admin_init' ] );
@@ -86,7 +86,12 @@ class Admin {
 	 * Add CSS / javascript to admin pages
 	 */
 	public function enqueue_scripts(): void {
-			wp_register_style( 'say_what_admin_css', plugins_url() . '/say-what/css/admin.css', [] );
+			wp_register_style(
+				'say_what_admin_css',
+				plugins_url() . '/say-what/css/admin.css',
+				[],
+				SAY_WHAT_VERSION
+			);
 			wp_enqueue_style( 'say_what_admin_css' );
 	}
 
@@ -114,8 +119,8 @@ class Admin {
 	 */
 	public function admin_list() {
 		// FIXME
-		require_once( __DIR__ . '/../say-what-list-table.class.php' );
-		require_once( __DIR__ . '/../html/say-what-admin-list.php' );
+		require_once __DIR__ . '/../say-what-list-table.class.php';
+		require_once __DIR__ . '/../html/say-what-admin-list.php';
 	}
 
 	/**
@@ -127,13 +132,13 @@ class Admin {
 			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
 		}
 		if ( isset( $_GET['id'] ) ) {
-			$sql = "SELECT * FROM {$table_prefix}say_what_strings WHERE string_id = %d";
+			$sql         = "SELECT * FROM {$table_prefix}say_what_strings WHERE string_id = %d";
 			$replacement = $wpdb->get_row( $wpdb->prepare( $sql, $_GET['id'] ) );
 		}
 		if ( ! $replacement ) {
 			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
 		}
-		require_once( __DIR__ . '/html/say-what-admin-delete.php' );
+		require_once __DIR__ . '/../html/say-what-admin-delete.php';
 	}
 
 	/**
@@ -142,13 +147,13 @@ class Admin {
 	public function admin_delete_confirmed(): void {
 		global $wpdb, $table_prefix;
 		if ( ! wp_verify_nonce( $_GET['nonce'], 'swdelete' ) ||
-			 empty( $_GET['id'] ) ) {
+			empty( $_GET['id'] ) ) {
 			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
 		}
 		$sql = "DELETE FROM {$table_prefix}say_what_strings WHERE string_id = %d";
 		$wpdb->query( $wpdb->prepare( $sql, $_GET['id'] ) );
 		$this->settings->invalidate_caches();
-		wp_redirect( 'tools.php?page=say_what_admin', '303' );
+		wp_safe_redirect( 'tools.php?page=say_what_admin', '303' );
 		die();
 	}
 
@@ -159,18 +164,18 @@ class Admin {
 		global $wpdb, $table_prefix;
 		$replacement = false;
 		if ( isset( $_GET['id'] ) ) {
-			$sql = "SELECT * FROM {$table_prefix}say_what_strings WHERE string_id = %d";
+			$sql         = "SELECT * FROM {$table_prefix}say_what_strings WHERE string_id = %d";
 			$replacement = $wpdb->get_row( $wpdb->prepare( $sql, $_GET['id'] ) );
 		}
 		if ( ! $replacement ) {
-			$replacement = new stdClass();
-			$replacement->string_id = '';
-			$replacement->orig_string = '';
+			$replacement                     = new stdClass();
+			$replacement->string_id          = '';
+			$replacement->orig_string        = '';
 			$replacement->replacement_string = '';
-			$replacement->domain = '';
-			$replacement->context = '';
+			$replacement->domain             = '';
+			$replacement->context            = '';
 		}
-		require_once( __DIR__ . '/../html/say-what-admin-addedit.php' );
+		require_once __DIR__ . '/../html/say-what-admin-addedit.php';
 	}
 
 	/**
@@ -179,9 +184,11 @@ class Admin {
 	 * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
 	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
 	 */
+	// phpcs:disable Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
 	private function strip_cr_callback( &$val, $key ): void {
-	        $val = str_replace( "\r\n", "\n", $val );
+			$val = str_replace( "\r\n", "\n", $val );
 	}
+	// phpcs:enable Generic.CodeAnalysis.UnusedFunctionParameter.FoundAfterLastUsed
 
 	/**
 	 * Something on the admin pages needs saved. Handle it here
@@ -237,7 +244,7 @@ class Admin {
 			);
 		}
 		$this->settings->invalidate_caches();
-		wp_redirect( 'tools.php?page=say_what_admin', '303' );
+		wp_safe_redirect( 'tools.php?page=say_what_admin', '303' );
 		die();
 	}
 }

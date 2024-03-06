@@ -15,15 +15,15 @@ class Frontend {
 	/**
 	 * Read the settings in and put them into a format optimised for the final filter
 	 */
-	function __construct( $settings ) {
+	public function __construct( $settings ) {
 
 		$this->settings = $settings;
 		// @TODO - do we need another copy here!?
 		foreach ( $settings->replacements as $value ) {
-			if ( empty ( $value['domain'] ) ) {
+			if ( empty( $value['domain'] ) ) {
 				$value['domain'] = 'default';
 			}
-			if ( empty ( $value['context'] ) ) {
+			if ( empty( $value['context'] ) ) {
 				$value['context'] = 'sw-default-context';
 			}
 			$this->replacements[ $value['domain'] ][ $value['orig_string'] ][ $value['context'] ] = $value['replacement_string'];
@@ -57,38 +57,38 @@ class Frontend {
 		return $this->ngettext_with_context( $translated, $single, $plural, $number, 'sw-default-context', $domain );
 	}
 
-    /**
-     * Perform a (possibly) pluralised translation with context.
-     *
-     * Note: This also handles the main logic for all other replacements.
-     *
-     * @param  string $translated The current string.
-     * @param  string $single     The original (singular) string.
-     * @param  string $plural     The original (pluralised) string.
-     *                            [May be NULL for non _n()-type calls]
-     * @param  int    $number     The number used to determine if singular or pluralised should be used.
-     *                            [May be NULL for non _n()-type calls]
-     * @param  string $context    The context, may be null for non _x()-type calls.
-     * @param  string $domain     The domain.
-     * @return string             The replaced string.
-     */
-    public function ngettext_with_context( $translated, $single, $plural, $number, $context, $domain ) {
-        /*
-         * Plugins can use the say_what_domain_aliases filter to return an alias for their domain
-         * if for any reason they change their text domain and want existing replacements to continue
-         * working. The filter should return an array keyed on the current text domain with the value
-         * set to an array of alternative domains to search for replacements. E.g
-         *   $aliases['easy-digital-downloads'][] = 'edd';
-         *   return $aliases;
-         */
+	/**
+	 * Perform a (possibly) pluralised translation with context.
+	 *
+	 * Note: This also handles the main logic for all other replacements.
+	 *
+	 * @param  string $translated The current string.
+	 * @param  string $single     The original (singular) string.
+	 * @param  string $plural     The original (pluralised) string.
+	 *                            [May be NULL for non _n()-type calls]
+	 * @param  int    $number     The number used to determine if singular or pluralised should be used.
+	 *                            [May be NULL for non _n()-type calls]
+	 * @param  string $context    The context, may be null for non _x()-type calls.
+	 * @param  string $domain     The domain.
+	 * @return string             The replaced string.
+	 */
+	public function ngettext_with_context( $translated, $single, $plural, $number, $context, $domain ) {
+		/*
+		 * Plugins can use the say_what_domain_aliases filter to return an alias for their domain
+		 * if for any reason they change their text domain and want existing replacements to continue
+		 * working. The filter should return an array keyed on the current text domain with the value
+		 * set to an array of alternative domains to search for replacements. E.g
+		 *   $aliases['easy-digital-downloads'][] = 'edd';
+		 *   return $aliases;
+		 */
 		static $domain_aliases = null;
 		if ( $domain_aliases === null ) {
 			$domain_aliases = apply_filters( 'say_what_domain_aliases', [] );
 		}
-        $original = $single;
-        if ( !is_null( $number ) && $number != 1 ) {
-                $original = $plural;
-        }
+		$original = $single;
+		if ( ! is_null( $number ) && (int) $number !== 1 ) {
+				$original = $plural;
+		}
 		if ( isset( $this->replacements[ $domain ][ $original ][ $context ] ) ) {
 			return $this->replacements[ $domain ][ $original ][ $context ];
 		}
@@ -116,7 +116,7 @@ class Frontend {
 			'say-what-js',
 			'say_what_data',
 			[
-				'replacements'            => $this->settings->get_flattened_replacements(),
+				'replacements' => $this->settings->get_flattened_replacements(),
 			]
 		);
 		wp_enqueue_script( 'say-what-js' );

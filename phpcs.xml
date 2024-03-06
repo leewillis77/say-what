@@ -19,6 +19,7 @@
 		<exclude name="WordPress.WP.AlternativeFunctions"/>
 		<exclude name="WordPress.WP.I18n.MissingTranslatorsComment"/>
 		<exclude name="WordPress.WhiteSpace.PrecisionAlignment.Found"/>
+		<exclude name="WordPress.PHP.YodaConditions.NotYoda"/>
 		<exclude name="WordPress.XSS.EscapeOutput.OutputNotEscaped"/>
 	</rule>
 	<rule ref="WordPress.Files.FileName">

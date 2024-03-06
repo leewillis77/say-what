@@ -6,6 +6,8 @@ use WP_CLI;
 use WP_CLI\CommandWithDBObject;
 use WP_CLI\Iterators\CSV;
 
+// phpcs:disable PSR2.Methods.MethodDeclaration.Underscore
+
 /**
  * Provides WP-CLI features for interacting with the "Say what?" plugin.
  */
@@ -83,7 +85,7 @@ class WpCliSupport extends CommandWithDBObject {
 		$inserted = 0;
 		foreach ( new CSV( $filename ) as $item ) {
 			$this->insert_replacement( $item );
-			$inserted++;
+			++$inserted;
 		}
 		$say_what->get_settings_instance()->invalidate_caches();
 		WP_CLI::success( sprintf( '%d new items created.', $inserted ) );
@@ -108,14 +110,15 @@ class WpCliSupport extends CommandWithDBObject {
 	public function update( $args, $assoc_args ) {
 		global $say_what;
 		$filename = $args[0];
-		$updated = $inserted = 0;
+		$updated  = 0;
+		$inserted = 0;
 		foreach ( new CSV( $filename ) as $item ) {
 			if ( ! empty( $item['string_id'] ) ) {
 				$this->update_replacement( $item );
-				$updated++;
+				++$updated;
 			} else {
 				$this->insert_replacement( $item );
-				$inserted++;
+				++$inserted;
 			}
 		}
 		$say_what->get_settings_instance()->invalidate_caches();

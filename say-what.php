@@ -38,6 +38,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+const SAY_WHAT_VERSION = '2.1.9';
+
 const SAY_WHAT_DB_VERSION = 3;
 
 require __DIR__ . '/vendor/autoload.php';
