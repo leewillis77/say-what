@@ -1,35 +1,45 @@
 <?php
 
+namespace Ademti\SayWhat;
+
+use function array_walk;
+use function get_option;
+use function is_array;
+use function wp_cache_delete_multiple;
+use function wp_cache_get;
+use function wp_cache_set;
+use function wp_using_ext_object_cache;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
 /**
- * Settings class. Possibly overkill at the moment
+ * Settings class.
  */
-class SayWhatSettings {
+class Settings {
 
 	/**
 	 * @var string
 	 */
-	public $base_file = '';
+	public string $base_file = '';
 
 	/**
 	 * @var array
 	 */
-	public $replacements = null;
+	public ?array $replacements = null;
 
 	/**
 	 * @var array
 	 */
-	private $flattened_replacements = null;
+	private $flattened_replacements;
 
 	/**
 	 * Constructor.
 	 *
-	 * Loads the settings from the database.
+	 * Loads the settings from the database iff we have completed installation.
 	 */
-	public function __construct( $base_file ) {
+	public function __construct( string $base_file ) {
 		$this->base_file    = $base_file;
 		$current_db_version = get_option( 'say_what_db_version' );
 		if ( false === $current_db_version ) {
@@ -43,8 +53,8 @@ class SayWhatSettings {
 	 *
 	 * @return array
 	 */
-	public function get_flattened_replacements() {
-		if ( null !== $this->flattened_replacements ) {
+	public function get_flattened_replacements(): array {
+		if ( isset( $this->flattened_replacements ) ) {
 			return $this->flattened_replacements;
 		}
 		// Try and retrieve from the cache.
@@ -56,9 +66,7 @@ class SayWhatSettings {
 			}
 		}
 		// Otherwise, generate them...
-		if ( empty( $this->replacements ) ) {
-			$this->flattened_replacements = [];
-		}
+		$this->flattened_replacements = [];
 		array_walk(
 			$this->replacements,
 			function ( $replacement ) {
@@ -79,7 +87,7 @@ class SayWhatSettings {
 	/**
 	 * @return void
 	 */
-	public function invalidate_caches() {
+	public function invalidate_caches(): void {
 		wp_cache_delete_multiple( [ 'say_what_strings', 'say_what_flattened_replacements' ], 'swp' );
 	}
 
@@ -87,12 +95,12 @@ class SayWhatSettings {
 	 * Load the replacements using cache if possible.
 	 * @return void
 	 */
-	private function load_replacements() {
+	private function load_replacements(): void {
 		// Try and load them from the cache.
 		if ( wp_using_ext_object_cache() ) {
 			$this->load_replacements_from_cache();
 		}
-		if ( null === $this->replacements ) {
+		if ( !isset( $this->replacements ) ) {
 			// We haven't loaded from the cache. Load from the DB.
 			$this->load_replacements_from_database();
 		}
@@ -103,11 +111,13 @@ class SayWhatSettings {
 	 *
 	 * @return void
 	 */
-	private function load_replacements_from_cache() {
+	private function load_replacements_from_cache(): void {
 		$replacements = wp_cache_get( 'say_what_strings', 'swp' );
 		if ( is_array( $replacements ) ) {
 			$this->replacements = $replacements;
+			return;
 		}
+		$this->replacements = [];
 	}
 
 	/**
@@ -115,7 +125,7 @@ class SayWhatSettings {
 	 *
 	 * @return void
 	 */
-	private function load_replacements_from_database() {
+	private function load_replacements_from_database(): void {
 		global $wpdb, $table_prefix;
 
 		$sql = "SELECT * FROM {$table_prefix}say_what_strings";

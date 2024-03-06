@@ -2,28 +2,36 @@
 
 namespace Ademti\SayWhat;
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+use Exception;
+use stdClass;
+use function add_action;
+use function admin_url;
+use function array_walk;
+use function stripslashes_deep;
+use function wp_verify_nonce;
+use function wp_die;
 
 /**
- * Say What admin class - controller for all of the admin pages
+ * Say What admin class - controller for all the admin pages.
  */
-class SayWhatAdmin {
+class Admin {
 
 	/**
-	 * @var SayWhatSettings
+	 * @var Settings
 	 */
-	private $settings;
+	private Settings $settings;
 
 	/**
 	 * Constructor
 	 */
-	function __construct( $settings ) {
+	function __construct( Settings $settings ) {
 		$this->settings = $settings;
-		add_action( 'admin_menu', array( $this, 'admin_menu' ) );
-		add_action( 'admin_init', array( $this, 'admin_init' ) );
-		add_filter( 'plugin_action_links_' . plugin_basename( $this->settings->base_file ), array( $this, 'add_upgrade_link' ) );
+		add_action( 'admin_menu', [ $this, 'admin_menu' ] );
+		add_action( 'admin_init', [ $this, 'admin_init' ] );
+		add_filter(
+			'plugin_action_links_' . plugin_basename( $this->settings->base_file ),
+			[ $this, 'add_upgrade_link' ]
+		);
 	}
 
 	/**
@@ -33,7 +41,7 @@ class SayWhatAdmin {
 		if ( isset( $_POST['say_what_save'] ) ) {
 			$this->save();
 		}
-		if ( isset( $_GET['say_what_action'] ) && ( 'delete-confirmed' == $_GET['say_what_action'] ) ) {
+		if ( isset( $_GET['say_what_action'] ) && ( 'delete-confirmed' === $_GET['say_what_action'] ) ) {
 			$this->admin_delete_confirmed();
 		}
 	}
@@ -41,32 +49,35 @@ class SayWhatAdmin {
 	/**
 	 * Add an upgrade link next to the plugin on the Plugins page.
 	 *
-	 * @param   array  $links  The existing plugin links.
+	 * @param array $links The existing plugin links.
+	 *
 	 * @return  array          The revised list of plugin links.
+	 * @throws Exception
 	 */
-	public function add_upgrade_link( $links ) {
+	public function add_upgrade_link( array $links ): array {
 		array_unshift(
 			$links,
 			'<a href="' . admin_url( 'tools.php?page=say_what_admin' ) . '">' . __( 'Settings', 'say-what' ) . '</a>'
 		);
 		$links[] = '<a href="https://plugins.leewillis.co.uk/downloads/say-what-pro/?utm_source=wporg&amp;utm_medium=plugin&amp;utm_campaign=saywhatproupgrade"><strong>Upgrade to Pro</strong></a>';
+
 		return $links;
 	}
 
 	/**
 	 * Register the menu item for the admin pages
 	 */
-	public function admin_menu() {
+	public function admin_menu(): void {
 		if ( current_user_can( 'manage_options' ) ) {
 			$page = add_management_page(
 				__( 'Text changes', 'say-what' ),
 				__( 'Text changes', 'say-what' ),
 				'manage_options',
 				'say_what_admin',
-				array( $this, 'admin' )
+				[ $this, 'admin' ]
 			);
-			if ( isset( $_GET['page'] ) && 'say_what_admin' == $_GET['page'] ) {
-				add_action( 'admin_print_styles-' . $page, array( $this, 'enqueue_scripts' ) );
+			if ( isset( $_GET['page'] ) && 'say_what_admin' === $_GET['page'] ) {
+				add_action( 'admin_print_styles-' . $page, [ $this, 'enqueue_scripts' ] );
 			}
 		}
 	}
@@ -74,15 +85,15 @@ class SayWhatAdmin {
 	/**
 	 * Add CSS / javascript to admin pages
 	 */
-	public function enqueue_scripts() {
-			wp_register_style( 'say_what_admin_css', plugins_url() . '/say-what/css/admin.css', array() );
+	public function enqueue_scripts(): void {
+			wp_register_style( 'say_what_admin_css', plugins_url() . '/say-what/css/admin.css', [] );
 			wp_enqueue_style( 'say_what_admin_css' );
 	}
 
 	/**
 	 * The main admin page controller
 	 */
-	public function admin() {
+	public function admin(): void {
 		$action = isset( $_GET['say_what_action'] ) ? $_GET['say_what_action'] : 'list';
 		switch ( $action ) {
 			case 'addedit':
@@ -102,14 +113,15 @@ class SayWhatAdmin {
 	 * Render the list of currently configured replacement strings
 	 */
 	public function admin_list() {
-		require_once( 'say-what-list-table.class.php' );
-		require_once( 'html/say-what-admin-list.php' );
+		// FIXME
+		require_once( __DIR__ . '/../say-what-list-table.class.php' );
+		require_once( __DIR__ . '/../html/say-what-admin-list.php' );
 	}
 
 	/**
-	 * Show the page asking the user to confirm deletion
+	 * Show the page asking the user to confirm deletion.
 	 */
-	public function admin_delete() {
+	public function admin_delete(): void {
 		global $wpdb, $table_prefix;
 		if ( ! wp_verify_nonce( $_GET['nonce'], 'swdelete' ) ) {
 			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
@@ -121,13 +133,13 @@ class SayWhatAdmin {
 		if ( ! $replacement ) {
 			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
 		}
-		require_once( 'html/say-what-admin-delete.php' );
+		require_once( __DIR__ . '/html/say-what-admin-delete.php' );
 	}
 
 	/**
 	 * Show the page asking the user to confirm deletion
 	 */
-	public function admin_delete_confirmed() {
+	public function admin_delete_confirmed(): void {
 		global $wpdb, $table_prefix;
 		if ( ! wp_verify_nonce( $_GET['nonce'], 'swdelete' ) ||
 			 empty( $_GET['id'] ) ) {
@@ -143,7 +155,7 @@ class SayWhatAdmin {
 	/**
 	 * Render the add/edit page for a replacement
 	 */
-	public function admin_addedit() {
+	public function admin_addedit(): void {
 		global $wpdb, $table_prefix;
 		$replacement = false;
 		if ( isset( $_GET['id'] ) ) {
@@ -158,7 +170,7 @@ class SayWhatAdmin {
 			$replacement->domain = '';
 			$replacement->context = '';
 		}
-		require_once( 'html/say-what-admin-addedit.php' );
+		require_once( __DIR__ . '/../html/say-what-admin-addedit.php' );
 	}
 
 	/**
@@ -167,7 +179,7 @@ class SayWhatAdmin {
 	 * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
 	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
 	 */
-	private function strip_cr_callback( &$val, $key ) {
+	private function strip_cr_callback( &$val, $key ): void {
 	        $val = str_replace( "\r\n", "\n", $val );
 	}
 
@@ -175,7 +187,7 @@ class SayWhatAdmin {
 	 * Something on the admin pages needs saved. Handle it here
 	 * Output error/warning messages as required
 	 */
-	private function save() {
+	private function save(): void {
 		global $wpdb, $table_prefix;
 		if ( ! wp_verify_nonce( $_POST['nonce'], 'swaddedit' ) ) {
 			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );

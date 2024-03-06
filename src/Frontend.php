@@ -1,17 +1,16 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
-}
+namespace Ademti\SayWhat;
 
 /**
  * The frontend class, responsible for performing the actual replacements
  */
-class SayWhatFrontend {
+class Frontend {
 
-	private $replacements;
+	// Dependencies.
+	private Settings $settings;
 
-	private $settings;
+	private array $replacements;
 
 	/**
 	 * Read the settings in and put them into a format optimised for the final filter
@@ -19,6 +18,7 @@ class SayWhatFrontend {
 	function __construct( $settings ) {
 
 		$this->settings = $settings;
+		// @TODO - do we need another copy here!?
 		foreach ( $settings->replacements as $value ) {
 			if ( empty ( $value['domain'] ) ) {
 				$value['domain'] = 'default';
@@ -28,26 +28,26 @@ class SayWhatFrontend {
 			}
 			$this->replacements[ $value['domain'] ][ $value['orig_string'] ][ $value['context'] ] = $value['replacement_string'];
 		}
-		add_filter( 'gettext', array( $this, 'gettext' ), 10, 3 );
-		add_filter( 'ngettext', array( $this, 'ngettext' ), 10, 5 );
-		add_filter( 'gettext_with_context', array( $this, 'gettext_with_context' ), 10, 4 );
-		add_filter( 'ngettext_with_context', array( $this, 'ngettext_with_context' ), 10, 6 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
-		add_action( 'admin_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
+		add_filter( 'gettext', [ $this, 'gettext' ], 10, 3 );
+		add_filter( 'ngettext', [ $this, 'ngettext' ], 10, 5 );
+		add_filter( 'gettext_with_context', [ $this, 'gettext_with_context' ], 10, 4 );
+		add_filter( 'ngettext_with_context', [ $this, 'ngettext_with_context' ], 10, 6 );
+		add_action( 'wp_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
+		add_action( 'admin_enqueue_scripts', [ $this, 'wp_enqueue_scripts' ] );
 	}
 
 	/**
 	 * Perform a string replacement without context.
 	 */
 	public function gettext( $translated, $original, $domain ) {
-		return $this->ngettext_with_context( $translated, $original, null, null, 'sw-default-context', $domain );
+		return $this->ngettext_with_context( $translated, $original, '', null, 'sw-default-context', $domain );
 	}
 
 	/**
 	 * Perform a string replacement with context.
 	 */
 	public function gettext_with_context( $translated, $original, $context, $domain ) {
-		return $this->ngettext_with_context( $translated, $original, null, null, $context, $domain );
+		return $this->ngettext_with_context( $translated, $original, '', null, $context, $domain );
 	}
 
 	/**
@@ -68,9 +68,9 @@ class SayWhatFrontend {
      *                            [May be NULL for non _n()-type calls]
      * @param  int    $number     The number used to determine if singular or pluralised should be used.
      *                            [May be NULL for non _n()-type calls]
-     * @param  [type] $context    The context, may be null for non _x()-type calls.
-     * @param  [type] $domain     The domain.
-     * @return [type]             The replaced string.
+     * @param  string $context    The context, may be null for non _x()-type calls.
+     * @param  string $domain     The domain.
+     * @return string             The replaced string.
      */
     public function ngettext_with_context( $translated, $single, $plural, $number, $context, $domain ) {
         /*
@@ -83,7 +83,7 @@ class SayWhatFrontend {
          */
 		static $domain_aliases = null;
 		if ( $domain_aliases === null ) {
-			$domain_aliases = apply_filters( 'say_what_domain_aliases', array() );
+			$domain_aliases = apply_filters( 'say_what_domain_aliases', [] );
 		}
         $original = $single;
         if ( !is_null( $number ) && $number != 1 ) {
@@ -91,20 +91,20 @@ class SayWhatFrontend {
         }
 		if ( isset( $this->replacements[ $domain ][ $original ][ $context ] ) ) {
 			return $this->replacements[ $domain ][ $original ][ $context ];
-		} elseif ( isset( $domain_aliases[ $domain ] ) ) {
+		}
+		if ( isset( $domain_aliases[ $domain ] ) ) {
 			foreach ( $domain_aliases[ $domain ] as $alias ) {
 				if ( isset( $this->replacements[ $alias ][ $original ][ $context ] ) ) {
 					return $this->replacements[ $alias ][ $original ][ $context ];
 				}
 			}
 			return $translated;
-		} else {
-			return $translated;
 		}
+		return $translated;
 	}
 
-	public function wp_enqueue_scripts() {
-		$asset_file = include plugin_dir_path( __FILE__ ) . '/assets/build/frontend.asset.php';
+	public function wp_enqueue_scripts(): void {
+		$asset_file = include plugin_dir_path( __FILE__ ) . '/../assets/build/frontend.asset.php';
 		wp_register_script(
 			'say-what-js',
 			plugins_url( '/say-what/assets/build/frontend.js' ),

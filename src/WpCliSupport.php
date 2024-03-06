@@ -1,18 +1,25 @@
 <?php
 
+namespace Ademti\SayWhat;
+
+use WP_CLI;
+use WP_CLI\CommandWithDBObject;
+use WP_CLI\Iterators\CSV;
+
 /**
  * Provides WP-CLI features for interacting with the "Say what?" plugin.
  */
-class SayWhatCli extends \WP_CLI\CommandWithDBObject {
+class WpCliSupport extends CommandWithDBObject {
 
 	protected $obj_type = 'stdClass';
-	protected $obj_fields = array(
+
+	protected $obj_fields = [
 		'string_id',
 		'orig_string',
 		'domain',
 		'replacement_string',
 		'context',
-	);
+	];
 
 	/**
 	 * Export all current string replacements.
@@ -74,7 +81,7 @@ class SayWhatCli extends \WP_CLI\CommandWithDBObject {
 
 		$filename = $args[0];
 		$inserted = 0;
-		foreach ( new \WP_CLI\Iterators\CSV( $filename ) as $item ) {
+		foreach ( new CSV( $filename ) as $item ) {
 			$this->insert_replacement( $item );
 			$inserted++;
 		}
@@ -102,7 +109,7 @@ class SayWhatCli extends \WP_CLI\CommandWithDBObject {
 		global $say_what;
 		$filename = $args[0];
 		$updated = $inserted = 0;
-		foreach ( new \WP_CLI\Iterators\CSV( $filename ) as $item ) {
+		foreach ( new CSV( $filename ) as $item ) {
 			if ( ! empty( $item['string_id'] ) ) {
 				$this->update_replacement( $item );
 				$updated++;
