@@ -161,6 +161,9 @@ class SayWhatAdmin {
 
 	/**
 	 * Strip CRs out of strings. array_walk() callback.
+	 *
+	 * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
+	 * @SuppressWarnings(PHPMD.UnusedFormalParameter)
 	 */
 	private function strip_cr_callback( &$val, $key ) {
 	        $val = str_replace( "\r\n", "\n", $val );

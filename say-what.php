@@ -66,18 +66,18 @@ class SayWhat {
 	/**
 	 * Constructor
 	 */
-	public function __construct(){
-		require_once ( 'say-what-settings.php' );
+	public function __construct() {
+		require_once 'say-what-settings.php';
 		$this->settings_instance = new SayWhatSettings( __FILE__ );
 		if ( is_admin() ) {
-			require_once ( 'say-what-admin.php' );
+			require_once 'say-what-admin.php';
 			$this->admin_instance = new SayWhatAdmin( $this->settings_instance );
 		}
-		require_once ( 'say-what-frontend.php' );
+		require_once 'say-what-frontend.php';
 		$this->frontend_instance = new SayWhatFrontend( $this->settings_instance );
 
 		if ( defined( 'WP_CLI' ) && WP_CLI ) {
-			require_once( 'say-what-cli.class.php');
+			require_once 'say-what-cli.class.php';
 			WP_CLI::add_command( 'say-what', 'SayWhatCli' );
 		}
 		add_action( 'init', array( $this, 'init' ) );
@@ -92,7 +92,7 @@ class SayWhat {
 	public function init() {
 		$locale = apply_filters( 'plugin_locale', get_locale(), 'say-what' );
 		load_textdomain( 'say-what', WP_LANG_DIR . '/say_what/say-what-' . $locale . '.mo' );
-		load_plugin_textdomain( 'say-what', false, basename( dirname( __FILE__ ) ) . '/languages/' );
+		load_plugin_textdomain( 'say-what', false, basename( __DIR__ ) . '/languages/' );
 	}
 
 	/**
@@ -142,7 +142,7 @@ class SayWhat {
 	private function upgrade_db_to_2() {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'say_what_strings';
-		$sql = "CREATE TABLE $table_name (
+		$sql        = "CREATE TABLE $table_name (
 							 string_id int(11) NOT NULL AUTO_INCREMENT,
 							 orig_string text NOT NULL,
 							 domain varchar(255),
@@ -163,7 +163,7 @@ class SayWhat {
 	private function upgrade_db_to_3() {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'say_what_strings';
-		$sql = "ALTER TABLE $table_name
+		$sql        = "ALTER TABLE $table_name
 				CONVERT TO CHARACTER SET utf8";
 		$wpdb->query( $sql );
 	}
@@ -196,7 +196,7 @@ class SayWhat {
 function say_what_install() {
 	global $wpdb;
 	$table_name = $wpdb->prefix . 'say_what_strings';
-	$sql = "CREATE TABLE $table_name (
+	$sql        = "CREATE TABLE $table_name (
 						 string_id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
 						 orig_string text NOT NULL,
 						 domain varchar(255),
