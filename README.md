@@ -7,11 +7,11 @@ More information :
 
 ## Support this free plugin
 
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://ecologi.com/ademtisoftware?gift-trees&amp;r=ademtisoftware"><img src="https://raw.github.com/leewillis77/say-what/master/img/cpw-banner.jpg" width="100%" alt="We're a climate-positive workforce"></a>
+<a target="_blank" rel="noopener noreferrer nofollow" href="https://ecologi.com/ademtisoftware?gift-trees&amp;r=ademtisoftware"><img src="https://raw.github.com/leewillis77/say-what/master/img/cpw.png" width="100%" alt="We're a climate-positive workforce"></a>
 
 Using this plugin on your live site? Please buy the world some trees:
 
-<a target="_blank" rel="noopener noreferrer nofollow" href="https://ecologi.com/ademtisoftware?gift-trees&amp;r=ademtisoftware">Support this free plugin by planting trees</a>
+<a target="_blank" rel="noo pener noreferrer nofollow" href="https://ecologi.com/ademtisoftware?gift-trees&amp;r=ademtisoftware">Support this free plugin by planting trees</a>
 
 It’s now common knowledge that one of the best tools to tackle the climate crisis and keep our temperatures from rising above 1.5C is to <a href="https://www.bbc.co.uk/news/science-environment-48870920" target="_blank" rel="noopener noreferrer nofollow">plant trees</a>.
 
