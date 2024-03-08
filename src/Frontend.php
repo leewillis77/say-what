@@ -18,7 +18,6 @@ class Frontend {
 	public function __construct( $settings ) {
 
 		$this->settings = $settings;
-		// @TODO - do we need another copy here!?
 		foreach ( $settings->replacements as $value ) {
 			if ( empty( $value['domain'] ) ) {
 				$value['domain'] = 'default';
