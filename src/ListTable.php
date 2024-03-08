@@ -1,23 +1,14 @@
 <?php
 
-if ( ! class_exists( 'WP_List_Table' ) ) {
-	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
-}
+namespace Ademti\SayWhat;
+
+use Exception;
+use WP_List_Table;
 
 /**
  * List table class for the admin pages
  */
-class SayWhatListTable extends WP_List_Table {
-
-	private $settings;
-
-	/**
-	 * Constructor
-	 */
-	function __construct( $settings ) {
-		$this->settings = $settings;
-		parent::__construct();
-	}
+class ListTable extends WP_List_Table {
 
 	/**
 	 * Description shown when no replacements configured
@@ -29,6 +20,8 @@ class SayWhatListTable extends WP_List_Table {
 	/**
 	 * Specify the list of columns in the table
 	 * @return array The list of columns
+	 *
+	 * @throws Exception
 	 */
 	function get_columns() {
 		$columns = array(

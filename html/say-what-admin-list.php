@@ -3,7 +3,7 @@
     <h2><?php esc_html_e( 'Text changes', 'say-what' ); ?><a href="tools.php?page=say_what_admin&amp;say_what_action=addedit"
                                                      class="add-new-h2"><?php esc_html_e( 'Add New', 'say-what' ); ?></a></h2>
 	<?php
-	$list_table_instance = new SayWhatListTable( $this->settings );
+	$list_table_instance = new Ademti\SayWhat\ListTable();
 	$list_table_instance->prepare_items();
 	$list_table_instance->display();
 	?>

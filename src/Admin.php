@@ -118,8 +118,6 @@ class Admin {
 	 * Render the list of currently configured replacement strings
 	 */
 	public function admin_list() {
-		// FIXME
-		require_once __DIR__ . '/../say-what-list-table.class.php';
 		require_once __DIR__ . '/../html/say-what-admin-list.php';
 	}
 
