@@ -27,7 +27,7 @@
         ],
         "phpmd": "./vendor/bin/phpmd src/ say-what.php text phpmd-ruleset.xml",
         "phpcs": "./vendor/bin/phpcs",
-        "check": [
+        "cs": [
             "@compat",
             "@phpmd",
             "@phpcs"
