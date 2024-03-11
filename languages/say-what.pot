@@ -1,44 +1,49 @@
-# Copyright (C) 2023 Ademti Software
+# Copyright (C) 2024 Ademti Software
 # This file is distributed under the same license as the Say What? plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Say What? 2.1.4\n"
+"Project-Id-Version: Say What? 2.2.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/say-what\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2023-07-04T09:35:52+00:00\n"
+"POT-Creation-Date: 2024-03-11T14:21:31+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.8.1\n"
+"X-Generator: WP-CLI 2.10.0\n"
 "X-Domain: say-what\n"
 
 #. Plugin Name of the plugin
+#: say-what.php
 msgid "Say What?"
 msgstr ""
 
 #. Plugin URI of the plugin
+#: say-what.php
 msgid "https://github.com/leewillis77/say-what"
 msgstr ""
 
 #. Description of the plugin
+#: say-what.php
 msgid "An easy-to-use plugin that allows you to alter strings on your site without editing WordPress core, or plugin code"
 msgstr ""
 
 #. Author of the plugin
+#: say-what.php
 msgid "Ademti Software"
 msgstr ""
 
 #. Author URI of the plugin
+#: say-what.php
 msgid "https://plugins.leewillis.co.uk/"
 msgstr ""
 
 #: html/say-what-admin-addedit.php:3
 #: html/say-what-admin-delete.php:3
 #: html/say-what-admin-list.php:3
-#: say-what-admin.php:60
-#: say-what-admin.php:61
+#: src/Admin.php:73
+#: src/Admin.php:74
 msgid "Text changes"
 msgstr ""
 
@@ -48,30 +53,30 @@ msgid "Fill in the details of the original translatable string, the string's tex
 msgstr ""
 
 #: html/say-what-admin-addedit.php:16
-#: say-what-list-table.class.php:37
+#: src/ListTable.php:29
 msgid "Original string"
 msgstr ""
 
-#: html/say-what-admin-addedit.php:20
-#: say-what-list-table.class.php:38
+#: html/say-what-admin-addedit.php:22
+#: src/ListTable.php:30
 msgid "Text domain"
 msgstr ""
 
-#: html/say-what-admin-addedit.php:24
-#: say-what-list-table.class.php:39
+#: html/say-what-admin-addedit.php:28
+#: src/ListTable.php:31
 msgid "Text context"
 msgstr ""
 
-#: html/say-what-admin-addedit.php:28
-#: say-what-list-table.class.php:40
+#: html/say-what-admin-addedit.php:34
+#: src/ListTable.php:32
 msgid "Replacement string"
 msgstr ""
 
-#: html/say-what-admin-addedit.php:32
+#: html/say-what-admin-addedit.php:40
 msgid "Update"
 msgstr ""
 
-#: html/say-what-admin-addedit.php:32
+#: html/say-what-admin-addedit.php:40
 msgid "Add"
 msgstr ""
 
@@ -92,90 +97,93 @@ msgstr ""
 msgid "Add New"
 msgstr ""
 
-#: html/say-what-admin-list.php:17
+#: html/say-what-admin-list.php:16
 msgid "We're a climate positive workforce"
 msgstr ""
 
-#: html/say-what-admin-list.php:21
+#: html/say-what-admin-list.php:20
 msgid "Using this plugin on your live site? Please buy the world some trees..."
 msgstr ""
 
-#: html/say-what-admin-list.php:23
+#: html/say-what-admin-list.php:22
 msgid "Support this free plugin by planting trees"
 msgstr ""
 
 #. Translators: %1$s is opening <a> tag, %2%s is the closing tag.
-#: html/say-what-admin-list.php:28
-msgid "It’s now common knowledge that one of the best tools to tackle the climate crisis and keep our temperatures from rising above 1.5C is to %1$splant trees%2$s."
-msgstr ""
-
-#. Translators: %1$s is opening <a> tag, %2%s is the closing tag.
-#: html/say-what-admin-list.php:32
+#: html/say-what-admin-list.php:27
 msgid "As a business, we already donate a percentage of our profits from premium plugins to global climate change projects. You're free to use package free of charge, but if you do, please consider %1$sbuying the world some trees%2$s in return. You’ll be creating employment for local families and restoring wildlife habitats."
 msgstr ""
 
-#: html/say-what-admin-list.php:38
-msgid "Go Pro today"
+#: html/say-what-admin-list.php:33
+msgid "Save time - Upgrade to Pro today"
+msgstr ""
+
+#: html/say-what-admin-list.php:36
+msgid "Save time - go Pro today!"
 msgstr ""
 
 #. Translators: %1$s is opening <a> tag, %2%s is the closing tag.
-#: html/say-what-admin-list.php:43
+#: html/say-what-admin-list.php:41
 msgid "%1$sSay What? Pro%2$s makes it even easier for you to change strings:"
 msgstr ""
 
 #. Translators: %1$s is opening <a> tag, %2%s is the closing tag.
-#: html/say-what-admin-list.php:49
+#: html/say-what-admin-list.php:47
 msgid "%1$sString Discovery%2$s and autocomplete - find the strings you need without diving through code. Works with server-side and Javascript-rendered strings."
 msgstr ""
 
 #. Translators: %1$s is opening <a> tag, %2%s is the closing tag.
-#: html/say-what-admin-list.php:56
+#: html/say-what-admin-list.php:54
 msgid "%1$sWildcard string replacements%2$s - replace individual words, or fragments across your whole site."
 msgstr ""
 
 #. Translators: %1$s is opening <a> tag, %2%s is the closing tag.
-#: html/say-what-admin-list.php:62
+#: html/say-what-admin-list.php:60
 msgid "%1$sMulti-lingual support%2$s - set different replacements for different languages."
 msgstr ""
 
 #. Translators: %1$s is opening <a> tag, %2%s is the closing tag.
-#: html/say-what-admin-list.php:68
+#: html/say-what-admin-list.php:66
 msgid "%1$sImport &amp; export%2$s your strings between sites."
 msgstr ""
 
 #. Translators: %1$s is opening <a> tag, %2%s is the closing tag.
-#: html/say-what-admin-list.php:73
+#: html/say-what-admin-list.php:71
 msgid "%1$sImproved performance%2$s using text-domain-specific filters."
 msgstr ""
 
 #. Translators: %1$s / 2 are opening / closing <em> tag, %3%s is <code>, %4$s is a discount code, and %5$s is </code>.
-#: html/say-what-admin-list.php:79
+#: html/say-what-admin-list.php:78
 msgid "Upgrade to the Pro version today, and %1$ssave 15&#37;%2$s with the code %3$s%4$s%5$s at checkout."
 msgstr ""
 
 #: html/say-what-admin-list.php:84
+msgid "Terms apply"
+msgstr ""
+
+#: html/say-what-admin-list.php:89
 msgid "Go Pro now &raquo;"
 msgstr ""
 
-#: say-what-admin.php:48
+#: src/Admin.php:60
 msgid "Settings"
 msgstr ""
 
-#: say-what-admin.php:113
-#: say-what-admin.php:120
-#: say-what-admin.php:132
-#: say-what-admin.php:176
+#: src/Admin.php:130
+#: src/Admin.php:137
+#: src/Admin.php:149
+#: src/Admin.php:198
 msgid "Did you really mean to do that? Please go back and try again."
 msgstr ""
 
-#: say-what-list-table.class.php:26
+#: src/ListTable.php:17
 msgid "No string replacements configured yet."
 msgstr ""
 
-#: say-what-list-table.class.php:127
+#: src/ListTable.php:129
 msgid "Edit"
 msgstr ""
 
-#: say-what-list-table.class.php:140
+#: src/ListTable.php:142
 msgid "Delete"
 msgstr ""
