@@ -7,7 +7,8 @@
     "config": {
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true
-        }
+        },
+        "platform-check": false
     },
     "autoload": {
         "psr-4": {
