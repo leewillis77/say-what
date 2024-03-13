@@ -5,7 +5,7 @@ Tags: string, change, translation
 Requires at least: 6.2
 Tested up to: 6.4
 Requires PHP: 7.4
-Stable tag: 2.2.1
+Stable tag: 2.2.2
 
 == Description ==
 An easy-to-use plugin that allows you to change translatable strings from plugins / themes and WordPress core without editing code. Simply enter the current string, and what you want to replace it with and the plugin will automatically do the rest!
@@ -62,6 +62,9 @@ Not in the free plugin, however this is available in the [Pro version of the plu
 2. Adding/editing a replacement
 
 == Changelog ==
+
+= 2.2.2 =
+* Fix: Resolve issue where replacements weren't made if an external object cache was in use.
 
 = 2.2.1 =
 * Change: Internal refactor of classes
