@@ -115,9 +115,7 @@ class Settings {
 		$replacements = wp_cache_get( 'say_what_strings', 'swp' );
 		if ( is_array( $replacements ) ) {
 			$this->replacements = $replacements;
-			return;
 		}
-		$this->replacements = [];
 	}
 
 	/**
