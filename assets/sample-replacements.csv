@@ -1,0 +1,4 @@
+string_id,orig_string,domain,context,replacement_string,active,lang
+22,Dashboard,,,Dashy...,Yes,
+23,"Howdy, %s",,,"Welcome to WordPress %s!",Yes,
+24,New,,"admin bar menu group label",Create!,Yes,
