@@ -1,7 +1,0 @@
-ID,Active?,"Original string","Text domain","Text context","Replacement string"
-29,Yes,"%1$s responses to %2$s",,,"There are %1$s comments on the article %2$s"
-25,Yes,Dashboard,,,"Say What? can replace core WordPress strings..."
-30,Yes,"Export replacements",say_what,,"This button used to say Export Replacements. See, we can even change plugin strings!"
-26,Yes,"Howdy, %s",,,"Hey %s, Welcome to the Say What? playground!"
-27,Yes,New,,"admin bar menu group label","Create! (Formerly ""New"")"
-28,Yes,"Thank you for creating with <a href=""%s"">WordPress</a>.",,,"Thank you for trying out the Say What? live preview."
