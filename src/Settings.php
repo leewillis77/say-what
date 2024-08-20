@@ -43,6 +43,9 @@ class Settings {
 		$this->base_file    = $base_file;
 		$current_db_version = get_option( 'say_what_db_version' );
 		if ( false === $current_db_version ) {
+			$this->replacements           = [];
+			$this->flattened_replacements = [];
+
 			return;
 		}
 		$this->load_replacements();
