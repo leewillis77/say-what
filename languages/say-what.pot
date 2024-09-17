@@ -1,15 +1,15 @@
 # Copyright (C) 2024 Ademti Software
-# This file is distributed under the same license as the Say What? plugin.
+# This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Say What? 2.2.3\n"
+"Project-Id-Version: Say What? 2.2.4\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/say-what\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-08-20T14:02:26+00:00\n"
+"POT-Creation-Date: 2024-09-17T09:24:43+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: say-what\n"
