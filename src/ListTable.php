@@ -4,6 +4,8 @@ namespace Ademti\SayWhat;
 
 use Exception;
 use WP_List_Table;
+use function sanitize_key;
+use function strtolower;
 
 /**
  * List table class for the admin pages
@@ -41,35 +43,38 @@ class ListTable extends WP_List_Table {
 	 * Retrieve the items for display
 	 */
 	public function prepare_items() {
-
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
 		global $wpdb, $table_prefix;
 
 		$columns               = $this->get_columns();
 		$hidden                = [ 'string_id' ];
 		$sortable              = $this->get_sortable_columns();
 		$this->_column_headers = [ $columns, $hidden, $sortable ];
+		$order_by              = isset( $_GET['orderby'] ) ?
+			sanitize_key( wp_unslash( $_GET['orderby'] ) ) :
+			null;
+		$order_direction       = isset( $_GET['order'] ) &&
+		                         strtolower( sanitize_key( wp_unslash( $_GET['order'] ) ) ) === 'desc' ?
+			'DESC' :
+			'ASC';
 
-		// We don't use the replacements from the settings object, we query them separately to make
-		// ordering/pagination easier. This may turn out bad if people have "lots"
-
+		// Note: We don't use the replacements from the settings object, we query them separately to make
+		// ordering/pagination easier. This may turn out bad from a performance POV if people have "lots"
 		$sql = "SELECT * FROM {$table_prefix}say_what_strings";
 
 		// Handle ordering of the results.
-		// The isset() check below validates that the passed data is a valid column name, and the value is
-		// not escaped in the query accordingly.
-		if ( isset( $_GET['orderby'] ) && isset( $sortable[ $_GET['orderby'] ] ) ) {
-			$sql .= ' ORDER BY ' . $_GET['orderby'];
-			if ( isset( $_GET['order'] ) && strtolower( $_GET['order'] ) === 'desc' ) {
-				$sql .= ' DESC';
-			} else {
-				$sql .= ' ASC';
-			}
+		// Note: We only inject $order_by if it's a valid key in the $sortable array.
+		if ( isset( $sortable[ $order_by ] ) ) {
+			$sql .= ' ORDER BY ' . $order_by . ' ' . $order_direction;
 		} else {
 			// Default ordering.
 			$sql .= ' ORDER BY orig_string ASC';
-
 		}
+		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
 		$this->items = $wpdb->get_results( $sql, ARRAY_A );
+		// phpcs:enable
 	}
 
 	/**
