@@ -129,8 +129,12 @@ class Settings {
 	private function load_replacements_from_database(): void {
 		global $wpdb, $table_prefix;
 
-		$sql                = "SELECT * FROM {$table_prefix}say_what_strings";
-		$this->replacements = $wpdb->get_results( $sql, ARRAY_A );
+		$table_name         = "{$table_prefix}say_what_strings";
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$this->replacements = $wpdb->get_results(
+			$wpdb->prepare( "SELECT * FROM %i", [ $table_name ] ),
+			ARRAY_A
+		);
 		// Cache them if we're using an external object cache.
 		if ( wp_using_ext_object_cache() ) {
 			wp_cache_set( 'say_what_strings', $this->replacements, 'swp', 3600 );

@@ -133,7 +133,10 @@ class WpCliSupport extends CommandWithDBObject {
 	protected function get_replacements() {
 		global $wpdb, $table_prefix;
 		$table = $table_prefix . 'say_what_strings';
-		return $wpdb->get_results( "SELECT * FROM $table" );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		return $wpdb->get_results(
+			$wpdb->prepare( 'SELECT * FROM %i', [ $table ] )
+		);
 	}
 
 	/**
@@ -144,15 +147,16 @@ class WpCliSupport extends CommandWithDBObject {
 	protected function update_replacement( $item ) {
 		global $wpdb, $table_prefix;
 
-		$sql = "UPDATE {$table_prefix}say_what_strings
-		           SET orig_string = %s,
-		               domain = %s,
-		               replacement_string = %s,
-		               context = %s
-		         WHERE string_id = %d";
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$wpdb->query(
 			$wpdb->prepare(
-				$sql,
+				'UPDATE %i
+				           SET orig_string = %s,
+				               domain = %s,
+				               replacement_string = %s,
+				               context = %s
+				         WHERE string_id = %d','
+				$table_prefix . 'say_what_strings',
 				$item['orig_string'],
 				$item['domain'],
 				$item['replacement_string'],

@@ -54,7 +54,7 @@ class ListTable extends WP_List_Table {
 			sanitize_key( wp_unslash( $_GET['orderby'] ) ) :
 			null;
 		$order_direction       = isset( $_GET['order'] ) &&
-		                         strtolower( sanitize_key( wp_unslash( $_GET['order'] ) ) ) === 'desc' ?
+								strtolower( sanitize_key( wp_unslash( $_GET['order'] ) ) ) === 'desc' ?
 			'DESC' :
 			'ASC';
 

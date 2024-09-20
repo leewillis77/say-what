@@ -116,9 +116,11 @@ class Main {
 	private function upgrade_db_to_3(): void {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'say_what_strings';
-		$sql        = "ALTER TABLE $table_name
-				CONVERT TO CHARACTER SET utf8";
-		$wpdb->query( $sql );
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
+		// phpcs:disable WordPress.DB.DirectDatabaseQuery.SchemaChange
+		$wpdb->query( $wpdb->prepare( 'ALTER TABLE %i CONVERT TO CHARACTER SET utf8', [ $table_name ] ) );
+		// phpcs:enable
 	}
 
 	/**
