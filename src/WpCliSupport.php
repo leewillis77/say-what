@@ -155,7 +155,7 @@ class WpCliSupport extends CommandWithDBObject {
 				               domain = %s,
 				               replacement_string = %s,
 				               context = %s
-				         WHERE string_id = %d','
+				         WHERE string_id = %d',
 				$table_prefix . 'say_what_strings',
 				$item['orig_string'],
 				$item['domain'],
