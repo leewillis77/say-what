@@ -7,7 +7,9 @@ use stdClass;
 use function add_action;
 use function admin_url;
 use function array_walk;
+use function sanitize_key;
 use function stripslashes_deep;
+use function wp_unslash;
 use function wp_verify_nonce;
 use function wp_die;
 
@@ -38,12 +40,14 @@ class Admin {
 	 * Admin init actions. Takes care of saving stuff before redirects
 	 */
 	public function admin_init() {
+		// phpcs:disable WordPress.Security.NonceVerification.Missing, WordPress.Security.NonceVerification.Recommended
 		if ( isset( $_POST['say_what_save'] ) ) {
 			$this->save();
 		}
 		if ( isset( $_GET['say_what_action'] ) && ( 'delete-confirmed' === $_GET['say_what_action'] ) ) {
 			$this->admin_delete_confirmed();
 		}
+		// phpcs:enable
 	}
 
 	/**
@@ -76,9 +80,11 @@ class Admin {
 				'say_what_admin',
 				[ $this, 'admin' ]
 			);
+			// phpcs:disable WordPress.Security.NonceVerification.Recommended
 			if ( isset( $_GET['page'] ) && 'say_what_admin' === $_GET['page'] ) {
 				add_action( 'admin_print_styles-' . $page, [ $this, 'enqueue_scripts' ] );
 			}
+			// phpcs:enable
 		}
 	}
 
@@ -99,7 +105,11 @@ class Admin {
 	 * The main admin page controller
 	 */
 	public function admin(): void {
-		$action = isset( $_GET['say_what_action'] ) ? $_GET['say_what_action'] : 'list';
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		$action = isset( $_GET['say_what_action'] ) ?
+			sanitize_key( wp_unslash( $_GET['say_what_action'] ) ) :
+			'list';
+		// phpcs:enable
 		switch ( $action ) {
 			case 'addedit':
 				$this->admin_addedit();
@@ -126,15 +136,36 @@ class Admin {
 	 */
 	public function admin_delete(): void {
 		global $wpdb, $table_prefix;
-		if ( ! wp_verify_nonce( $_GET['nonce'], 'swdelete' ) ) {
-			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
+		$nonce = isset( $_GET['nonce'] ) ?
+			sanitize_key( wp_unslash( $_GET['nonce'] ) ) :
+			null;
+		if ( ! wp_verify_nonce( $nonce, 'swdelete' ) ) {
+			wp_die(
+				esc_html(
+					__( 'Did you really mean to do that? Please go back and try again.', 'say-what' )
+				)
+			);
 		}
-		if ( isset( $_GET['id'] ) ) {
-			$sql         = "SELECT * FROM {$table_prefix}say_what_strings WHERE string_id = %d";
-			$replacement = $wpdb->get_row( $wpdb->prepare( $sql, $_GET['id'] ) );
+		$table_name = $table_prefix . 'say_what_strings';
+		$id = isset( $_GET['id'] ) ?
+			sanitize_key( wp_unslash( $_GET['id'] ) ) :
+			null;
+		if ( ! empty( $id ) ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$replacement = $wpdb->get_row(
+				$wpdb->prepare(
+					'SELECT * FROM %i WHERE string_id = %d',
+					$table_name,
+					$id
+				)
+			);
 		}
 		if ( ! $replacement ) {
-			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
+			wp_die(
+				esc_html(
+					__( 'Did you really mean to do that? Please go back and try again.', 'say-what' )
+				)
+			);
 		}
 		require_once __DIR__ . '/../html/say-what-admin-delete.php';
 	}
@@ -144,12 +175,27 @@ class Admin {
 	 */
 	public function admin_delete_confirmed(): void {
 		global $wpdb, $table_prefix;
-		if ( ! wp_verify_nonce( $_GET['nonce'], 'swdelete' ) ||
-			empty( $_GET['id'] ) ) {
-			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
+		$id = isset( $_GET['id'] ) ?
+			sanitize_key( wp_unslash( $_GET['id'] ) ) :
+			null;
+		if ( ! isset ($_GET['nonce'] ) ||
+		     ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['nonce'] ) ), 'swdelete' ) ||
+			empty( $id )
+		) {
+			wp_die(
+				esc_html(
+					__( 'Did you really mean to do that? Please go back and try again.', 'say-what')
+				)
+			);
 		}
-		$sql = "DELETE FROM {$table_prefix}say_what_strings WHERE string_id = %d";
-		$wpdb->query( $wpdb->prepare( $sql, $_GET['id'] ) );
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+		$wpdb->query(
+			$wpdb->prepare(
+				'DELETE FROM %i WHERE string_id = %d',
+				$table_prefix . 'say_what_strings',
+				$id
+			)
+		);
 		$this->settings->invalidate_caches();
 		wp_safe_redirect( 'tools.php?page=say_what_admin', '303' );
 		die();
@@ -161,9 +207,20 @@ class Admin {
 	public function admin_addedit(): void {
 		global $wpdb, $table_prefix;
 		$replacement = false;
-		if ( isset( $_GET['id'] ) ) {
-			$sql         = "SELECT * FROM {$table_prefix}say_what_strings WHERE string_id = %d";
-			$replacement = $wpdb->get_row( $wpdb->prepare( $sql, $_GET['id'] ) );
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		$id = isset( $_GET['id'] ) ?
+			sanitize_key( wp_unslash( $_GET['id'] ) ) :
+			null;
+		// phpcs:enable
+		if ( ! is_null( $id ) ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$replacement = $wpdb->get_row(
+				$wpdb->prepare(
+					'SELECT * FROM %i WHERE string_id = %d',
+					$table_prefix . 'say_what_strings',
+					$id
+				)
+			);
 		}
 		if ( ! $replacement ) {
 			$replacement                     = new stdClass();
@@ -194,50 +251,60 @@ class Admin {
 	 */
 	private function save(): void {
 		global $wpdb, $table_prefix;
-		if ( ! wp_verify_nonce( $_POST['nonce'], 'swaddedit' ) ) {
-			wp_die( __( 'Did you really mean to do that? Please go back and try again.', 'say-what' ) );
+		$nonce = isset( $_POST['nonce'] )  ?
+			sanitize_key( wp_unslash( $_POST['nonce'] ) ) :
+			'';
+		if ( ! wp_verify_nonce( $nonce, 'swaddedit' ) ) {
+			wp_die(
+				esc_html(
+					__( 'Did you really mean to do that? Please go back and try again.', 'say-what' )
+				)
+			);
 		}
-		$_POST = stripslashes_deep( $_POST );
-		array_walk( $_POST, [ $this, 'strip_cr_callback' ] );
-		if ( isset( $_POST['say_what_string_id'] ) ) {
-			$sql = "UPDATE {$table_prefix}say_what_strings
-					   SET orig_string = %s,
-						   replacement_string = %s,
-						   domain = %s,
-						   context = %s
-					 WHERE string_id = %d";
+		$table_name    = $table_prefix . 'say_what_strings';
+		$stripped_post = stripslashes_deep( $_POST );
+		array_walk( $stripped_post, [ $this, 'strip_cr_callback' ] );
+
+		if ( isset( $stripped_post['say_what_string_id'] ) ) {
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->query(
 				$wpdb->prepare(
-					$sql,
-					$_POST['say_what_orig_string'],
-					$_POST['say_what_replacement_string'],
-					$_POST['say_what_domain'],
-					$_POST['say_what_context'],
-					$_POST['say_what_string_id']
+					'UPDATE %i
+							   SET orig_string = %s,
+								   replacement_string = %s,
+								   domain = %s,
+								   context = %s
+							 WHERE string_id = %d',
+					$table_name,
+					$stripped_post['say_what_orig_string'],
+					$stripped_post['say_what_replacement_string'],
+					$stripped_post['say_what_domain'],
+					$stripped_post['say_what_context'],
+					$stripped_post['say_what_string_id']
 				)
 			);
 		} else {
-			$sql = "INSERT INTO {$table_prefix}say_what_strings
-							   (
-								   orig_string,
-								   domain,
-								   replacement_string,
-								   context
-							   )
-						VALUES (
-								   %s,
-								   %s,
-								   %s,
-								   %s
-							   )";
-
+			// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 			$wpdb->query(
 				$wpdb->prepare(
-					$sql,
-					$_POST['say_what_orig_string'],
-					$_POST['say_what_domain'],
-					$_POST['say_what_replacement_string'],
-					$_POST['say_what_context']
+					'INSERT INTO %i
+									   (
+										   orig_string,
+										   domain,
+										   replacement_string,
+										   context
+									   )
+								VALUES (
+										   %s,
+										   %s,
+										   %s,
+										   %s
+									   )',
+					$table_name,
+					$stripped_post['say_what_orig_string'],
+					$stripped_post['say_what_domain'],
+					$stripped_post['say_what_replacement_string'],
+					$stripped_post['say_what_context']
 				)
 			);
 		}
