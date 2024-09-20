@@ -173,17 +173,18 @@ class WpCliSupport extends CommandWithDBObject {
 	 */
 	protected function insert_replacement( $item ) {
 		global $wpdb, $table_prefix;
-		$sql = "INSERT INTO {$table_prefix}say_what_strings (orig_string, domain, replacement_string, context)
-			         VALUES (
-			                  %s,
-	                          %s,
-			                  %s,
-			                  %s
-			                )";
-
+		$table_name = $table_prefix . 'say_what_strings';
+		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$wpdb->query(
 			$wpdb->prepare(
-				$sql,
+				'INSERT INTO %i (orig_string, domain, replacement_string, context)
+					         VALUES (
+					                  %s,
+			                          %s,
+					                  %s,
+					                  %s
+					                )',
+				$table_name,
 				$item['orig_string'],
 				$item['domain'],
 				$item['replacement_string'],
