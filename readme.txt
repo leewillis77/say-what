@@ -6,6 +6,7 @@ Requires at least: 6.2
 Tested up to: 6.6
 Requires PHP: 7.4
 Stable tag: 2.2.4
+License: GPLv2
 An easy-to-use plugin that allows you to change translatable strings from plugins / themes and WordPress core without editing code. 
 
 == Description ==
