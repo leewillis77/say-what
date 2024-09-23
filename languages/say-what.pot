@@ -2,14 +2,14 @@
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: Say What? 2.2.4\n"
+"Project-Id-Version: Say What? 2.2.5\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/say-what\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2024-09-17T09:24:43+00:00\n"
+"POT-Creation-Date: 2024-09-23T10:01:23+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.11.0\n"
 "X-Domain: say-what\n"
@@ -42,8 +42,8 @@ msgstr ""
 #: html/say-what-admin-addedit.php:3
 #: html/say-what-admin-delete.php:3
 #: html/say-what-admin-list.php:3
-#: src/Admin.php:73
-#: src/Admin.php:74
+#: src/Admin.php:77
+#: src/Admin.php:78
 msgid "Text changes"
 msgstr ""
 
@@ -53,22 +53,22 @@ msgid "Fill in the details of the original translatable string, the string's tex
 msgstr ""
 
 #: html/say-what-admin-addedit.php:16
-#: src/ListTable.php:29
+#: src/ListTable.php:31
 msgid "Original string"
 msgstr ""
 
 #: html/say-what-admin-addedit.php:22
-#: src/ListTable.php:30
+#: src/ListTable.php:32
 msgid "Text domain"
 msgstr ""
 
 #: html/say-what-admin-addedit.php:28
-#: src/ListTable.php:31
+#: src/ListTable.php:33
 msgid "Text context"
 msgstr ""
 
 #: html/say-what-admin-addedit.php:34
-#: src/ListTable.php:32
+#: src/ListTable.php:34
 msgid "Replacement string"
 msgstr ""
 
@@ -165,25 +165,25 @@ msgstr ""
 msgid "Go Pro now &raquo;"
 msgstr ""
 
-#: src/Admin.php:60
+#: src/Admin.php:64
 msgid "Settings"
 msgstr ""
 
-#: src/Admin.php:130
-#: src/Admin.php:137
-#: src/Admin.php:149
-#: src/Admin.php:198
+#: src/Admin.php:145
+#: src/Admin.php:166
+#: src/Admin.php:187
+#: src/Admin.php:260
 msgid "Did you really mean to do that? Please go back and try again."
 msgstr ""
 
-#: src/ListTable.php:17
+#: src/ListTable.php:19
 msgid "No string replacements configured yet."
 msgstr ""
 
-#: src/ListTable.php:129
+#: src/ListTable.php:134
 msgid "Edit"
 msgstr ""
 
-#: src/ListTable.php:142
+#: src/ListTable.php:147
 msgid "Delete"
 msgstr ""
