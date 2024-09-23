@@ -147,7 +147,7 @@ class Admin {
 			);
 		}
 		$table_name = $table_prefix . 'say_what_strings';
-		$id = isset( $_GET['id'] ) ?
+		$id         = isset( $_GET['id'] ) ?
 			sanitize_key( wp_unslash( $_GET['id'] ) ) :
 			null;
 		if ( ! empty( $id ) ) {
@@ -178,13 +178,13 @@ class Admin {
 		$id = isset( $_GET['id'] ) ?
 			sanitize_key( wp_unslash( $_GET['id'] ) ) :
 			null;
-		if ( ! isset ($_GET['nonce'] ) ||
-		     ! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['nonce'] ) ), 'swdelete' ) ||
+		if ( ! isset( $_GET['nonce'] ) ||
+			! wp_verify_nonce( sanitize_key( wp_unslash( $_GET['nonce'] ) ), 'swdelete' ) ||
 			empty( $id )
 		) {
 			wp_die(
 				esc_html(
-					__( 'Did you really mean to do that? Please go back and try again.', 'say-what')
+					__( 'Did you really mean to do that? Please go back and try again.', 'say-what' )
 				)
 			);
 		}
@@ -251,7 +251,7 @@ class Admin {
 	 */
 	private function save(): void {
 		global $wpdb, $table_prefix;
-		$nonce = isset( $_POST['nonce'] )  ?
+		$nonce = isset( $_POST['nonce'] ) ?
 			sanitize_key( wp_unslash( $_POST['nonce'] ) ) :
 			'';
 		if ( ! wp_verify_nonce( $nonce, 'swaddedit' ) ) {

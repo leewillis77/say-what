@@ -129,10 +129,10 @@ class Settings {
 	private function load_replacements_from_database(): void {
 		global $wpdb, $table_prefix;
 
-		$table_name         = "{$table_prefix}say_what_strings";
+		$table_name = "{$table_prefix}say_what_strings";
 		// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
 		$this->replacements = $wpdb->get_results(
-			$wpdb->prepare( "SELECT * FROM %i", [ $table_name ] ),
+			$wpdb->prepare( 'SELECT * FROM %i', [ $table_name ] ),
 			ARRAY_A
 		);
 		// Cache them if we're using an external object cache.
