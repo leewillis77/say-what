@@ -37,7 +37,7 @@
 			<textarea class="say_what_replacement_string" name="say_what_replacement_string" cols="120" rows="1"><?php echo esc_textarea( $replacement->replacement_string ); ?></textarea>
 		</p>
 		<p class="saywhat_label_container">
-			<input type="submit" class="button-primary" value="<?php  ! empty( $replacement->string_id ) ? _e( 'Update', 'say-what' ) : _e( 'Add', 'say-what' ); ?>">
+			<input type="submit" class="button-primary" value="<?php  echo esc_html( ! empty( $replacement->string_id ) ? __( 'Update', 'say-what' ) : __( 'Add', 'say-what' ) ); ?>">
 		</p>
 	</form>
 </div>
