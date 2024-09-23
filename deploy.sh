@@ -43,9 +43,21 @@ fi
 echo ""
 echo "Before continuing, confirm that you have done the following :)"
 echo ""
-read -p " - Added a changelog for "${VERSION}"?"
-read -p " - Updated the POT file?"
-read -p " - Committed all changes up to GITHUB?"
+read -p " - Added a changelog for "${VERSION}"? " answer
+if [ $answer != "y" ] && [ $answer != "Y" ]
+then
+	exit 1;
+fi
+read -p " - Updated the POT file? " answer
+if [ $answer != "y" ] && [ $answer != "Y" ]
+then
+	exit 1;
+fi
+read -p " - Committed all changes up to GITHUB? " answer
+if [ $answer != "y" ] && [ $answer != "Y" ]
+then
+	exit 1;
+fi
 echo ""
 read -p "PRESS [ENTER] TO BEGIN RELEASING "${VERSION}
 clear
