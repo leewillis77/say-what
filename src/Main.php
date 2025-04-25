@@ -39,12 +39,11 @@ class Main {
 
 	/**
 	 * Fires on init().
-	 * Set up translation for the plugin itself.
+	 * Allows custom translation files  for the plugin itself.
 	 */
 	public function init(): void {
 		$locale = apply_filters( 'plugin_locale', get_locale(), 'say-what' );
 		load_textdomain( 'say-what', WP_LANG_DIR . '/say_what/say-what-' . $locale . '.mo' );
-		load_plugin_textdomain( 'say-what', false, basename( __DIR__ ) . '/languages/' );
 	}
 
 	/**

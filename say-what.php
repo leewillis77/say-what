@@ -8,6 +8,7 @@
  * Author: Ademti Software
  * Author URI: https://plugins.leewillis.co.uk/
  * Text Domain: say-what
+ * Domain Path: /languages
  * License: GPLv2
  */
 
