@@ -1,8 +1,7 @@
 {
   "name": "say-what",
   "devDependencies": {
-    "@wordpress/scripts": "^30.19.0",
-    "webpack-dev-server": "^5.2.2"
+    "@wordpress/scripts": "^30.19.0"
   },
   "scripts": {
     "build": "wp-scripts build && wp i18n make-pot . ./languages/say-what.pot",
