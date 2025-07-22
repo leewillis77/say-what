@@ -1,7 +1,7 @@
 {
   "name": "say-what",
   "devDependencies": {
-    "@wordpress/scripts": "*"
+    "@wordpress/scripts": "^30.19.0"
   },
   "scripts": {
     "build": "wp-scripts build && wp i18n make-pot . ./languages/say-what.pot",
