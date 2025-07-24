@@ -1,7 +1,7 @@
 {
   "name": "say-what",
   "devDependencies": {
-    "@wordpress/scripts": "^30.19.0"
+    "@wordpress/scripts": "^30.20.0"
   },
   "scripts": {
     "build": "wp-scripts build && wp i18n make-pot . ./languages/say-what.pot",
@@ -17,5 +17,6 @@
     "start": "wp-scripts start",
     "test:e2e": "wp-scripts test-e2e",
     "test:unit": "wp-scripts test-unit-js"
-  }
+  },
+  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c"
 }
