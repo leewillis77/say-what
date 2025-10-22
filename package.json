@@ -1,6 +1,7 @@
 {
   "name": "say-what",
   "devDependencies": {
+    "@playwright/test": "^1.56.1",
     "@wordpress/scripts": "^30.26.0"
   },
   "scripts": {
