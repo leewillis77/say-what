@@ -2,7 +2,7 @@
   "name": "say-what",
   "devDependencies": {
     "@playwright/test": "^1.56.1",
-    "@wordpress/scripts": "^30.26.0"
+    "@wordpress/scripts": "^31.0.0"
   },
   "scripts": {
     "build": "wp-scripts build && wp i18n make-pot . ./languages/say-what.pot",
