@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      js-yaml:
+        specifier: ^4.1.1
+        version: 4.1.1
     devDependencies:
       '@playwright/test':
         specifier: ^1.56.1
@@ -14,9 +18,6 @@ importers:
       '@wordpress/scripts':
         specifier: ^31.0.0
         version: 31.0.0(@playwright/test@1.56.1)(@types/eslint@9.6.1)(@types/node@24.10.1)(@types/webpack@4.41.40)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(stylelint-scss@6.12.1(stylelint@16.25.0(typescript@5.8.3)))(type-fest@4.41.0)(typescript@5.8.3)
-      js-yaml:
-        specifier: ^4.1.1
-        version: 4.1.1
 
 packages:
 

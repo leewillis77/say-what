@@ -5,6 +5,9 @@
     "@wordpress/scripts": "^31.0.0",
     "js-yaml": "^4.1.1"
   },
+  "dependencies": {
+    "js-yaml": "^4.1.1"
+  },
   "scripts": {
     "build": "wp-scripts build && wp i18n make-pot . ./languages/say-what.pot",
     "check-engines": "wp-scripts check-engines",
