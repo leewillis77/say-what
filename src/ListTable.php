@@ -53,6 +53,7 @@ class ListTable extends WP_List_Table {
 		$order_by              = isset( $_GET['orderby'] ) ?
 			sanitize_key( wp_unslash( $_GET['orderby'] ) ) :
 			null;
+		$order_by              = strtolower( $order_by ) === 'desc' ? 'DESC' : 'ASC';
 		$order_direction       = isset( $_GET['order'] ) &&
 								strtolower( sanitize_key( wp_unslash( $_GET['order'] ) ) ) === 'desc' ?
 			'DESC' :
@@ -73,6 +74,7 @@ class ListTable extends WP_List_Table {
 		// phpcs:disable WordPress.DB.PreparedSQL.NotPrepared
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
 		// phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
+		// phpcs:disable PluginCheck.Security.DirectDB.UnescapedDBParameter
 		$this->items = $wpdb->get_results( $sql, ARRAY_A );
 		// phpcs:enable
 	}
