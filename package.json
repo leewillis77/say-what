@@ -2,7 +2,7 @@
   "name": "say-what",
   "devDependencies": {
     "@playwright/test": "^1.57.0",
-    "@wordpress/scripts": "^31.1.0",
+    "@wordpress/scripts": "^31.3.0",
     "js-yaml": "^4.1.1"
   },
   "dependencies": {
