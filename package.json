@@ -3,10 +3,8 @@
   "devDependencies": {
     "@playwright/test": "^1.58.2",
     "@wordpress/scripts": "^31.5.0",
-    "js-yaml": "^4.1.1"
-  },
-  "dependencies": {
-    "js-yaml": "^4.1.1"
+    "minimatch": "^10.2.4",
+    "serialize-javascript": "^7.0.4"
   },
   "scripts": {
     "build": "wp-scripts build && wp i18n make-pot . ./languages/say-what.pot",
