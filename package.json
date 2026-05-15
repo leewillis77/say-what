@@ -1,8 +1,8 @@
 {
   "name": "say-what",
   "devDependencies": {
-    "@playwright/test": "^1.58.2",
-    "@wordpress/scripts": "^31.7.0"
+    "@playwright/test": "^1.60.0",
+    "@wordpress/scripts": "^31.8.0"
   },
   "scripts": {
     "build": "wp-scripts build && wp i18n make-pot . ./languages/say-what.pot",
